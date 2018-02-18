@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+/*放大镜效果*/
+window.onload=function(){
+	var left=document.getElementById("left");
+	var lx=document.getElementById("lx");
+	var cover=document.getElementById("cover");
+	var right=document.getElementById("right");
+	var pic=document.getElementById("pic");
+	
+	/*给元素加移动事件*/
+	cover.onmousemove=function(e){
+
+		/*获得事件对象*/
+		var ev=window.event || e;
+		
+		/*获得色块的实际占用的宽高*/
+		var w=lx.offsetWidth;
+    	var h=lx.offsetHeight;
+		
+		/*获得鼠标到事件源的位置*/
+		var i=ev.offsetX || ev.layerX;
+		var j=ev.offsetY || ev.layerY;
+		
+		/*计算出色块的最大可以到达的left和top值*/
+        var maxleft=left.offsetWidth-4-w;
+		var maxtop=left.offsetHeight-4-h;
+		
+		/*计算出色块的位置*/
+		var xleft=i-(w/2);
+		var xtop=j-(h/2);
+		
+		if(xleft<0){
+			xleft=0;
+			}
+		if(xleft>maxleft){
+			xleft=maxleft;
+			}
+		if(xtop<0){
+			xtop=0;
+			}	
+		if(xtop>maxtop){
+			xtop=maxtop;
+			}	
+			
+	    lx.style.left=xleft+'px';
+		lx.style.top=xtop+'px';
+		
+		/*计算出右侧图片的位置*/
+        pic.style.left=-(xleft*2)+'px';
+		pic.style.top=-(xtop*2)+'px';
+		}
+		
+		/*给元素加移入事件*/
+		cover.onmouseover=function(){
+	
+		/*让色块和右侧div显示*/	
+		lx.style.display='block';
+		right.style.display='block';
+			}
+		
+       /*给元素加移出事件*/	
+	   cover.onmouseout=function(){
+	    /*让色块和右侧div隐藏*/
+	
+		lx.style.display='none';
+		right.style.display='none';
+		}	
+	};
+</script>
+
+<style>
+*{ margin:0; padding:0;}
+#left{ width:350px; height:350px; margin:10px 10px; border:2px solid #000; position:relative;  background-image:url(xiao.jpg); background-repeat:no-repeat; float:left; cursor:crosshair;}
+#lx{ width:175px; height:175px; opacity:0.6; filter:alpha(opacity=0.6); background:#33F; position:absolute; display:none; }
+#cover{ width:350px; height:350px; background:red; position:absolute;  opacity:0; filter:alpha(opacity=0);}
+#right{width:350px; height:350px; position:relative; border:2px solid #000; margin:10px; overflow:hidden; float:left; display:none; }
+#pic{ width:700px; height:700px; position:absolute; }
+</style>
+</head>
+
+<body>
+<div id="left">
+<div id="lx">
+</div>
+<div id="cover">
+</div>
+</div>
+
+<div id="right">
+<img src="da.jpg" id="pic" />
+</div>
+</body>
+</html>

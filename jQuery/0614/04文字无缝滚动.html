@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			.box{
+				width: 500px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				background: blue;
+				border: 2px solid red;
+				margin: 0px auto;
+				margin-top: 100px;
+				color: yellow;
+				position: relative;
+				overflow: hidden;
+			}
+			.hezi{
+				height:200px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+			}
+			h1{
+				height: 50px;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			$(function(){
+				var num=0;
+				
+				setInterval(function(){
+					num++;
+					if(num==4){
+						$('.hezi').css({'top':'0px'});
+						
+						num=1;
+					}
+					$('.hezi').stop().animate({'top':-50*num+'px'},200)
+				},1000)
+			})
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<div class="hezi">
+				<h1>今天的天气很好</h1>
+				<h1>贾老师心情很好</h1>
+				<h1>贾老师想罚苏启海做俯卧撑</h1>
+				<h1>今天的天气很好</h1>
+			</div>
+			
+		</div>
+	</body>
+</html>

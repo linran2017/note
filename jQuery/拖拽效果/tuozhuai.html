@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.3.min.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				background: orangered;
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: 100px;
+				left: 100px;
+			}
+		</style>
+		<script>
+			$(function(){
+				$('.box').mousedown(function(ev){
+					var m_left=ev.pageX;
+					var m_top=ev.pageY;
+					var old_left=$(this).position().left;
+					var old_top=$(this).position().top;
+					$(document).mousemove(function(ev){
+						/*获得鼠标到浏览器左侧的距离*/
+						var m_n_left=ev.pageX;
+						/*获得鼠标到浏览器顶部的距离*/
+						var m_n_top=ev.pageY;
+						var diff_left=m_n_left-m_left;
+						var diff_top=m_n_top-m_top;
+						var new_left=old_left+diff_left;
+						var new_top=old_top+diff_top;
+						if(new_left<0){
+							new_left=0;
+						}
+						if(new_top<0){
+							new_top=0;
+						}
+						if(new_left>$(document).width()-$('.box').width()){
+							new_left=$(document).width()-$('.box').width();
+						}
+						if(new_top>$(document).height()-$('.box').height()){
+							new_top=$(document).height()-$('.box').height();
+						}
+						$('.box').css({
+							'left':new_left+"px",
+							'top':new_top+"px"
+						});
+					})
+				})
+				/*鼠标抬起事件*/
+				$('.box').mouseup(function(){
+					/*关闭鼠标移动事件*/
+					$(document).off('mousemove');
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="box"></div>
+	</body>
+</html>

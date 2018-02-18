@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link type="text/css" rel="stylesheet" 
+			href="shoufengqin.css"  />
+		<!--jQuery区域-->
+		<script type="text/javascript" 
+			src="jquery-1.11.3.min.js"></script>
+		<script>
+			$(function(){
+				$('b').click(function(){
+					if($(this).parents('.item').find('ul').is(':visible')){
+						$(this).parents('.item').find('ul').hide(400);
+						$(this).removeClass('active1');
+						$(this).addClass('active2');
+						
+					}else{
+						$(this).parents('.item').find('ul').show(400);
+						$(this).parents('.item').siblings().find('ul').hide(400);
+						$(this).removeClass('active2');
+						$(this).addClass('active1');
+						$(this).parents('.item').siblings().find('b').removeClass('active1');
+						$(this).parents('.item').siblings().find('b').addClass('active2');
+					}
+				})
+				$('.header').mouseenter(function(){
+					$(this).find('i').css({'color':'#E4393C'});
+				})
+				$('.header').mouseleave(function(){
+					$(this).find('i').css({'color':'#666'});
+				})
+				$('li').mouseenter(function(){
+					$(this).find('a').css({'color':'#E4393C'});
+				})
+				$('li').mouseleave(function(){
+					$(this).find('a').css({'color':'#666'});
+				})
+			})
+			
+		</script>	
+		<!--jQuery区域结束-->
+		<title>手风琴</title>
+	</head>
+	<body>
+		<!--页面区域-->
+		<div id="box">
+			<div class="item">
+				<div class="header">
+					<b class="active2"></b>
+					<i>灯饰照明</i>
+				</div>
+				<ul>
+					<li>
+						<a>吸顶灯</a>
+					</li>
+					<li>
+						<a>吊灯</a>
+					</li>
+					<li>
+						<a>台灯</a>
+					</li>
+					<li>
+						<a>吸顶灯</a>
+					</li>
+				</ul>
+			</div>
+			<div class="item">
+				<div class="header">
+					<b class="active2"></b>
+					<i>厨房卫浴</i>
+				</div>
+				<ul>
+					<li>
+						<a>五金</a>
+					</li>
+					<li>
+						<a>挂件</a>
+					</li>
+					<li>
+						<a>水槽</a>
+					</li>
+					<li>
+						<a>龙头</a>
+					</li>
+				</ul>
+			</div>
+			<div class="item">
+				<div class="header">
+					<b class="active2"></b>
+					<i>五金工具</i>
+				</div>
+				<ul>
+					<li>
+						<a>手动工具</a>
+					</li>
+					<li>
+						<a>电动工具</a>
+					</li>
+					<li>
+						<a>工具箱</a>
+					</li>
+					<li>
+						<a>工具车</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--页面区域结束-->
+	</body>
+</html>

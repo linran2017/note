@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			#box{
+				width: 400px;
+				height: 400px;
+				position: relative;
+				border: 2px solid black;
+				margin:  0px auto;
+				margin-top: 100px;
+				
+				box-shadow: 5px 20px 100px black;
+			}
+			img{
+				width: 400px;
+				height: 400px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				display: none;
+			}
+			.jiantou{
+				display: inline-block;
+				width: 50px;
+				height: 80px;
+				background: rgba(0,0,0,0.3);
+				color: white;
+				position: absolute;
+				top: 160px;
+				line-height: 80px;
+				text-decoration: none;
+				font-size: 40px;
+				text-align: center;
+			}
+			
+			.left{
+				left: 0px;
+			}
+			.right{
+				right: 0px;
+			}
+			ul {
+				width: 100px;
+				height: 20px;
+				position: absolute;
+				bottom: 0px;
+				z-index: 9;
+				border: 5px solid red;
+				background: #FFFFFF;
+			}
+			ul li{
+				list-style: none;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				float: left;
+				background: black;
+				margin-left: 5px;
+				
+			}
+			.active{
+				/*!important强制执行*/
+				background: red !important;
+			}
+			
+		</style>
+	
+	<script type="text/javascript">
+		$(function(){
+//			设置大总管变量
+			var num = 0;
+			var timeOUT;
+//			公共函数
+			function public(){
+//				找到id为box里的所有img标签让nun号元素淡入,让img的兄弟元素淡出
+				$('#box img').eq(num).stop().fadeIn(500).siblings('img').stop().fadeOut(500);
+				
+//				找到ul里面的所有li让num号li添加class名为active,让他所有的兄弟元素移除class active
+				$('ul li').eq(num).addClass('active').siblings('li').removeClass('active');
+			}
+			
+//			定时器函数
+			function run(){
+//				让大总管变量自增
+				num++;
+//				界限判断
+				if(num==6){
+					num=0;
+				}
+				
+//				调用函数
+					public();
+
+				
+			}
+			
+//			设置定时器
+			var timer = setInterval(run,1000)
+			
+			
+//			给box添加移入事件
+			$('#box').mouseenter(function(){
+//				清理定时器
+				clearInterval(timer)
+			})
+			
+//			给box添加移出事件
+			$('#box').mouseleave(function(){
+//				恢复定时器
+				 timer = setInterval(run,1000)
+			})
+			
+//			给左右添加点击事件
+			$('#left').click(function(){
+				num--;
+				if(num==-1){
+					num=5
+				}
+//				调用函数
+					public();
+			})
+			
+	$('#right').click(function(){
+				num++;
+				if(num==6){
+					num=0
+				}
+//				调用函数
+					public();
+			})
+	
+	
+//	给li标签添加点击事件
+		$('ul li').mouseenter(function(){
+//			获得li标签的序号
+			num=$(this).index();
+			timeOUT = setTimeout(function(){
+//			调用函数
+			public()
+		},500)
+	})
+			
+$('ul li').mouseleave(function(){
+			clearTimeout(timeOUT)
+		})	
+			
+			
+			
+		})
+	</script>
+	</head>
+	<body>
+		<div id="box">
+			
+			<img src="img/10.jpg" style="display: block;"/>
+			<img src="img/11.jpg"/>
+			<img src="img/12.jpg"/>
+			<img src="img/13.jpg"/>
+			<img src="img/14.jpg"/>
+			<img src="img/15.jpg"/>
+			
+			<!--轮播图左右的点击按钮-->
+			<a href="javascript:;" id="left" class="left jiantou"> < </a>
+			<a href="javascript:;" id="right" class="right jiantou"> > </a>
+			<!--小点、-->
+			<ul>
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</body>
+</html>

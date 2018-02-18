@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 405px;
+				height: 405px;
+				margin: 50px auto;
+				box-shadow: 4px 4px 4px #999;
+				position: relative;
+			}
+			.small{
+				border: 1px #fff solid;
+				display: block;
+				float: left;
+			}
+			.big{
+				position: absolute;
+				width: 0;
+				height: 0;
+			}
+			.lt{
+				left: 0;
+				top: 0;
+			}
+			.rt{
+				right: 0;
+				top: 0;
+			}
+			.lb{
+				left: 0;
+				bottom: 0;
+			}
+			.rb{
+				right: 0;
+				bottom: 0;
+			}
+		</style>
+		<script src="jquery-1.11.3.min.js"></script>
+		<script>
+			$(function(){
+				var c=0;
+				var timer1;
+				var timer2;
+				timer1=setInterval(run,3000);
+				function run(){
+					$('.big').eq(c).css({'width':'0px',
+					'height':'0px','display':'block'}).
+					animate({'width':'405px','height':'405px'},500);
+					c++;
+					if(c>3){
+						c=0;
+					}
+					timer2=setTimeout(function(){
+						$('.big').fadeOut(400);
+					},1500);
+				}
+				/*鼠标移入移出事件*/
+				$('#box').hover(function(){
+					clearInterval(timer1);
+					clearInterval(timer2);
+				},function(){
+					$('.big').fadeOut(400);
+					timer1=setInterval(run,3000);
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<img src="small1.jpg" class="small" />
+			<img src="small2.jpg" class="small" />
+			<img src="small3.jpg" class="small" />
+			<img src="small4.jpg" class="small" />
+			<img src="big1.jpg" class="big lt" />
+			<img src="big2.jpg" class="big rt" />
+			<img src="big3.jpg" class="big lb" />
+			<img src="big4.jpg" class="big rb" />
+		</div>
+	</body>
+</html>

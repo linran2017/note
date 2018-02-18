@@ -1,0 +1,43 @@
+/*外部引入less文件*/
+@import 'base.less';
+/*函数写法2（传人不同的函数值）*/
+.yuanjiao(@zhi){
+    border-radius: @zhi;
+    -moz-border-radius: @zhi;
+    -webkit-border-radius: @zhi;
+    -ms-border-radius: @zhi;
+    -o-border-radius: @zhi;
+}
+@hongse:#FF0000;
+/*变量运算*/
+@chicun:50px;
+*{padding: 0; margin: 0;}
+p{
+    margin-top: 10px;
+    width: 300px;
+    height: @chicun;
+    line-height: 50px;
+    font-size: 30px;
+    text-align: center;
+    border: 2px blue solid;
+    
+}
+/*串联式写法 用&连接*/
+.one{
+    /*调用函数*/
+    .yuanjiao(10px);
+    &:hover{
+        background: yellow;
+    }
+}
+.three{
+    /*调用函数*/
+    .yuanjiao(20px);
+    /*变量运算*/
+    height: @chicun*2;
+}
+/*嵌套写法*/
+#five{
+    /*调用函数*/
+    .yuanjiao(30px);
+}

@@ -1,0 +1,972 @@
+<!--HTML5文档定义方式-->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+</body>
+</html>
+
+
+
+
+<!--HTML5中新增加的语义标签-->
+<body>
+<!--头部标签-->
+<header>
+头部
+</header>
+<!--头部标签结束-->
+
+<!--导航条标签-->
+<nav>
+<a>后盾人</a><a>后盾人</a><a>后盾人</a><a>后盾人</a><a>后盾人</a><a>后盾人</a>
+</nav>
+<!--导航条标签结束-->
+
+<!--中间大区域-->
+<div id="main">
+<!--侧边栏-->
+<aside>
+请选择地区：
+<br />
+<select>
+<!--对select中的option进行分组-->
+<optgroup label="湖北省">
+<option>武汉市</option>
+<option>襄阳市</option>
+<option>十堰市</option>
+<option>黄冈市</option>
+</optgroup>
+<!--分组标签结束-->
+<!--分组标签-->
+<optgroup label="河北省">
+<option>石家庄市</option>
+<option>保定市</option>
+<option>廊坊市</option>
+<option>邯郸市</option>
+</optgroup>
+<!--分组标签结束-->
+</select>
+
+<!--进度条（max：最大值；value：进度）-->
+<progress max="100" value="90"></progress>
+
+<!--衡量程度的（max：最大值；value：进度；小于low值是轻度，low-high是中度；大于high是重度）-->
+<meter min="0" max="100" low="30" high="90" value="95"></meter>
+</aside>
+<!--侧边栏结束-->
+
+<!--文章标签-->
+<article>
+<h1>各种水果的优点</h1>
+<!--时间标签(datetime是未来时间；pubdate是当前发表时间)-->
+<time datetime="2017-5-1" pubdate="2017-3-11">2017-3-11</time>
+<!--块标签-->
+<section>
+<h3>苹果</h3>
+<p>吃
+<!--下划线标签-->
+<ins>苹果要削皮</ins>，不
+
+<!--删除线-->
+<del>削皮</del>不
+
+<!--突出显示文本-->
+<mark>健康</mark>。吃苹果要削皮，不削皮不健康。</p>
+</section>
+<!--块标签结束-->
+</article>
+<!--文章标签结束-->
+</div>
+<!--中间大区域结束-->
+
+<!--底部标签-->
+<footer>
+<!--地址标签-->
+<address>湖北省 十堰市 武当山</address>
+
+<!--代码标签-->
+<code>alert('您好');</code>
+</footer>
+<!--底部标签结束-->
+</body>
+
+
+
+
+
+<!--新增的HTML5表单元素1（body中）-->
+<form>
+姓名：<input type="text" />
+<br /><br />
+密码：<input type="password" />
+<br /><br />
+邮箱：<input type="email"/ >
+<br /><br />
+网址：<input type="url" />
+<br /><br />
+<!--数字表单（min：最小值；max：最大值 step：频率；value：默认值）-->
+年龄：<input type="number" min="0" max="60" step="3" value="18" />
+<!--滑动表单（min：最小值；max：最大值 step：频率；value：默认值）-->
+数量：<input type="range" min="1" max="30" step="3" value="9" id="huakuai" />
+&nbsp; <span id="num">9</span>
+<br /><br />
+日期：<input type="date">
+<br /><br />
+搜索：<input type="search" />
+<br /><br />
+电话：<input type="tel" />
+<br /><br />
+颜色：<input type="color" value="#000000" id="yanse" />
+&nbsp; <span id="cl">#000000</span>
+<br /><br />
+<input type="submit" />
+</form>
+
+
+/*表单元素js*/
+window.onload=function(){
+	/*表单滑块效果*/
+	var huakuai=document.getElementById("huakuai");
+	var num=document.getElementById("num");
+	
+	/*给滑块加鼠标滑动事件*/
+	huakuai.onmousemove=function(){
+		
+		/*获得滑块当前的value值*/
+		var re=huakuai.value;
+		
+		/*把value值存入到num内容最后*/
+		num.innerHTML=re;
+		}
+		
+		
+		
+		
+	/*颜色表单效果*/
+	var yanse=document.getElementById("yanse");
+	var cl=document.getElementById("cl");
+	
+	/*给颜色面板绑定onchange事件（改变事件）*/
+	yanse.onchange=function(){
+		var ra=yanse.value;
+		cl.innerHTML=ra;
+		}	
+	}
+
+
+
+
+
+<!--新增的HTML5表单元素2（body中）-->
+<form id="biaodan" action="">
+<!--关键词列表文本框-->
+景点：<input type="text" list="city" />
+<!--定义选项列表-->
+<datalist id="city">
+<option value="北京故宫">北京故宫</option>
+<option value="上海东方明珠">上海东方明珠</option>
+<option value="山东泰山">山东泰山</option>
+<option value="三亚天涯海角">三亚天涯海角</option>
+<option value="北京颐和园">北京颐和园</option>
+<option value="四川峨眉山">四川峨眉山</option>
+</datalist>
+<!--关键词列表文本框结束-->
+<br /><br />
+<!--自动获取焦点-->
+搜索：<input type="text" autofocus />
+<br /><br />
+<!--可以上传多个文件-->
+文件：<input type="file" multiple />
+<br /><br />
+<!--表单提示信息文本框-->
+<input type="text" placeholder="请输入内容">
+<br /><br />
+<!--必须填写4个数字-->
+<input type="text" pattern="\d\d\d\d" placeholder="必须填写4个纯数字" />
+<br /><br />
+<!--表单内容不能为空-->
+<input type="text" placeholder="内容不能为空" required />
+<br /><br />
+<input type="submit" />
+</form>
+<!--提交form标签以外的表单-->
+手机：<input type="tel" form="biaodan" />
+
+
+
+
+
+
+
+<!--画板标签（body中）-->
+<canvas id="canvas" width="500" height="350"></canvas>
+
+<!--在画板中绘制空心、实心矩形 js-->
+<script>
+/*获得画板*/
+var canvas=document.getElementById("canvas")
+
+/*获得绘画环境*/
+var cv=canvas.getContext('2d');
+
+/*指定填充颜色*/
+cv.fillStyle='#E6DB74'
+
+/*绘制一个填充矩形*/
+cv.fillRect(20,30,100,100);
+
+/*指定线条颜色*/
+cv.strokeStyle='#FFF';
+
+/*指定线条宽度*/
+cv.lineWidth='5';
+
+/*绘制一个空心矩形*/
+cv.strokeRect(300,200,150,99);
+
+/*清除矩形*/
+cv.clearRect(20,30,50,50);
+cv.clearRect(295,195,10,10);
+</script>
+
+
+
+
+
+
+<!--画板标签（body中）-->
+<canvas id="canvas" width="500" height="350"></canvas>
+
+<!--画板路径 画线条js-->
+<script>
+/*获得画板*/
+var canvas=document.getElementById("canvas")
+
+/*获得绘画环境*/
+var cv=canvas.getContext('2d');
+
+/*开启路径*/
+cv.beginPath();
+
+/*移动笔触到开始的位置*/
+cv.moveTo(100,100);
+
+/*指定画到哪里去*/
+cv.lineTo(200,300);
+
+/*指定线条颜色*/
+cv.strokeStyle='blue';
+
+/*指定线条粗细*/
+cv.lineWidth='10';
+
+/*定义拐角类型（round：圆角；bevel：斜角；miter：尖角）*/
+cv.lineJoin='round';
+
+/*把线条画出来*/
+cv.stroke();
+
+cv.lineTo(250,230);
+cv.stroke();
+
+/*闭合路径*/
+cv.closePath();
+cv.stroke();
+
+
+cv.beginPath();
+cv.moveTo(50,50);
+cv.lineTo(50,90);
+cv.lineTo(80,90);
+cv.closePath();
+
+/*指定填充颜色*/
+cv.fillStyle='yellow';
+
+/*填充路径*/
+cv.fill();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!--画板标签（body中）-->
+<canvas id="canvas" width="500" height="350"></canvas>
+
+<!--保存和恢复画板环境 js-->
+<script>
+/*获得画板*/
+var canvas=document.getElementById("canvas")
+
+/*获得绘画环境*/
+var cv=canvas.getContext('2d');
+
+/*开启路径*/
+cv.beginPath();
+cv.moveTo(100,100);
+cv.lineTo(100,300);
+cv.strokeStyle='red';
+cv.lineWidth='5';
+cv.stroke();
+
+/*保存当前的环境状态（保存设置项）*/
+cv.save();
+
+
+cv.beginPath();
+cv.moveTo(100,300);
+cv.lineTo(180,250);
+cv.strokeStyle='yellow';
+cv.lineWidth='10';
+cv.stroke();
+
+/*保存当前的环境状态（保存设置项）*/
+cv.save();
+
+
+cv.beginPath();
+
+/*将环境状态改变到上一次保存的环境状态上（恢复一次是恢复到上一次）*/
+cv.restore();
+cv.moveTo(180,250);
+cv.lineTo(300,290);
+cv.stroke();
+
+
+cv.beginPath();
+
+/*将环境状态改变到上上一次保存的环境状态上（恢复两次是恢复到上上一次保存的状态）*/
+cv.restore();
+cv.restore();
+cv.moveTo(300,290);
+
+
+
+
+
+
+
+
+<!--自定义画图画板 body-->
+选择颜色：<input type="color" id="cl" value="#FFF" />
+笔触粗细：<input type="range" id="huakuai" min="1" max="50" step="1" value="10" />
+<span id="num">10</span>
+<input type="button" id="xpc" value="橡皮擦" />
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--自定义画图画板 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+var cl=document.getElementById('cl');
+var huakuai=document.getElementById('huakuai');
+var num=document.getElementById('num');
+var xpc=document.getElementById('xpc');
+
+
+/*给颜色面板选择器加改变事件*/
+cl.onchange=function(){
+	
+	/*获得颜色面板的value值*/
+      var ys=cl.value;
+	  
+	  /*把笔触的颜色改为当前画板的颜色*/
+	  cv.strokeStyle=ys;
+	}
+/*颜色面板改变事件结束*/	
+
+
+/*给滑块加改变事件*/
+huakuai.onchange=function(){
+	var kuandu;
+	
+	/*给滑块加鼠标移动事件*/
+	huakuai.onmousemove=function(){
+		/*获得滑块当前的value值*/
+	    kuandu=huakuai.value;
+		
+		/*将当前移动滑块的value值存入num内容里*/
+		num.innerHTML=kuandu;
+		
+		/*将笔触粗细设置为当前滑块的value值*/
+	    cv.lineWidth=kuandu;
+		}
+	
+	}
+/*滑块改变事件结束*/
+
+
+/*给橡皮擦加鼠标单击事件*/
+xpc.onclick=function(){
+	alert('您确定要使用吗？');
+	
+	/*将笔触颜色改为背景色*/
+	cv.strokeStyle='red';
+	}
+/*橡皮擦单击事件结束*/
+
+
+/*给画板加鼠标按下事件*/
+canvas.onmousedown=function(e){
+	
+	/*获得事件对象*/
+	var ev=window.event || e;
+	
+	/*获得鼠标开始按下时鼠标相对于事件源的位置*/
+	var starleft=ev.layerX || ev.offsetX;
+	var startop=ev.layerY || ev.offsetY;
+	
+	/*开启路径*/
+	cv.beginPath();
+	
+	/*定义笔触起始位置*/
+	cv.moveTo(starleft,startop);
+	
+	/*给画板加鼠标移动事件*/
+	canvas.onmousemove=function(e){
+		var ev=window.event || e;
+		
+		/*获得鼠标当前相对于事件源的位置*/
+		var newleft=ev.layerX || ev.offsetX;
+		var newtop=ev.layerY || ev.offsetY;
+		
+		/*将线条画到这个位置上*/
+		cv.lineTo(newleft,newtop);
+		
+		/*画出线条*/
+		cv.stroke();
+		}
+	}
+/*鼠标按下事件结束*/
+	
+
+/*给画板加鼠标抬起事件*/
+canvas.onmouseup=function(){
+	
+	/*取消画板的鼠标移动事件*/
+	canvas.onmousemove=null;
+	}
+/*鼠标抬起事件结束*/
+
+</script>
+cv.lineTo(350,100);
+cv.stroke();
+</script>
+
+
+
+
+
+
+
+
+<!--绘制圆 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--绘制圆 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+cv.fillStyle='yellow';
+
+/*设置一个圆形（圆心x,y,半径,起始角,结束角）*/
+cv.arc(100,100,50,0*Math.PI/180,360*Math.PI/180);
+cv.fill();
+</script>
+
+
+<!--绘制扇形饼状图 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--绘制扇形饼状图（多个扇形组成） js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+/*开启路径*/
+cv.beginPath();
+
+/*设置笔触起始位置*/
+cv.moveTo(300,200);
+
+/*设置部分圆*/
+cv.arc(300,200,100,0*Math.PI/180,60*Math.PI/180);
+
+/*设置填充颜色*/
+cv.fillStyle='yellow';
+
+/*填充扇形*/
+cv.fill();
+
+
+cv.beginPath();
+cv.moveTo(300,200);
+cv.arc(300,200,100,60*Math.PI/180,160*Math.PI/180);
+cv.fillStyle='blue';
+cv.fill();
+
+
+cv.beginPath();
+cv.moveTo(300,200);
+cv.arc(300,200,100,160*Math.PI/180,270*Math.PI/180);
+cv.fillStyle='black';
+cv.fill();
+
+
+cv.beginPath();
+cv.moveTo(300,200);
+cv.arc(300,200,100,270*Math.PI/180,360*Math.PI/180);
+cv.fillStyle='green';
+cv.fill();
+
+</script>
+
+
+
+<!--画笑脸 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--画笑脸 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+ cv.beginPath();
+ cv.arc(100,100,20,0*Math.PI/180,360*Math.PI/180);
+ cv.strokeStyle='yellow';
+ cv.stroke();
+ 
+ cv.beginPath();
+ cv.arc(180,100,20,0*Math.PI/180,360*Math.PI/180);
+ cv.strokeStyle='yellow';
+ cv.stroke();
+ 
+ cv.beginPath();
+ cv.strokeRect(130,120,20,40);
+ cv.strokeStyle='yellow';
+ cv.stroke();
+ 
+ cv.beginPath();
+ cv.moveTo(120,180);
+ cv.lineTo(160,180);
+ cv.strokeStyle='yellow';
+ cv.stroke();
+ cv.beginPath();
+ cv.arc(140,180,20,0*Math.PI/180,180*Math.PI/180);
+ cv.strokeStyle='yellow';
+ cv.stroke();
+</script>
+
+
+
+
+<!--画板文字操作 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--画板文字操作 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+cv.beginPath();
+cv.moveTo(100,0);
+cv.lineTo(100,500);
+cv.strokeStyle='white';
+cv.stroke();
+
+cv.beginPath();
+cv.moveTo(0,200);
+cv.lineTo(500,200);
+cv.strokeStyle='white';
+cv.stroke();
+
+
+var re='后盾人人人做后盾';
+
+/*设置文字属性*/
+cv.font='24px 宋体';
+
+/*设置水平对齐方式（center,right,left）*/
+cv.textAlign='center';
+
+/*设置文字基线（top,bottom,middle）*/
+cv.textBaseline='middle';
+
+/*获得文字宽度*/
+var kd=cv.measureText(re).width
+alert(kd);
+
+/*设置填充颜色*/
+cv.fillStyle='yellow';
+
+/*写出实心文字（文字,x,y）*/
+cv.fillText(re,100,200);
+
+/*设置文字属性*/
+cv.font='46px 宋体';
+
+/*设置线条颜色*/
+cv.strokeStyle='blue';
+
+/*写出空心文字（文字,x,y）*/
+cv.strokeText('欢迎光临！',200,400);
+</script>
+
+
+
+
+
+
+
+<!--画板写入图像 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+<img src="dianbiao.png" id="pic" />
+
+<!--画板写入图像 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+var pic=document.getElementById('pic');
+
+/*等pic图片加载完毕后*/
+pic.onload=function(){
+	
+	/*将图片写入画板中（图片,在画板中x,y）*/
+	cv.drawImage(pic,100,100);
+	
+	/*将图片写入画板中（图片,在画板中x,y,图片宽度,图片高度）*/
+	cv.drawImage(pic,300,200,100,100);
+	
+	/*将图片裁切的部分写入画板中（图片,开始裁切的x,y值,裁切图片的宽,高,裁切出的图片在画板中的x,y值,裁切图片在画板中的宽,高）*/
+	cv.drawImage(pic,10,10,20,20,400,410,50,50);
+	}
+</script>
+
+
+
+
+
+
+
+<!--画布的缩放、平移、旋转（都不改变原来画布中的内容）-->
+<!--画布缩放 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--画布缩放 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+cv.strokeStyle='yellow';
+cv.lineWidth='3';
+cv.strokeRect(100,50,100,100);
+
+/*画布缩放（x轴,y轴的缩放比例）*/
+cv.scale(0.8,2);
+cv.strokeRect(200,150,100,100);
+</script>
+
+
+<!--画布平移 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--画布平移 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+cv.strokeStyle='yellow';
+cv.lineWidth='3';
+cv.strokeRect(100,50,100,100);
+
+/*画布平移（x轴,y轴相对于原点平移）*/
+cv.translate(100,150)
+cv.strokeRect(100,50,100,100);
+</script>
+
+
+<!--画布旋转 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--画布旋转 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+cv.strokeStyle='yellow';
+cv.lineWidth='3';
+cv.strokeRect(280,50,100,100);
+
+/*画布旋转（以原点为中心旋转，采用弧度制）*/
+cv.rotate(60*Math.PI/180);
+cv.strokeRect(280,50,100,100);
+</script>
+
+
+
+
+
+<!--图像填充 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--图像填充 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+
+/*创建图片资源*/
+var newimg=new Image();
+
+/*设置图片路径*/
+newimg.src='dianbiao.png';
+
+/*等图片加载完毕后，再执行函数*/
+newimg.onload=function(){
+	/*创建一个规则（让这个图片平铺设置的区域）*/
+    var guize=cv.createPattern(newimg,'repeat');
+
+   /*画一个矩形区域*/
+   cv.rect(50,50,400,400);
+
+   /*用规则填充颜色*/
+   cv.fillStyle=guize;
+
+   /*填充区域*/
+   cv.fill();
+	}
+</script>
+
+
+
+
+
+
+<!--图像数据获得和写入（待完善） body-->
+<canvas id="canvas" width="800" height="800"></canvas>
+
+<!--图像信息获得和写入 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+
+/*创建图片资源*/
+var newimg=new Image();
+
+/*设置图片路径*/
+newimg.src='ad.jpg';
+
+/*等图片加载完毕后，再执行函数*/
+newimg.onload=function(){
+	
+	/*将图像写入画板中*/
+	cv.drawImage(newimg,10,10);
+	
+	/*获得指定区域内所有像素点的信息（信息：r,g,b,透明度）*/
+	var alldata=cv.getImageData(10,10,50,50);
+	
+	/*将图像信息写入画板中*/
+	cv.putImageData(alldata,600,500);
+	}
+</script>
+
+
+
+
+
+<!--对图像像素点的操作 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--对图像像素点的操作 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+cv.fillStyle='yellow';
+
+/*绘制一个和画板大小相同的矩形*/
+cv.fillRect(0,0,500,500);
+
+/*获得图像中所有像素点的信息*/
+var alldata=cv.getImageData(0,0,500,500);
+
+/*循环，将获得的数据的每个值都随机*/
+for(var i=0;i<alldata.data.length;i++){
+	
+	/*随机0——255之间的随机整数*/
+	var num=Math.floor(Math.random()*(255+1-0)+0);
+	alldata.data[i]=num;
+	}
+	
+/*将处理后的数据存储回画板*/	
+cv.putImageData(alldata,0,0);	
+</script>
+
+
+<!--验证码干扰点效果 body-->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!--验证码干扰点效果 js-->
+<script>
+var canvas=document.getElementById('canvas');
+var cv=canvas.getContext('2d');
+cv.fillStyle='black';
+
+/*绘制一个和画板大小相同的矩形*/
+cv.fillRect(0,0,500,500);
+
+
+cv.font='48px 宋体';
+cv.fillStyle='blue';
+cv.fillText('后盾人',200,200);
+/*获得图像中所有像素点的信息*/
+var alldata=cv.getImageData(0,0,500,500);
+
+/*获得像素点的个数*/
+var dian=alldata.data.length/4;
+
+/*循环，在画板中弄10000个像素点*/
+for(var i=0;i<10000;i++){
+	
+	/*随机取整，随机抽取画板中的像素点*/
+	var num=Math.floor(Math.random()*((dian-1)+1-0)+0);
+	
+	/*计算像素点对应的四条信息从几号开始*/
+	var start=(num-1)*4;
+	
+	/*随机0-255之间的整数，分别赋值给像素点的前3个信息*/
+	alldata.data[start]=Math.floor(Math.random()*(255+1-0)-0);
+	alldata.data[start+1]=Math.floor(Math.random()*(255+1-0)-0);
+	alldata.data[start+2]=Math.floor(Math.random()*(255+1-0)-0);
+	}
+	
+/*将处理后的数据存储回画板*/		
+cv.putImageData(alldata,0,0);
+</script>
+
+
+
+
+
+
+<!--audio音频标签-->
+<audio id="au" src="gq.mp3" loop width="500"></video>
+
+<!--video视频标签 controls：显示控制台条；autoplay：自动播放；loop：循环播放-->
+<video src="gq.mp4" controls="controls" autoplay="autoplay" loop="loop" width="500"></video>
+
+
+
+<!--视频操作 body-->
+<body>
+<input type="button" id="start"  value="播放" />
+<input type="button" id="pause" value="暂停" />
+<input type="range" id="val" min="0" max="10" step="1" value="10" />
+<input type="button" id="kj" value="快进" />
+<br /><br />
+<video id="v" src="gq.mp4" loop width="500"></video>
+
+<!--视频操作 js-->
+<script>
+var v=document.getElementById('v');
+var start=document.getElementById('start');
+var pause=document.getElementById('pause');
+var val=document.getElementById('val');
+var kj=document.getElementById('kj');
+
+/*视频停止播放sta=1，视频播放时sta=2*/
+var sta=1;
+
+/*点击开始播放*/
+start.onclick=function(){
+	
+	/*视频播放*/
+	v.play();
+	sta=2
+	}
+
+
+/*视频开始播放事件*/
+v.onplay=function(){
+	alert('视频开始播放');
+	}
+
+/*暂停*/
+pause.onclick=function(){
+	
+	/*视频暂停播放*/
+	v.pause();
+	sta=1;
+	}
+	
+/*声音调节*/	
+val.onchange=function(){
+	v.volume=this.value/10;
+	}		
+	
+/*快进*/	
+kj.onclick=function(){
+	
+	/*获得当前已经播放的时间*/
+	var newtime=v.currentTime;
+	
+	/*计算新时间（秒为单位）*/
+	newtime=newtime+2;
+	
+	/*把当前播放时间设置为新时间*/
+	v.currentTime=newtime;
+	}	
+	
+	
+/*给视频加鼠标点击事件，视频停止播放，sta=1；视频开始播放，sta=2*/	
+v.onclick=function(){
+	if(sta==1){
+		v.play();
+		sta=2;
+		}else if(sta==2){
+			v.pause();
+			sta=1;
+			}
+	}	
+</script>
+</body>
+
+
+
+
+
+<!--本地存储 1.html文档-->
+<body>
+<input type="button" id="btn"  value="本地存储"/>
+
+<script type="text/javascript">
+var btn=document.getElementById('btn');
+btn.onclick=function(){
+	
+	/*向本地存储变量（存储的变量,变量值）*/
+	localStorage.setItem('shopname','土豪手机');
+	localStorage.setItem('sex','男');
+	localStorage.setItem('age','22');
+	
+	/*删除本地存储区域的内容*/
+	//localStorage.removeItem('sex');
+	
+	/*把本地存储中通过localStorage存储的数据全都清空*/
+	//localStorage.clear();
+	}
+</script>
+</body>
+
+<!--本地存储 2.html文档-->
+<body>
+<script type="text/javascript">
+
+/*获得本地存储的变量值（存储变量）*/
+//alert(localStorage.getItem('age'));
+
+/*获得当前localStorage存储数据的个数*/
+alert(localStorage.length);
+</script>
+</body>

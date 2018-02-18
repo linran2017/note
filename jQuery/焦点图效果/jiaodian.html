@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 810px;
+				height: 200px;
+				margin: 50px auto;
+				display: flex;
+				justify-content: space-between;
+			}
+			li{
+				list-style: none;
+				position: relative;
+				width: 200px;
+				height: 200px;
+				cursor: pointer;
+			}
+			.cover{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: #000;
+				opacity: 0.4;
+				z-index: 9;
+				display: none;
+			}
+		</style>
+		<script src="jquery-1.11.3.min.js"></script>
+		<script>
+			$(function(){
+				$('li').hover(function(){
+					$(this).find('.cover').fadeIn(400);
+				},function(){
+					$(this).find('.cover').fadeOut(400);
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<li>
+				<div class="cover"></div>
+				<img src="small1.jpg" />
+			</li>
+			<li>
+				<div class="cover"></div>
+				<img src="small2.jpg" />
+			</li>
+			<li>
+				<div class="cover"></div>
+				<img src="small3.jpg" />
+			</li>
+			<li>
+				<div class="cover"></div>
+				<img src="small4.jpg" />
+			</li>
+		</div>
+	</body>
+</html>

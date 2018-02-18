@@ -1,0 +1,1198 @@
+<!--引入jquery文件-->
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+/*$：表示浏览器加载完毕后再执行相当于js中的window.onload*/
+$(function(){
+	
+	/*抓元素，给元素添加CSS样式*/
+	$('#list li').css('color','#C09');
+	})
+</script>
+
+
+
+/*jquery选择器*/
+$(function(){
+	
+	/*所有的css选择器在jquery中都能正常使用*/
+	$('#d p').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是#d中儿子辈的p标签*/
+	$('#d>p').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是紧邻class为one标签后面的一个p标签*/
+	$('.one+p').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是紧邻class为one标签后面的所有同级p标签*/
+	$('.one~p').css({'color':'#33C','font-size':'24px'});
+
+	/*选择的是#d中第一个p标签；last是最后一个*/
+	$('#d p:first').css({'color':'#33C','font-size':'24px'});
+
+	/*选择的是#d中所有的p标签，但是排除class为one的p标签*/
+	$('#d p:not(.one)').css({'color':'#33C','font-size':'24px'});
+
+	/*选择的是#d中所有序号为偶数的p标签；odd是奇数*/
+	$('#d p:even').css({'color':'#33C','font-size':'24px'});
+
+	/*选择的是#d中所有序号为3的p标签*/
+        $('#d p:eq(3)').css({'color':'#33C','font-size':'24px'});
+
+	/*选择的是#d中所有序号大于3的所有p标签；lt是小于*/
+	$('#d p:gt(3)').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是#d中内容包含“盾3”字样的p标签*/
+	$('#d p:contains(盾3)').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是#d中所有空的p标签；parent是非空*/
+	$('#d p:empty').css({'width':'300px','height':'30px','background':'#F93','margin':'10px'});
+	
+	/*选择的是#d中含有span标签的p标签*/
+	$('#d p:has(span)').css({'color':'#33C','font-size':'24px'});
+
+        /*选择的是#d中所有处在隐藏状态下的p标签*/
+	$('#d p:hidden').css({'color':'#33C','font-size':'24px','display':'block'});
+	
+	/*选择的是#d中所有处在显示状态下的p标签*/
+	$('#d p:visible').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是#d中所有含有class属性的p标签，自定义的属性也可以*/
+	$('#d p[class]').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是#d中所有含有hd属性等于ho的p标签，自定义的属性也可以*/
+	$('#d p[hd=ho]').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是#d中所有class属性不等于er的p标签，也包括没有class属性的p标签*/
+	$('#d p[class!=er]').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是#d中所有含有class属性值以ho开头的p标签；$是结尾，自定义的属性也可以*/
+	$('#d p[class^=ho]').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是#d中所有class属性值中含有o字符串的p标签*/
+	$('#d p[class*=o]').css({'color':'#33C','font-size':'24px'}); 
+        
+        /*子元素选择器*/
+	/*选择的是div中p标签的父级的第一个子元素；last是最后一个，父级的第一个子元素必须是p，否则不会被选中*/
+	$('div p:first-child').css({'color':'#33C','font-size':'24px'});
+
+	/*选择的是div中span标签的父级元素的第一个span标签；last是最后一个*/
+	$('div span:first-of-type').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是div中span标签的父级元素的第2个子元素，第二个元素如果是span，那么就选中，如果不是就不选中；nth-last-child是倒数第几个*/
+	$('div span:nth-child(2)').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是div中span标签的父级元素的第三个span标签；nth-last-of-type是倒数第几个*/
+	$('div span:nth-of-type(3)').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是div的独生子span标签*/
+	$('div span:only-child').css({'color':'#33C','font-size':'24px'});
+
+	/*选择的是div中的span标签的父级元素的唯一一个的span标签*/
+	$('div span:only-of-type').css({'color':'#33C','font-size':'24px'}); 
+	})
+
+
+
+/*jquery筛选器*/
+$(function(){
+         /*过滤*/
+        /*选择的是#box中序号为2的p标签*/
+        $('#box p').eq(2).css({'color':'#33C','font-size':'24px'});
+	
+        /*选择的是#box中第一个p标签*/
+        $('#box p').first().css({'color':'#33C','font-size':'24px'}); 
+	
+	/*给#box中所有p标签加单击事件，jquery中鼠标事件不加on*/
+	$('#box p').click(function(){
+		
+		/*获得当前被点击的元素class是one，hasClass只能判断class,真为ture，假为false*/
+		var re=$(this).hasClass('one');
+		if(re){
+			alert('当前这个元素有个class值是one');
+			}
+		})
+	
+	/*找到#box中所有p标签，然后从中筛选出class值是one的p标签*/	
+	$('#box p').filter('.one').css({'color':'#099','font-size':'24px'});	
+	
+	/*给#box中所有p标签加单击事件，jquery中鼠标事件不加on*/
+	$('#box p').click(function(){
+		
+		/*获得当前被点击的元素id是three，is判断后面的表达式，真为true,假为false*/
+		var ra=$(this).is('#three');
+		if(ra){
+			alert('当前这个元素有个id值是three');
+			}
+		})
+	
+	/*选择的是#box中含有span标签的p标签*/
+	$('#box p').has('span').css({'color':'#33C','font-size':'24px'});
+	
+	/*找到#box中所有p标签，但是从中排除class值是one的p标签*/	
+	$('#box p').not('.one').css({'color':'#099','font-size':'24px'});	
+	
+	/*截取#box中的2-5号的p标签，包含开始，不包含结束*/	
+	$('#box p').slice(2,5).css({'color':'#099','font-size':'24px'});
+
+       
+         /*查找*/
+	/*选择的是#box中所有儿子辈的p标签*/
+	$('#box').children('p').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是#box中所有的子代p标签（儿子辈，孙子辈，重孙子辈…………）*/
+	$('#box').find('p').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是紧邻在.one后面的一个p标签；nextAll是选择后面所有同级的；prev是紧邻在前面一个；prevAll是前面所有同级的*/
+	$('.one').next('p').css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是.one的父级元素里的所有标签；parents是所有祖先辈的元素*/
+	$('.one').parent().css({'color':'#33C','font-size':'24px'});
+	
+	/*选择的是.one的所有兄弟元素，不包括.one（元素本身）*/
+	$('.one').siblings().css({'color':'#33C','font-size':'24px'});   	
+	})
+
+
+
+/*图片显示隐藏,改变透明度*/
+$(function(){
+	/*给按钮加单击事件*/
+	$('#btn').click(function(){
+		
+		/*自动控制元素显隐*/
+		$('img').toggle();
+		
+		/*2秒钟元素淡淡隐藏*/
+		$('img').fadeOut(2000);
+		
+		/*图片慢慢显示，回调函数会在动画执行完毕后被调用*/
+		$('img').fadeIn(2000,function(){
+			alert('动画完毕');
+			});
+			
+		/*自动控制元素淡出显隐*/
+		$('img').fadeToggle(2000);
+                 
+                /*图片在3秒内透明度变为0.3*/
+		$('img').fadeTo(3000,0.3);
+		})
+	})
+
+
+/*未加链接的轮播图效果*/
+$(function(){
+	var c=0;
+	var timer;
+	function dsq(){
+		c++;
+		if(c==8){
+			c=0;
+			}
+		$('img').eq(c).fadeIn(300);
+		$('img').eq(c).siblings('img').fadeOut(300);
+		$('li').eq(c).css({'background':'#DB192A'});
+		$('li').eq(c).siblings('li').css({'background':'#FFF'});
+		}
+	timer=setInterval(dsq,3000);
+	
+	/*jquery中移入事件是mouseenter*/	
+	$('img').mouseenter(function(){
+		clearInterval(timer);
+		});	
+		
+	/*jquery中移出事件是mouseleave*/	
+	$('img').mouseleave(function(){
+		timer=setInterval(dsq,3000);
+		});	
+		
+	$('li').mouseenter(function(){
+		clearInterval(timer);
+		
+		/*获得当前移入的li*/
+		var dqthis=$(this);
+		
+		/*鼠标移入500毫秒后执行函数（防止快速移入移出的方法）*/
+		tt=setTimeout(function(){
+			
+		/*获得当前移入元素的的序号*/
+		c=dqthis.index();
+		$('img').eq(c).stop().fadeIn(300);
+		
+		/*stop()：鼠标移入清理掉前面的显隐，再执行，防止叠加*/
+		$('img').eq(c).siblings('img').stop().fadeOut(300);
+		$('li').eq(c).css({'background':'#DB192A'});
+		$('li').eq(c).siblings('li').css({'background':'#FFF'});
+			},500);
+		
+		});	
+		
+	$('li').mouseleave(function(){
+		
+		/*鼠标移出，清理定时炸弹*/
+		clearTimeout(tt);
+		
+		/*恢复定时器*/
+		timer=setInterval(dsq,3000);
+		});
+		
+	$('#left').mouseenter(function(){
+		$('#lhui').hide();
+		$('#lred').show();
+		});	
+	
+	$('#left').mouseleave(function(){
+		$('#lred').hide();
+		$('#lhui').show();
+		});	
+		
+	$('#right').mouseenter(function(){
+		$('#rhui').hide();
+		$('#rred').show();
+		});	
+	
+	$('#right').mouseleave(function(){
+		$('#rred').hide();
+		$('#rhui').show();
+		});
+		
+	$('#left').click(function(){
+		c--;
+		if(c==-1){
+			c=7;
+			}
+		$('img').eq(c).fadeIn(300);
+		$('img').eq(c).siblings('img').fadeOut(300);
+		$('li').eq(c).css({'background':'#DB192A'});
+		$('li').eq(c).siblings('li').css({'background':'#FFF'});	
+		});
+		
+	$('#right').click(function(){
+		c++;
+		if(c==8){
+			c=0;
+			}
+		$('img').eq(c).fadeIn(300);
+		$('img').eq(c).siblings('img').fadeOut(300);
+		$('li').eq(c).css({'background':'#DB192A'});
+		$('li').eq(c).siblings('li').css({'background':'#FFF'});	
+		});			
+	});
+
+
+
+
+
+
+
+
+/*animate：动画改变元素样式*/
+$(function(){
+	/*给按钮加单击事件*/
+	$('#btn').click(function(){
+
+		/*让图片3秒钟之内移动到left值为600px的位置上*/
+		$('img').animate({'left':'600px'},3000);
+		})
+		
+		
+	$('.box').click(function(){
+		
+		/*6秒钟之内，元素位置移动，改变大小*/
+		$('.box').animate({'left':'300px','top':'200px','width':'300px','height':'300px'},6000);
+		});	
+	})
+
+
+/*商品页面图片滑动效果*/
+$(function(){
+	/*鼠标移入*/
+	$('.box').mouseenter(function(){
+		
+		/*图片滑动*/
+		$(this).find('img').stop().animate({'right':'30px'},300);
+		})
+	 
+	 /*鼠标移出*/	
+	 $('.box').mouseleave(function(){
+		 
+		 /*图片滑动到原来的位置*/
+		$(this).find('img').stop().animate({'right':'10px'},300);
+		})
+	})
+
+
+/*顶部大图下滑效果*/
+$(function(){
+	/*页面加载完毕后，图片在3秒钟之内从页面顶部下滑出现，然后再执行后面的函数*/
+	$('img').animate({'margin-top':'0'},3000,function(){
+		
+		/*延迟3秒钟后图片在2秒钟之内从页面顶部上滑消失*/
+		/*delay一般写在运动前，表示让后面的运动延迟多久后再执行*/
+		$('img').delay(3000).animate({'margin-top':'-477px'},2000);
+		});
+	})
+
+
+/*滑动自动轮播效果*/
+$(function(){
+	
+	/*大总管变量*/
+	var c=0;
+	
+	/*设置状态，sta=2时表示可以点击，sta=1时表示图片在运动状态不能点击*/
+	var sta=2;
+	var timer;
+	var tt;
+	
+	/*创建自动轮播的函数*/
+	function run(){
+		c++;
+		
+		/*解决无缝滑动的问题：在滑动元素后再复制第一个滑动元素，让大div多滑动一次*/
+		if(c==6){
+			
+			/*前一轮滑动完毕后，一瞬间让.con的left值变为0*/
+			$('.con').css({'left':'0'});
+			
+			/*让序号变为1，滑动到第二张图片上*/
+			c=1;
+		   }
+		   
+		  /*计算.con应到达的left值*/ 
+		 var left=c*(-952);
+		 
+		 /*.con开始滑动*/
+		 sta=1;  
+		$('.con').animate({'left':left+'px'},300,function(){
+			
+			/*.con结束滑动*/
+			sta=2;
+			});
+			
+		/*最后一张图片滑动完毕后，让0号li的透明度变为0.7，兄弟li的透明度变为0.4*/	
+		if(c==5){
+			$('li').eq(0).css({'opacity':'0.7'});
+		        $('li').eq(0).siblings('li').css({'opacity':'0.4'}); 
+			}else{
+				
+				/*否则让c号li透明度变为0.7，其兄弟li的透明度变为0.4*/
+				$('li').eq(c).css({'opacity':'0.7'});
+		        $('li').eq(c).siblings('li').css({'opacity':'0.4'});
+				}
+		   
+		}
+		
+	/*设置定时器*/	
+	timer=setInterval(run,3000);
+	
+	/*给li加鼠标单击事件*/
+	$('li').click(function(){
+		
+		/*.con在滑动状态下不能点击，return表示返回函数，函数后面的不在执行*/
+		if(sta==1){
+			return;
+			}
+			
+		/*鼠标按下先停止上一次的定时炸弹，防止叠加*/	
+		clearTimeout(tt);	
+		
+		/*停止定时器*/
+		clearInterval(timer);
+		
+		/*设置定时炸弹，鼠标点击400毫秒后恢复定时器*/
+		tt=setTimeout(function(){
+			timer=setInterval(run,3000);
+			},400)
+		/*获得当前被点击的li的序号*/
+		c=$(this).index();
+		
+		/*计算.con应该到达的left值*/
+		var left=c*(-952);
+		$('.con').stop().animate({'left':left+'px'},300);
+		
+		/*让当前被点击的li的透明度变为0.7，兄弟li的透明度变为0.4*/
+		$(this).css({'opacity':'0.7'});
+		$(this).siblings('li').css({'opacity':'0.4'});
+		})
+	})
+
+
+
+
+
+
+/*stop和finish停止运动*/
+/*如果元素身上有多个运动，stop会停止元素身上正在执行的运动，然后开始队列中下一个运动*/
+/*如果元素身上有多个运动，finish会停止元素身上所有的运动，并且将元素的状态立即调整为最后一个运动指定的目标状态*/
+$(function(){
+	$('.star1').click(function(){
+		$('img').animate({'left':'200px'},3000);
+		})
+	$('.star2').click(function(){
+		$('img').animate({'left':'400px'},3000);
+		})
+	$('.star3').click(function(){
+		$('img').animate({'left':'600px'},3000);
+		})
+	$('.star4').click(function(){
+		$('img').animate({'left':'800px'},3000);
+		})			
+    $('.stop').click(function(){
+		
+		/*stop是停止元素身上正在执行的动画*/
+		$('img').stop();
+		})
+	$('.finish').click(function(){
+		
+		/*finish会停止动画，并且将元素的状态立即变为运动的最终指定状态*/
+		$('img').finish();
+		})	
+	})
+
+
+
+
+
+
+
+/*attr和prop操作元素属性*/
+$(function(){
+	$('.star1').click(function(){
+		
+		/*获得元素属性，attr一般操作在元素的非特定属性（自定义属性）*/
+		var re=$('.star2').attr('hd');
+		alert(re);
+		
+		/*设置元素属性*/
+		$('.star3').attr('hd','ad');
+		
+		/*获得元素属性，prop一般操作在元素的特定属性（特定属性：能给元素提供特殊功能或特殊效果的属性）*/
+		var ra=$('.star4').prop('class');
+		alert(ra);
+		
+		/*设置元素属性*/
+		$('.star4').prop('value','900');
+		
+		/*removeAttr可以删除元素任意属性，本质上是删除属性节点*/
+		$('.star3').removeAttr('value');
+		
+		/*removePorp是删除元素任意属性的属性值*/
+		$('.stop').removeProp('value');
+		})
+	
+	})
+
+
+/*全选 全不选 反选*/
+$(function(){
+	
+	/*全选*/
+	$('.qx').click(function(){
+		
+		/*找到所有的复选框，加上checked属性，true表示选中*/
+		$('.list :checkbox').prop('checked',true);
+		})
+		
+		
+	/*全不选*/	
+	$('.qbx').click(function(){
+		
+		/*选中所有的复选框，加上checked属性，false表示不选中*/
+		$('.list :checkbox').prop('checked',false);
+		})
+		
+	
+	/*反选方法1*/
+	$('.fx').click(function(){
+		
+		/*获得现在处在选中状态下的复选框*/
+		var obj=$('.list :checked');
+		
+		/*全选*/
+		$('.list :checkbox').prop('checked',true);
+		
+		/*将刚才处在选中状态下的复选框改为不选中状态*/
+		obj.prop('checked',false);
+		})
+		
+	/*反选方法2*/	
+	$('.fx').click(function(){
+		
+		/*i表示序号，val表示属性值，return返回属性值相反的属性值（选中的设置为不选中，没有选中的设置为选中）*/
+		$('.list :checkbox').prop('checked',function(i,val){
+			return !val;
+			})
+		})	
+	})
+
+
+
+
+
+
+
+
+/*class的属性值的添加和删除*/
+$(function(){
+	$('.btn').click(function(){
+		
+		/*添加一个class属性值*/
+		$('p').addClass('rr');
+		
+		/*删除class的属性值*/
+	    $('p').removeClass('p');
+		
+		/*自动添加、删除class的属性值（有就添加，没有就删除）*/
+		$('p').toggleClass('p');
+		var re=$('p').prop('class');
+		alert(re);
+		})
+      })
+
+
+/*class的添加，删除的实际操作用法*/
+$(function(){
+	$('p').click(function(){
+		
+		/*让当前被点击的p标签添加一个class属性值*/
+		$(this).addClass('sz');
+		
+		/*让当前被点击元素的兄弟元素里的p标签删除class属性值*/
+		$(this).siblings('P').removeClass('sz');
+		})
+	})
+	
+	
+	
+/*图片加链接后的轮播图效果*/
+$(function(){
+	var c=0;
+	var timer;
+	function dsq(){
+		c++;
+		if(c==8){
+			c=0;
+			}
+		$('a').eq(c).children('img').fadeIn(300);
+		$('a').eq(c).siblings('a').children('img').fadeOut(300);
+		$('li').eq(c).addClass('yd');
+		$('li').eq(c).siblings('li').removeClass('yd');
+		}
+	timer=setInterval(dsq,3000);
+	
+	/*jquery中移入事件是mouseenter*/	
+	$('img').mouseenter(function(){
+		clearInterval(timer);
+		});	
+		
+	/*jquery中移出事件是mouseleave*/	
+	$('img').mouseleave(function(){
+		timer=setInterval(dsq,3000);
+		});	
+		
+	$('li').mouseenter(function(){
+		clearInterval(timer);
+		
+		/*获得当前移入的li*/
+		var dqthis=$(this);
+		
+		/*鼠标移入500毫秒后执行函数（防止快速移入移出的方法）*/
+		tt=setTimeout(function(){
+			
+		/*获得当前移入元素的的序号*/
+		c=dqthis.index();
+		
+		/*stop()：鼠标移入先清理掉前面的显隐，再执行，防止运动叠加*/
+		$('a').eq(c).children('img').stop().fadeIn(300);
+		$('a').eq(c).siblings('a').children('img').stop().fadeOut(300);
+		$('li').eq(c).addClass('yd');
+		$('li').eq(c).siblings('li').removeClass('yd');
+			},500);
+		
+		});	
+		
+	$('li').mouseleave(function(){
+		
+		/*鼠标移出，清理定时炸弹*/
+		clearTimeout(tt);
+		
+		/*恢复定时器*/
+		timer=setInterval(dsq,3000);
+		});
+		
+	$('#left').mouseenter(function(){
+		$('#lhui').hide();
+		$('#lred').show();
+		});	
+	
+	$('#left').mouseleave(function(){
+		$('#lred').hide();
+		$('#lhui').show();
+		});	
+		
+	$('#right').mouseenter(function(){
+		$('#rhui').hide();
+		$('#rred').show();
+		});	
+	
+	$('#right').mouseleave(function(){
+		$('#rred').hide();
+		$('#rhui').show();
+		});
+		
+	$('#left').click(function(){
+		c--;
+		if(c==-1){
+			c=7;
+			}
+		$('a').eq(c).children('img').fadeIn(300);
+		$('a').eq(c).siblings('a').children('img').fadeOut(300);
+		$('li').eq(c).addClass('yd');
+		$('li').eq(c).siblings('li').removeClass('yd');	
+		});
+		
+	$('#right').click(function(){
+		c++;
+		if(c==8){
+			c=0;
+			}
+		$('a').eq(c).children('img').fadeIn(300);
+		$('a').eq(c).siblings('a').children('img').fadeOut(300);
+		$('li').eq(c).addClass('yd');
+		$('li').eq(c).siblings('li').removeClass('yd');
+		});			
+	});
+
+
+
+
+
+
+
+/*元素的内容*/
+$(function(){
+	$('.btn').click(function(){
+		
+		/*获得元素中所有内容*/
+		var con=$('p').html();
+		alert(con);
+		
+		/*设置元素的内容*/
+		$('p').html('我是<span>新设置</span>的内容');
+		
+		/*获得元素的纯文本内容*/
+		var cwb=$('p').text();
+		alert(cwb);
+		
+		/*设置元素的纯文本内容*/
+		$('p').text('我是新设置的纯文本内容');
+		})
+	})
+
+
+
+/*乾坤大挪移简单方法*/
+$(function(){
+	$('.btn').click(function(){
+		var con=$('.one').html();
+		
+		/*将.one的内容改为.two的内容*/
+		$('.one').html($('.two').html());
+		
+		/*把.one原来的内容存入到.two的内容里*/
+		$('.two').html(con);
+		})
+	})
+
+
+/*表单元素的内容*/
+$(function(){
+	$('.btn').click(function(){
+		
+		/*获得表单元素的内容*/
+		var con=$('.text').val();
+		alert(con);
+		
+		/*设置表单元素的内容*/
+		$('.text').val('张三');
+		})
+	})
+	
+	
+	
+	
+	
+	
+	
+	/*节点的操作*/
+$(function(){
+	$('.btn').click(function(){
+		
+		/*创建一个新的h2标签：在jquery中创建新标签只需要将标签最终的代码写成字符串形式即可*/
+		var newh='<h2>我是新创建的h2标签</h2>';
+		
+		/*将新创建的标签添加到.box中*/
+		$('.box').append(newh);
+		
+		/*元素尾部的追加，将h1标签追加到.box尾部*/
+		$('.box').append($('h1'));
+		$('h1').appendTo($('.box'));
+		
+		/*元素头部的追加，将h1追加到.box的头部*/
+		$('.box').prepend($('h1'));
+		$('h1').prependTo($('.box'));
+		
+		/*插队，将h1插放在1号p标签的后面,before是前面*/
+		$('p').eq(1).after($('h1'));
+		$('h1').insertAfter($('p').eq(1));	
+		
+		/*加包裹，给每一个被选中的p标签加一个div包裹*/
+		$('p').wrap('<div class="baoguo"></div>');
+		setTimeout(function(){
+			
+			/*取消外面的包裹*/
+			$('p').unwrap();
+			},2000);
+			
+	    /*把所有p标签用一个div包裹起来*/
+	    $('p').wrapAll('<div></div>');
+		
+		/*内容包裹*/
+		$('p').wrapInner('<span class="baoguo"></span>');	
+		
+		/*将h1标签替换掉2号p标签（删除2号p标签，把h1标签放置在原来的2号p标签的位置）*/
+		$('p').eq(2).replaceWith($('h1'));
+		$('h1').replaceAll($('p').eq(2));
+		
+		/*复制节点，复制一个h1标签*/
+		var newobj=$('h1').clone();
+		
+		/*将新复制的标签放在8号p标签的后面*/
+		$('p').eq(8).after(newobj);
+		})
+	})
+	
+	
+	/*节点的删除，remove和detach的区别*/
+$(function(){
+	$('.btn').click(function(){
+		/*清空元素内容*/
+		$('.box').empty();
+		
+		/*删除元素*/
+		/*remove会删除元素节点以及它身上的事件和效果*/
+		$('.box').remove();
+		
+		/*detach只会删除元素节点，不会删除元素身上的事件和效果*/
+		$('.box').detach();
+		})
+	})
+
+
+
+/*新闻标题无缝展示效果1*/
+$(function(){
+	var timer;
+	var tt;
+	var sta=2;
+	
+	/*创建滚动的函数（[把ul的top值设置为-40px]从上往下滚动）*/
+	function run(){
+		
+		/*让最后一个li的高度变为0*/
+		$('.box ul li').last().css({'height':'0px'});
+		
+		/*把最后一个li追加到ul的头部*/
+		$('.box ul').prepend($('.box ul li').last());
+		
+		/*在500毫秒内把第一个li的高度滑动到40px*/
+		$('.box ul li').first().animate({'height':'40px'},500);
+		}
+	
+	/*设置定时器*/	
+	timer=setInterval(run,2000);
+	
+	/*鼠标移入停止定时器*/
+	$('.box').mouseenter(function(){
+		clearInterval(timer);
+	 	})
+	
+	/*鼠标移出恢复定时器*/	
+	$('.box').mouseleave(function(){
+		timer=setInterval(run,2000);
+		})		
+		})
+
+
+/*新闻标题无缝展示效果2*/
+$(function(){
+	var timer;
+	
+	/*创建滚动的函数（[把ul的bottom设置为0]从下往上滚动）*/
+	function run(){
+		
+        /*将ul的bottom的值变为-40px*/
+		$('.box ul').css({'bottom':'-40px'});
+		
+		/*把第一个li追加到ul的尾部*/
+		$('.box ul').append($('.box ul li').first());
+		
+		/*在500毫秒内把ul的bottom的值向上滑动到40px*/
+		$('.box ul').animate({'bottom':'0px'},500);
+		
+		}
+	
+	/*设置定时器*/	
+	timer=setInterval(run,2000);
+	
+	/*鼠标移入停止定时器*/
+	$('.box').mouseenter(function(){
+		clearInterval(timer);
+	 	})
+	
+	/*鼠标移出恢复定时器*/	
+	$('.box').mouseleave(function(){
+		timer=setInterval(run,2000);
+		})		
+		})
+
+
+
+
+
+
+
+
+/*获得元素位置*/
+$(function(){
+	/*获得元素身上的宽度*/
+	var re=$('ul').css('width');
+	alert(re);
+	
+	/*获得.three相对于整个页面的距离（left值和top值）*/
+	var re=$('.three').offset().left;
+	alert(re);
+		
+	/*获得有定位属性元素相对于离它最近有定位属性的元素*/	
+	var ra=$('.three').position().left;
+	alert(ra);	
+		})
+
+
+/*获得滚动条位置*/
+$(function(){
+	
+	/*给元素加滚动条事件*/
+	$('.new').scroll(function(){
+		
+		/*获得滚动条的位置（已经滚动上去的内容的高度）*/
+		var re=$('.new').scrollTop();
+		
+		/*把滚动条的位置存入到.num的内容里*/
+		$('.num').html(re);
+		})
+		})
+
+
+/*设置滚动条位置*/
+$(function(){
+	
+	/*设置定时炸弹，页面加载完毕3秒钟后，执行函数*/
+	setTimeout(function(){
+		
+		/*将滚动条的位置设置为1000*/
+		$('.new').scrollTop(1000);
+		$('.num').html($('.new').scrollTop());
+		},3000);
+		})
+
+
+
+/*导航条固定定位效果*/
+$(function(){
+	
+	/*给浏览器加滚动条事件*/
+	$(window).scroll(function(){
+		
+		/*获得当前整个浏览器已经滚动上去的距离*/
+		var t=$(document).scrollTop();
+		if(t>200){
+			
+			/*让导航条固定定位*/
+			$('.dht').css({'position':'fixed','left':'50%','margin-left':'-480px','top':'0'});
+			}else{
+				$('.dht').css({'position':'relative'});
+				}
+		})
+		})
+
+
+
+
+
+
+
+
+/*元素尺寸的操作*/
+$(function(){
+	
+	/*获得元素内容的高度*/
+	var re=$('.new').height();
+	alert(re);
+	
+	/*设置元素内容的高度*/
+	$('.new').height(250);
+	
+	/*获得元素（内边距+内容）的高度*/
+	var re=$('.new').innerHeight();
+	alert(re);
+	
+	/*获得元素实际占用的高度（内容+内边距+外边框）*/
+	var re=$('.new').outerHeight();
+	alert(re);
+		})
+
+
+
+
+
+
+
+
+/*jquery事件操作*/
+$(function(){
+	
+	/*用on绑定事件，多个事件一起*/
+	$('.new').on('click mouseenter',function(){
+		alert('哈哈哈哈');
+		})
+	
+	
+	/*删除事件*/
+	$('.new').off('mouseenter');
+	
+	
+	/*单击按钮，创建一个新的h1标签，追加到.new的头部*/
+	$('.btn').click(function(){
+		$('.new').prepend('<h1>新闻标题</h1>');
+		})
+		
+		
+	/*给未来元素加单击事件（.new是父级元素，将.new的事件委托给它里面的h1）*/	
+	$('.new').on('click','h1',function(){
+		alert('欢迎光临！');
+		})	
+		
+		
+	/*给元素绑定一个只执行一次的事件*/	
+	$('.new').one('click',function(){
+		alert('哈哈哈')
+		})
+	
+	
+	/*给元素加移入移出事件（移入背景变为蓝色，移出背景变为红色）*/	
+	$('.new').hover(function(){
+		$('.new').css({'background-color':'blue'});
+		},function(){
+			$('.new').css({'background-color':'red'});
+			})
+			
+			
+	/*输入框*/		
+	var age=prompt('请输入年龄，如果年龄大于18岁就提交表单');
+	if(age>18){
+		
+		/*触发form标签的submit事件*/
+		$('.bd').trigger('submit');
+		}				
+	})
+
+
+
+
+
+/*商品放大镜效果*/
+$(function(){
+				$('.small').mousemove(function(e){
+					$('b').show();
+					$('.big').show();
+					/*获得鼠标到浏览器左侧的距离*/
+					var L=e.pageX;
+					var l=$(this).offset().left;
+					left=L-l-50;
+					/*获得鼠标到浏览器顶部的距离*/
+					var T=e.pageY;
+					var t=$(this).offset().top;
+					var top=T-t-50;
+					if(left<0){
+						left=0;
+					}
+					if(left>250){
+						left=250;
+					}
+					if(top<0){
+						top=0;
+					}
+					if(top>250){
+						top=250;
+					}
+					$('b').css({'left':left,'top':top});
+					var imgLeft=-left*2;
+					var imgTop=-top*2;
+					if(imgLeft<-350){
+						imgLeft=-350;
+					}
+					if(imgTop<-350){
+						imgTop=-350
+					}
+					$('.big img').css({'left':imgLeft,'top':imgTop});
+				})
+				$('.small').mouseleave(function(){
+					$('b').hide();
+					$('.big').hide();
+				})
+			})
+
+
+
+
+/*返回顶部按钮*/
+$(function(){
+				var timer;
+				$('.back').click(function(){
+					timer=setInterval(function(){
+						$(window).scrollTop($(window).scrollTop()-50);
+						if($(window).scrollTop()==0){
+							clearInterval(timer);
+						}
+					},10)
+				})
+				$(window).scroll(function(){
+					if($(window).scrollTop() <= 150){
+					    $('.back').hide(500);
+				    }else{
+					    $('.back').show(500);
+				}
+				})
+			})
+
+
+
+/*密码显隐效果*/
+<script>
+			var str=0;
+			var mima='';
+			var user='';
+			$(function(){
+				$('.pass').change(function(){
+                                        /*获得密码框的value值*/
+					mima=$('.pass').val();
+                                        /*设置密码框的value值*/  
+					$('.show').val(mima);
+				})
+				$('.show').change(function(){
+					mima=$('.show').val();
+					$('.pass').val(mima);
+				})
+				$('span').click(function(){
+					str++;
+					if(str%2==1){
+						$('.show').css({'z-index':'10'});
+						$('.pass').css({'z-index':'20'});
+						$('span').html('闭眼');
+					}else if(str%2==0){
+						$('.show').css({'z-index':'20'});
+						$('.pass').css({'z-index':'10'});
+						$('span').html('睁眼');
+					}
+				})
+				/*$('.uname').click(function(){
+				    $('.uname').hide();
+				    $('.uname2').show();
+				})*/
+				$('.uname').change(function(){
+					user=$('.uname').val();
+					$('.uname2').val(user);
+				})
+				$('.uname2').change(function(){
+					user=$('.uname2').val();
+					$('.uname').val(user);
+				})
+			})
+
+
+
+/*手风琴菜单*/
+$(function(){
+				$('b').click(function(){
+					if($(this).parents('.item').find('ul').is(':visible')){
+						$(this).parents('.item').find('ul').hide(400);
+						$(this).removeClass('active1');
+						$(this).addClass('active2');
+						
+					}else{
+						$(this).parents('.item').find('ul').show(400);
+						$(this).parents('.item').siblings().find('ul').hide(400);
+						$(this).removeClass('active2');
+						$(this).addClass('active1');
+						$(this).parents('.item').siblings().find('b').removeClass('active1');
+						$(this).parents('.item').siblings().find('b').addClass('active2');
+					}
+				})
+				$('.header').mouseenter(function(){
+					$(this).find('i').css({'color':'#E4393C'});
+				})
+				$('.header').mouseleave(function(){
+					$(this).find('i').css({'color':'#666'});
+				})
+				$('li').mouseenter(function(){
+					$(this).find('a').css({'color':'#E4393C'});
+				})
+				$('li').mouseleave(function(){
+					$(this).find('a').css({'color':'#666'});
+				})
+			})
+
+
+
+
+
+/*图片放大效果*/
+$(function(){
+				var c=0;
+				var timer1;
+				var timer2;
+				timer1=setInterval(run,3000);
+				function run(){
+					$('.big').eq(c).css({'width':'0px',
+					'height':'0px','display':'block'}).
+					animate({'width':'405px','height':'405px'},500);
+					c++;
+					if(c>3){
+						c=0;
+					}
+					timer2=setTimeout(function(){
+						$('.big').fadeOut(400);
+					},1500);
+				}
+				/*鼠标移入移出事件*/
+				$('#box').hover(function(){
+					clearInterval(timer1);
+					clearInterval(timer2);
+				},function(){
+					$('.big').fadeOut(400);
+					timer1=setInterval(run,3000);
+				})
+			})
+
+
+
+
+/*焦点图效果*/
+$(function(){
+				$('li').hover(function(){
+					$(this).find('.cover').fadeIn(400);
+				},function(){
+					$(this).find('.cover').fadeOut(400);
+				})
+			})

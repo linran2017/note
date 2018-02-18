@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			.box{
+				width: 400px;
+				height: 400px;
+				border: 2px solid red;
+				position: relative;
+				margin: 0px auto;
+				overflow: hidden;
+			}
+			ul{
+				width: 2800px;
+				height: 400px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+			ul li{
+				float: left;
+				list-style: none;
+			}
+			ul li img{
+				width: 400px;
+				height: 400px;
+			}
+			.jiantou{
+				width: 40px;
+				height: 80px;.click()
+				color: #ffffff;
+				background: rgba(0,0,0,0.4);
+				position: absolute;
+				top:160px;
+				line-height: 80px;
+				font-size: 40px;
+				text-align: center;
+				text-decoration: none;
+			}
+			.left{
+				left: 0px;
+			}
+			.right{
+				right: 0px;
+			}
+			.dian{
+				width: 120px;
+				height: 20px;
+				/*border: 1px solid red;*/
+				position: absolute;
+				left: 140px;
+				bottom: 20px;
+			}
+			.xiao{
+				display: block;
+				width: 10px;
+				height: 10px;
+				background: yellow;
+				border-radius: 50%;
+				float: left;
+				margin-left: 10px;
+			}
+			.active{
+				background: red;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			$(function(){
+//				定义大总管变量
+				var num=0;
+//				设置定时器
+				var timer = setInterval(run,1000);
+//				定时器函数
+				function run(){
+//					大宗管变量自增
+					num++;
+//					当走到最后一张图的时候
+					if(num==7){
+//						瞬间调到第一章图
+						$('ul').css({'left':'0px'});
+//						再让他滚动到第二章图上
+						num=1;
+					}
+//						设置left值,500毫秒变化
+//						animate()改变css样式
+					$('ul').animate({'left':-400*num+'px'},500);
+					
+						if(num==6){
+							$('.dian .xiao').eq(0).addClass('active').siblings('.xiao').removeClass('active');
+						}
+					$('.dian .xiao').eq(num).addClass('active').siblings('.xiao').removeClass('active');
+				}
+				
+//					移入大框清理定时器
+					$('.box').hover(function(){
+//						清理定时器
+						clearInterval(timer);
+					},function(){
+						timer = setInterval(run,1000);
+					})
+					
+//					给左侧按钮添加点击事件
+					$('.left').click(function(){
+//						让大总管变量自增
+						num++;
+						
+//						判断界限
+						if(num==7){
+//							让他瞬间跳到第一张图上
+							$('ul').css({'left':'0px'});
+//							为了让他滑动到第二张图
+							num=1;
+						}
+						
+//						设置left值,500毫秒变化
+//						animate()改变css样式
+//						.stop()表示让之前的动作停止,然后开始下一个动作
+						$('ul').stop().animate({'left':-400*num+'px'},500);
+					
+							if(num==6){
+//								当显示最后一张图的时候我们样让小点在第一个上显示
+							$('.dian .xiao').eq(0).addClass('active').siblings('.xiao').removeClass('active');
+						}
+//							让对应序号的小点变红,其他的兄弟元素变灰
+						$('.dian .xiao').eq(num).addClass('active').siblings('.xiao').removeClass('active');
+					
+					})
+					
+					
+//					给左侧按钮添加点击事件
+					$('.right').click(function(){
+//						让大总管变量自增
+						num--;
+						
+//						判断界限
+						if(num==-1){
+//							让他瞬间跳到第一张图上
+							$('ul').css({'left':'-2400px'});
+//							为了让他滑动到第二张图
+							num=5;
+						}
+						
+//						设置left值,500毫秒变化
+//						animate()改变css样式
+//						.stop()表示让之前的动作停止,然后开始下一个动作
+						$('ul').stop().animate({'left':-400*num+'px'},500);
+					
+					
+					if(num==-1){
+							$('.dian .xiao').eq(5).addClass('active').siblings('.xiao').removeClass('active');
+						}
+						$('.dian .xiao').eq(num).addClass('active').siblings('.xiao').removeClass('active');
+					
+					
+					
+					})
+					
+//					给小点添加点击事件
+					$('.dian .xiao').click(function(){
+						num=$(this).index();
+						
+						
+					$('ul').animate({'left':-400*num+'px'},500);
+						
+//					$('.dian .xiao').eq(num).addClass('active').siblings('.xiao').removeClass('active');	
+					
+					$(this).addClass('active').siblings('.xiao').removeClass('active');
+					})
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		
+		<div class="box">
+			<ul>
+				<li><a href=""><img src="img/10.jpg"/></a></li>
+				<li><a href=""><img src="img/11.jpg"/></a></li>
+				<li><a href=""><img src="img/12.jpg"/></a></li>
+				<li><a href=""><img src="img/13.jpg"/></a></li>
+				<li><a href=""><img src="img/14.jpg"/></a></li>
+				<li><a href=""><img src="img/15.jpg"/></a></li>
+				<li><a href=""><img src="img/10.jpg"/></a></li>
+			</ul>
+			<!--左右点击按钮-->
+				<a class="left jiantou" href="javascript:;"> < </a>
+				<a class="right jiantou" href="javascript:;"> > </a>
+		
+				<div class="dian">
+					<span class="xiao active"></span>
+					<span class="xiao"></span>
+					<span class="xiao"></span>
+					<span class="xiao"></span>
+					<span class="xiao"></span>
+					<span class="xiao"></span>
+				</div>
+		</div>
+		
+	</body>
+</html>

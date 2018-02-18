@@ -1,0 +1,1887 @@
+javascript在页面中四种引用方法：
+<!--1，嵌入式写法，写在head和body中-->
+<script type="text/javascript"></script>
+<!--2引入式写法,写在head中，如果是js引入式写法，那么这个js标签中不能写代码，可以另起一个js标签写js代码-->
+<script src="js.js"></script>
+<!--3，在事件后面进行调用 ，写在body中-->
+<a href="javascript:alert('哈哈哈')">后盾网</a>
+<!--4，表单重定向，写在body中-->
+<form action="javascript:alert('表单提交了！')" method="post">
+姓名：<input type="text" /><br />
+密码：<input type="password" /><br />
+<input type="submit" value="提交" />
+</form>
+
+js的三种输出方式
+<!--1，弹出窗口-->
+alert('哈哈哈');
+<!--2，在网页里直接显示-->
+document.write('<h1>后盾人，人人做后盾</h1>');
+<!--3，输入框（'提示文字','默认值'）-->
+prompt('请输入密码！','8864356');
+
+四种变量的声明
+/*1，先声明后赋值*/
+var name;
+name='欢迎光临！';
+alert(name);
+/*2，边声明边赋值*/
+var name='欢迎光临！';
+alert(name);
+/*3，批量创建然后赋值*/
+var name,aeg,sex;
+name='张三';
+age='16';
+sex='男';
+alert(age);
+/*4，批量创建并且赋值*/
+var name='请输入密码',sex='男',hobby='钢琴';
+prompt(name);
+document.write(hobby);
+
+/*字符串拼接小例子，在字符串中将变量独立出来的方法：将变量左右两边都变成完整的字符串，然后用+连接，如果+两边都是字符串，那么+表示连接字符串*/
+var name= prompt('请输入您的用户名：');
+var mima=prompt('请输入您的密码：');
+document.write('尊敬的VIP用户'+name+'您好，您的密码是'+mima+'。');
+
+/*如果+两边都是数字，那么+就表示加法运算*/
+var ss=1+1;
+document.write(ss);
+
+/*++（--）写在前面表示自私，先自增（减），后参加运算*/
+var x=4;
+num=3*++x;
+document.write(num);
+
+/*++（--）写在后面表示无私，先参加运算，后自增（减）*/
+var x=4;
+num=3*x++;
+document.write(num);
+
+/*判断奇偶性*/
+var num=prompt('请输入数字：');
+if(num%2==1){document.write('奇数');}else{document.write('偶数');}
+
+/*如果是一个完整的if判断体，只要其中一个条件判断成功，剩下的条件都不再判断*/
+var age=prompt('请输入您的年龄：');
+if(age<20){
+	document.write('您的年龄是'+age+'，孩童');
+	}else if(age<30){
+	document.write('您的年龄是'+age+'，弱冠');	
+	}else if(age<40){
+	document.write('您的年龄是'+age+'，而立');
+	}else if(age<50){
+        document.write('您的年龄是'+age+'，不惑');
+	}else if(age<60){
+	document.write('您的年龄是'+age+'，知天命');	
+	}else if(age<70){
+	document.write('您的年龄是'+age+'，耳顺');
+	}else if(age<80){
+	document.write('您的年龄是'+age+'，古稀');
+	}else if(age<90){
+	document.write('您的年龄是'+age+'，耄耋');
+	}else{
+	document.write('您的年龄是'+age+'，人仙');	
+	};
+
+
+自定义运算：
+1，/*switch如果有一个条件成立，那么其他条件不再判断，对应的代码直接执行，如果不执行后面的代码，可以加“break;”；switch一般用来精准值的判断，if一般用来范围的判断*/
+var x=prompt('请输入一个数字：')*1;
+var ysf=prompt('请输入运算符：');
+var y=prompt('请输入另一个数字：')*1;
+var z=x+y,m=x-y,n=x*y,l=x/y;
+switch(ysf){
+case '+':
+	alert('运算结果是：'+z+'。');
+	break;
+	case '-':
+	alert('运算结果是:'+m+'。');
+	break;
+	case '*':
+	alert('运算结果是：'+n+'。');
+	break;
+	case '/':
+	alert('运算结果是：'+l+'。');
+	break;
+	default:
+    alert('输入错误！');
+	};
+2，var num1=prompt('请输入一个数字：');
+var ysf=prompt('请输入运算符：');
+var num2=prompt('请输入另一个数字：');
+var re=num1+ysf+num2;
+/*eval是用来解析字符串的内容*/
+var z=eval(re);
+document.write(z);
+
+
+
+/*关系运算符：=表示赋值；==表示等于，只判断内容，不判断类型；===表示全等于，即判断内容，有判断类型；!=表示不等于，只判断内容，不判断类型；!==表示全不等于，即判断内容，又判断类型。*/
+var x=4;
+var y='4';
+if(x!==y){document.write('成立');}else{document.write('不成立');};
+
+三种逻辑运算符
+/*||表示或运算：只要一个条件成立，最终结果就成立*/
+if(3<4||5<2){document.write('成立');}else{document.write('不成立');};
+/*&&表示与运算：只要一个条件不成立，最终结果就不成立*/
+if(3<4&&5<2){document.write('成立');}else{document.write('不成立');};
+/*!表示非运算*/
+if(!(1>2)){document.write('成立');}else{document.write('不成立');};
+
+/*三元表达式：(条件)?'条件为真时返回的数据':'条件为假时返回的数据';*/
+var age=prompt('请输入您的年龄：');
+var re=(age>=18)?'成年人':'未成年';
+document.write(re);
+
+单层for循环：倒序输出30——20
+/*for循环一定要有头有尾，不能是无限死循环；结构：for(定义计数器;成立的条件;计数器的变化){执行的代码}*/
+for(var i=30;i>19;i--){
+    document.write(i+',');
+	};
+
+/*双层循环体并不是刻意嵌套在一起的；双层for循环体里外层的计算器变量名字不能一样*/
+
+双层循环体：乘法口诀
+		for(var i=1;i<10;i++){
+			for(var j=1;j<=i;j++){
+				var x=i*j;
+				document.write(+i+'*'+j+'='+x+'&nbsp;');
+			   	};
+				document.write('<br />');
+			}
+双层循环体：金字塔
+1，for(var a=5;a>0;a--){
+	for(var b=1;b<a;b++){
+		document.write('a');
+		}
+	for(var m=5;m>=a;m--){
+		document.write('b');
+		}
+	for(var n=5;n>a;n--){
+		document.write('b');	
+		};	
+		document.write('<br />');
+	};
+2，for(var a=5;a>0;a--){
+	for(var b=0;b<a-1;b++){
+		document.write('a');
+		}
+	for(var m=0;m<a*2-1;m--){
+		document.write('b');
+		}
+		document.write('<br />');
+	};
+3，var row=prompt('请输入行数;')*1;
+/*a代表第几行，row代表总行数*/
+for(var a=1;a<=row;a++){
+	/*输出row-a个‘a’*/
+	for(var b=0;b<row-a;b++){
+		document.write('a');
+		}
+		/*输出a*2个‘b’*/
+		for(var m=0;m<a*2-1;m++){
+		document.write('b');
+		}
+		document.write('<br />');
+	};
+
+4， 自定义行列数的隔行变色表格效果
+/*在js中，字符串中间不能有换行}*/
+var rows=prompt('请输入行数：')*1;
+var cols=prompt('请输入列数：')*1;
+document.write('<table border="1">');
+/*i代表第几行*/
+for(var i=1;i<=rows;i++){
+	/*判断奇偶性*/
+	if(i%2==1){
+		document.write('<tr class="hd">');
+		}else{
+			document.write('<tr>');
+			};
+		/*j代表第几列*/
+	for(var j=1;j<=cols;j++){
+		document.write('<td>第'+i+'行第'+j+'列</td>');
+		};
+	document.write('</tr>');
+	};
+document.write('</table>');		
+
+
+while循环
+1，/*while是先判断，后执行；while循环一般用在没有明确循环次数的情况下，for循环一般用在有明确循环次数的情况下}*/
+var age=18;
+while(age<=60){
+	document.write(age+'岁领钱了！<br />');
+	age++;
+	};
+2，/*do while是不管三七二十一，先执行一次，再判断*/
+var age=88;
+do{
+	document.write(age+'岁领钱了！<br />');
+	age++;
+	}while(age<=60);
+
+3，var age=18;
+while(age<=60){
+	if(age==25){
+		age++;
+		continue;/*continue表示跳出本次循环，直接进入下次循环判断*/
+		}
+	document.write(age+'岁领钱了！<br />');
+	age++;
+	};
+4，var age=18;
+while(age<=60){
+	if(age==25){
+	break;/*break表示结束整个循环*/
+		};
+	document.write(age+'岁领钱了！<br />');
+	age++;
+	};
+
+
+函数
+1，/*用基本语法创建函数*/
+function lingqian(){var age=18;
+while(age<=60){
+	if(age==25){
+	break;/*break表示结束整体循环*/
+		}
+	document.write(age+'岁领钱了！<br />');
+	age++;
+	};
+	};
+	/*调用函数*/
+	lingqian();
+2，var lingqian=function(){var age=18;
+while(age<=60){
+	if(age==25){
+	break;/*break表示结束整体循环*/
+		}
+	document.write(age+'岁领钱了！<br />');
+	age++;
+	};
+	};
+	/*调用函数*/
+	lingqian();
+3，/*通过事件调用函数，函数自调用*/
+(function lingqian(){var age=18;
+while(age<=60){
+	if(age==25){
+	break;/*break表示结束整体循环*/
+		}
+	document.write(age+'岁领钱了！<br />');
+	age++;
+	};
+	})();
+
+
+/*带参数的函数*/
+1，/*x是形参*/
+function pingfang(x){
+	var y=x*x;
+	document.write(y);
+	};
+	/*调用的数字是实参，实参多于形参时，多余的实参不被使用，实参少于形参时，那么没有对应值的形参默认值是undefind*/
+pingfang(9);
+2，/*return返回值：函数遇到return，会立即返回结果，并且立即停止函数执行*/
+function jf(x,y){
+	var z=x+y;
+    return z;
+	};
+	var result=jf(9,8);
+    alert(result);
+	var result2=jf(56,65);
+	document.write(result2);
+
+
+数组
+/*数组属于对象；对象：很多属性（变量）和方法（函数）的集合体*/
+/*数组特点：数组的序号（下标）是从0开始算的；数组里的单个元素可以是任意类型的数据；数组的长度永远比数组最大的序号大1*/
+/*用构造函数创建数组，Array是专门创建数组的*/
+var dongwu=new Array('猫','狗','鱼','鼠','蛇');
+document.write(dongwu+'，');
+
+/*用隐形方式创建数组*/
+1，var dongwu=['猫','狗','鱼','鼠','蛇'];
+/*输出数组*/
+document.write(dongwu+'<br />');
+/*输出数组的长度*/
+document.write(dongwu.length+'<br />');
+/*输出数组中的某一个元素*/
+document.write(dongwu[3]+'<br />');
+/*替换数组中的某一个元素*/
+dongwu[2]='鸡';
+document.write(dongwu+',<br />');
+/*向数组的末尾新增元素*/
+dongwu[dongwu.length]='鸭';
+document.write(dongwu+',<br />');
+/*遍历数组*/
+for(i=0;i<dongwu.length;i++){
+	document.write(dongwu[i]+'很好吃<br />');
+
+2，/*遍历二维数组*/
+var jd=[['狼牙山','白洋淀','北戴河'],['黄山','九华山','天柱山'],['少林寺','嵩山','龙门石窟','白马寺'],['泰山','大明湖','钓突泉','梁山','沂蒙山','三孔'],['平遥古城','五台山']];
+	for(i=0;i<5;i++){
+		for(a=0;a<jd[i].length;a++){
+			document.write(jd[i][a]+'很好玩！');
+			};
+			document.write('<br />');
+		};
+
+3，/*在一个数组中取得最大值*/
+function shuzi(shu){
+	var temp=shu[0];
+	for(i=0;i<6;i++){
+    if(temp<shu[i]){
+		temp=shu[i];
+		};
+	};
+	return temp;
+	};
+	var arr=shuzi([24,67,890,347,78,56]);
+	document.write(arr);
+	};
+
+4，/*在一个二维数组中找出子数组里长度最大的这一个子数组*/		
+function zd(jd){
+	
+	var x=jd[0];
+	for(i=0;i<jd.length;i++){
+		if(x.length<jd[i].length){
+			x=jd[i];
+			};
+			};
+	                return x;
+	};
+	var y=zd([['狼牙山','白洋淀','北戴河'],['黄山','九华山','天柱山'],['少林寺','嵩山','龙门石窟','白马寺'],['泰山','大明湖','钓突泉','梁山','沂蒙山','三孔'],['平遥古城','五台山']]);
+	document.write(y);
+
+5，/*在数组末尾开头删除或添加元素*/
+var kemu=['语文','数学','英语','体育','物理','化学','生物'];
+document.write(kemu+'<br />');	
+/*向数组末尾添加新元素*/
+kemu.push('历史','地理','政治');
+document.write(kemu+'<br />');
+/*向数组开头添加新元素*/	
+kemu.unshift('音乐','美术');
+document.write(kemu+'<br />');	
+/*删除数组最后一个元素*/
+kemu.pop();
+document.write(kemu+'<br />');	
+/*删除数组的第一个元素*/
+kemu.shift();
+document.write(kemu+'<br />');	
+
+6，/*万能截取、连接数组；删除或添加元素*/
+var kemu=['语文','数学','英语','体育','物理','化学','生物'];
+var jingdian=['天安门','故宫','颐和园','圆明园','长城'];
+document.write(kemu+'<br />');
+document.write(jingdian+'<BR />');
+/*数组的连接*/
+var be=kemu.concat(jingdian);
+document.write(be+'<br />');
+/*slice表示截取数据，不改变原数组，只会返回新的结果；在截取的时候只包括开始，不包括开始，第一个参数表示从第几号元素开始截取，第二个表示被截取的最后一个元素的后一个元素的第几号（也可以是负数）*/
+var ar=kemu.slice(2,4);
+document.write(ar+'<br />');
+var re=kemu.slice(3,-1);
+document.write(re+'<br/>');
+/*第一个参数指定从第几号位置删除或添加；第二个元素指定删除几个元素*/	
+kemu.splice(4,1);
+document.write(kemu+'<br />');	
+/*在数组元素之间添加元素:第一个参数是从3号开始添加元素，第二个参数是删除0个元素*/
+kemu.splice(3,0,'化学','物理','生物');
+document.write(kemu+'<br />');
+/*将数组转换成字符串*/	
+var er=kemu.join('###');
+document.write(er+'<br />');
+
+7，/*除去数组中重复的元素*/
+function qcf(zm){
+	for(var i=0;i<zm.length;i++){
+		for(var j=i+1;j<zm.length;j++){
+			if(zm[i]==zm[j]){
+				zm.splice(j,1);
+				j--;
+				};									
+			};
+		};
+		return zm;
+         };
+		 var rb=qcf(['a','a','b','b','b','k','c','d','e','e','f','c','m','g','d','l','l']);
+		 document.write(rb+'<br />');
+
+
+8，/*排序的两种方法*/		 
+（1），var zz=[3,4,64,124,457,3,79,80,428,248,4,47,257,358,81,57,1,79,46];
+document.write(zz+'<br />')
+for(var j=0;j<zz.length-1;j++){
+    for(var i=0;i<zz.length-1;i++){
+		if(zz[i]>zz[i+1]){
+		   zz.splice(i+2,0,zz[i]);
+		   zz.splice(i,1);
+	        	 };
+			 };
+		 };
+		 document.write(zz+'<br />');
+		  
+（2），function paixu(shuzi){
+		  for(var j=0;j<shuzi.length;j++){
+		 for(var i=0;i<shuzi.length;i++){
+		     if(shuzi[i]>shuzi[i+1]){
+			var arr=shuzi[i];
+			shuzi[i]=shuzi[i+1];
+			shuzi[i+1]=arr;
+				 }
+			 }；
+		  };
+			 return shuzi;
+			 };
+			 var ru=[3,4,64,124,248,4,47,257,358,81,57,1,79,46];
+		var rd=paixu(ru);	
+		document.write(rd);
+
+（3），/*专门用来排序的函数*/		 
+function sortNum(x,y){
+	/*x-y是升序，y-x是降序*/
+	return x-y
+	};
+ var ru=[3,4,64,124,248,4,47,257,358,81,57,1,79,46];
+var rd=ru.sort(sortNum);	
+document.write(rd+'<br />');
+
+对象：很多属性（变量）和方法（函数）的集合体。
+1，/*用原生形式创建对象（也叫用json格式创建对象）*/
+var car={color:'红色',
+         price:'30万',
+		 brand:'宝马',
+		 house:function(){
+			 document.write('能居住');
+		            },
+		run:function(){
+			document.write('能奔跑');
+			       }			
+                        };
+/*执行变量：对象.变量属性名*/						
+alert(car.price);
+/*执行函数：对象.函数名()*/
+car.run();
+
+2，/*用构造函数创建对象*/
+/*创建规则*/
+function car(){
+	this.color='黑色';
+	this.price='30万';
+	this.sit='5坐';
+	this.zhaoming=function(){
+		alert('能照明');
+		};
+	this.fangdao=function(){
+		alert('能防盗')
+		}	
+	};
+	/*创建一个具体的对象*/
+	var dongfeng=new car();
+	/*对象变量的两种访问形式*/
+	document.write(dongfeng.color+'<br />');
+	document.write(dongfeng['sit']+'<br />');
+	/*对象函数的两种访问形式*/	
+	dongfeng.fangdao();
+	dongfeng['zhaoming']();
+	/*遍历对象*/
+	for(x in dongfeng){
+		document.write('东风'+x+'：'+dongfeng[x]+'<br />');
+		}
+	
+	/*更改对象属性*/
+	dongfeng.price='40万';
+	document.write(dongfeng.price+'<br />');
+	/*更改对象函数*/
+	dongfeng.zhaoming=function(){
+		alert('不能照明');
+		};
+	dongfeng.zhaoming();
+	/*新增对象属性*/
+	dongfeng.cp='有车棚';
+	document.write(dongfeng.cp+'<br />');
+	/*新增对象函数*/
+	dongfeng.daohang=function(){
+		alert('能导航');
+		};
+	dongfeng.daohang();
+	/*删除对象变量*/
+	delete dongfeng.price;
+	/*删除对象函数*/
+	delete dongfeng.fangdao();
+    /*删除对象*/
+	dongfeng=null;	
+
+
+
+字符串对象
+var str='hondunren后盾人';
+/*获得字符串的长度，js中一个汉字或字母都算一个字符*/
+document.write(str.length+'<br />');
+
+/*获得字符串中第3号位置上的字符*/
+//var ra=str.charAt(3);
+var ra=str[3];
+document.write(ra+'<br />');
+
+/*获得字符串中第三号位置上的字符的Unicode编码*/
+var rb=str.charCodeAt(3);
+document.write(rb+'<br />');
+
+/*将Unicode编码转换成原始字符*/
+var rc=String.fromCharCode(100);
+document.write(rc+'<br />');
+
+/*获得'n'在字符串中第一次出现的位置*/
+var rd=str.indexOf('n');
+document.write(rd+'<br />');
+
+/*将字符串中所有“houdunwang”的位置存入一个数组中，输出数组*/
+var stb='后盾视频下载地址：bbs.houdunwang.com，论坛地址：bbs.houdunwang.com，官方网址：www.houdunwang.com';
+var re=[];
+while(stb.match('houdunwang')){
+	var rc=stb.indexOf('houdunwang');
+	re.push(rc);
+	stb=stb.replace('houdunwang','0123456789');
+	};
+document.write(re);
+
+
+/*获得'n'在字符串中最后一次出现的位置*/
+var re=str.lastIndexOf('n');
+document.write(re+'<br />');
+
+/*截取字符串1：第一个参数是从第几号开始截取，第二个参数是被截取字符串末尾在原字符串中的后一个字符串的位置*/
+var rl=str.slice(3,6);
+document.write(rl+'<br />');
+
+/*截取字符2：第一个参数是从第几号开始截取，第二个参数是截取几个字符*/
+var ri=str.substr(3,4);
+document.write(ri+'<br />');
+
+/*在字符串中查找有无相关字符串*/
+var rf=str.match('ne');
+if(rf){
+	document.write('查找到了！<br />');
+	}else{
+		document.write('没有找到相关信息！<br />')
+		};
+
+/*字符串替换：replace默认只替换第一个符合条件的字符串，不改变原字符串*/		
+var sta='后盾人php后盾网后盾视频后盾老师';		
+var rg=sta.replace('后盾','&&&&');
+document.write(rg+'<br />');
+
+/*将字符串中的所有“后盾”替换成“****”*/		
+var sta='后盾人php后盾网后盾视频后盾老师';	
+while(sta.match('后盾')){
+	sta=sta.replace('后盾','****');
+	};
+document.write(sta+'<br />');
+
+/*将a当作拆分点，把字符串转化成多个数组*/
+var stb='后盾人a后盾网a后盾视频a后盾论坛a后盾教育';
+var rj=stb.split('a');
+document.write(rj+'<br />');
+
+
+var stc='HonDunWang后盾网';
+/*将字符串中的字母都转换成大写*/
+var rk=stc.toUpperCase();
+document.write(rk+'<br />');
+
+
+
+数学对象
+/*取绝对值*/		
+var rb=Math.abs(-10);
+document.write(rb+'<br />');
+
+/*四舍五入，round四舍五入之后一定是整数*/
+var rc=Math.round(5.368);
+document.write(rc+'<br />');
+
+/*向上取整，如果是整数，本身的数保持不变*/
+var rd=Math.ceil(4.168);
+document.write(rd+'<br />');
+
+/*向下取整，如果是整数，本身的数保持不变*/
+var re=Math.floor(8.95689);
+document.write(re+'<br />');
+
+/*random是取0-1之间的随机小数*/
+var rf=Math.random();
+document.write(rf+'<br />');
+
+/*取x-y之间的随机小数：Math.random()*(y-x)+x*/
+/*取51到98的随机小数*/
+var ri=Math.random()*(98-51)+51;
+document.write(ri+'<br />');
+
+/*取x-y之间的随机小数：Math.floor(Math.random()*(y+1-x)+x)*/
+/*取50到150的随机整数*/
+var rg=Math.floor(Math.random()*(150+1-50)+50);
+document.write(rg+'<br />');
+
+/*随机点菜*/
+var caiming=['白菜汤','羊肉火锅','番茄炒鸡蛋','宫保鸡丁','红烧鱼','小鸡炖蘑菇','炒牛肉','烤羊腿','凉菜','烧饼','米饭'];
+var rj=Math.floor(Math.random()*(caiming.length-1+1-0)+0);
+document.write(rj+'，'+caiming[rj]+'<br />');
+
+/*将字符串中的字母都转换成小写*/
+var rl=stc.toLowerCase();
+
+
+
+
+浏览器对象模型(BOM)window对象（控制这个浏览器）包括history对象（控制历史记录），location对象（控制网址），document对象（控制页面效果）
+
+window对象
+一，定时器
+function hi(){
+	alert('您好，欢迎光临！');
+	};
+/*打开页面后每隔两秒就会执行一次hi函数*/
+setInterval(hi,2000);
+/*页面打开两秒后执行一次hi函数，，定时炸弹*/
+setTimeout(hi,2000);
+
+/*让hi只执行两次（浏览器打开5秒后清理定时器re)*/	
+function hi(){
+	alert('您好，欢迎光临！');
+	};	
+var re=setInterval(hi,2000);
+setTimeout(function ql(){ 
+/*清理定时器*/
+clearInterval(re)},5000
+);
+
+/*清理掉打开页面后定时执行函数的定时器*/
+function hr(){
+	alert('boom……');
+	};
+var ra=setTimeout(hr,5000);
+setTimeout(
+function(){
+	/*清理定时炸弹*/
+	clearTimeout(ra);
+	alert('报告长官炸弹清理完毕！');
+    },3000
+);
+
+
+
+window对象
+/*alert显示带有一段相信以及一个确认按钮的警告框*/
+alert('哈哈哈');
+/*prompt显示可提示用户输入的对话框*/
+prompt('请输入密码！','8864356');
+/*confirm显示带有一段消息以及确认按钮和取消按钮的对话框*/
+var rc=confirm('你确定要删除吗？');
+if(rc){
+	document.write('删除成功！');
+	}else{
+	document.write('删除已被取消！');	
+		};
+
+
+history对象
+1，/*5秒后跳转上一个页面*/
+setTimeout(
+function(){
+/*history.back() 加载history列表中前一个URL*/	
+	history.back();
+	},5000
+);
+
+2，/*history.forwand() 加载history列表中下一个URL*/
+
+3,/*5秒钟返回前三个页面*/		
+setTimeout(
+function(){
+    /*history.go() 加载history列表中前几个URL,前几个用负数表示*/
+	history.go(-3);
+	},5000
+);
+
+
+
+location对象
+1，/*5秒钟后跳转到hao123页面*/		
+setTimeout(
+function(){
+    /*location.replace('网址')：跳转到新页面，替换当前文档，不留下历史记录*/
+    location.replace('http://www.hao123.com');
+	},5000
+);	
+
+2，/*5秒钟后跳转到hao123页面*/		
+setTimeout(
+function(){
+    /*location.assign('网址')：跳转到新页面，加载新文档，会留下历史记录，可以点击返回*/
+    location.assign('http://www.hao123.com');
+	},5000
+);	
+
+3，/*5秒钟后跳转到hao123页面*/		
+setTimeout(
+function(){
+    /*location.href='网址'：跳转到新页面，加载新文档，会留下历史记录，可以点击返回*/
+    location.href='http://www.hao123.com';
+	},5000
+);
+
+4，/*5秒钟后刷新页面*/		
+setTimeout(
+function(){
+    /*location.reload：刷新页面*/
+    location.reload();
+	},5000
+);
+
+
+
+事件初识
+/*window.onload表示浏览器加载完毕以后再执行，当js需要操作body中的元素时就要加window.onload*/
+window.onload=function(){
+	/*document.getElementById('')表示抓到id是one的元素，然后绑定单击（onclick）事件*/
+	document.getElementById("one").onclick=function(){
+		alert('您好！');
+		}
+	};
+<!--通过元素绑定事件-->
+<script>
+function hi(){
+	alert('您好！');
+	};
+</script>	 
+<style>
+*{margin:0; padding:0;}
+#one{width:222px; height:300px; margin:0 auto; background:#330099;}
+</style>
+</head>
+<body>
+<!--通过元素绑定事件，函数写在js中，鼠标单击执行函数-->
+<div id="one" onclick="hi()"></div>
+	
+/*鼠标事件：单击事件：onclick；双击事件：ondblclick;；按下事件：onmousedown；抬起事件：onmouseup；
+移入事件onmouseover；移动事件onmousemove；移出事件onmouseout*/	
+
+
+事件监听
+/*事件监听可以支持多个事件*/
+window.onload=function(){
+/*document.all是判断浏览器，真:为低版本IE浏览器，假：为W3C浏览器*/
+if(document.all){
+	/*事件监听：attachEvent支持IE低版本浏览器，不支W3C浏览器*/
+	document.getElementById("one").attachEvent('onclick',function(){
+		alert('低版本IE才能触发');
+		})
+	}else{
+		/*事件监听：addEventListener支持W3C浏览器，不支持IE浏览器；第一个参数事件名称不加on*/
+		document.getElementById("one").addEventListener('click',function(){
+			alert('W3C触发了！！！');
+			})
+		}
+		};
+
+
+获得和设置行内样式
+/*获得行内样式*/
+window.onload=function(){
+	/*给按钮加单击事件*/
+	document.getElementById("anniou").onclick=function(){
+		/*获得id为one的元素行内样式定义的高度；获得行内样式的写法：元素.style.css样式*/
+		var re=document.getElementById("one").style.height;
+		alert(re);
+		}
+	};
+
+/*设置行内样式*/
+window.onload=function(){
+	/*给按钮加单击事件*/
+	document.getElementById("anniou").onclick=function(){
+		/*把id为one的元素行内样式的宽度设置为500px；*/
+		document.getElementById("one").style.width='500px';
+		}
+	};
+
+/*每单击一次按钮but，one元素的宽度就会增加10px*/
+window.onload=function(){
+/*赋值抓元素*/
+var one=document.getElementById("one");
+var but=document.getElementById("but");
+but.onclick=function(){
+	/*获得元素当前的宽度*/
+	var ow=one.style.width;
+	/*计算新的宽度值*/
+	var nw=parseInt(ow)+10;
+	/*将新宽度赋值回元素*/
+	one.style.width=nw+'px';
+	}
+	};
+
+/*单击按钮图片会切换隐藏，显示*/
+window.onload=function(){
+	var but=document.getElementById("but");
+	var one=document.getElementById("one");
+	/*1表示显示状态，2表示隐藏状态*/
+	var str=1;
+	but.onclick=function(){
+		/*当图片为显示状态时*/
+		if(str==1){
+			one.style.display='none';
+			str=2;
+			/*当图片为隐藏状态时*/
+			}else if(str==2){
+				one.style.display='block';
+				str=1;
+				}
+		}
+	};
+
+
+/*图片来回运动*/
+window.onload=function(){
+	var but=document.getElementById("but");
+	var one=document.getElementById("one");
+	var timer;/*先声明定时器变量，使其成为全局变量，以免第一次点击时会报错*/
+	 but.onclick=function(){
+		 /*解决定时器叠加的思路：在设置定时器之前先清理定时器*/
+		 clearInterval(timer);
+		 /*sped表示速度系数*/
+		var sped=1;
+		timer=setInterval(function(){
+		var ol=one.style.left;
+		var nl=parseInt(ol)+(58*sped);
+		one.style.left=nl+'px';
+		/*图片跑到580px时，让图片往回跑*/
+		if(nl==580){
+			sped=sped*(-1);
+			}
+		/*图片跑到0px时，让图片再向前跑*/
+		if(nl==0){
+			sped=sped*(-1);
+			}	
+		},500);
+		
+		}
+	};
+
+/*让图片加速跑*/
+window.onload=function(){
+		var an=document.getElementById("but");
+		var yi=document.getElementById("one");
+		var timer;
+		an.onclick=function(){
+			clearInterval(timer);
+			var sped=1
+			timer=setInterval(function(){
+				sped=sped*1.01;
+				var ll=yi.style.left;
+				var xl=parseInt(ll)+sped;
+				yi.style.left=xl+'px'
+				as=as+1;
+				},50)	
+		   }
+		};
+
+
+调试方法技巧
+1，/*把属性值写在文档标题中*/
+document.title=属性值;
+2，/*把属性值写在控制台*/
+console.log(属性值);
+
+
+document对象 四种抓取元素的方法
+<script>
+window.onload=function(){
+1，/*通过id抓元素，通过id抓元素只能抓一个*/
+/*这种方法只能抓取行内样式*/
+document.getElementById("ling").style.fontSize='36px';
+
+
+/*通过class/name/标签名抓取元素会以数组的形式返回回来，哪怕只抓到一个元素*/
+2，/*通过class属性抓取元素，抓取body中所有class属性值一样的元素*/
+/*这种方法只能抓取行内样式*/
+var c=document.getElementsByClassName("c");
+for(var i=0;i<c.length;i++){
+	c[i].style.color='red';
+	}
+
+3，/*通过name属性抓取元素，抓取body中所有name属性值一样的元素*/
+/*这种方法只能抓取行内样式*/
+var n=document.getElementsByName("n");
+for(var j=0;j<n.length;j++){
+	n[j].style.color='green';
+	}
+	
+4，/*通过标签名抓取元素，抓取body中所有标签名一样的元素*/
+/*这种方法只能抓取行内样式*/
+var p=document.getElementsByTagName("p");	
+for(var h=0;h<p.length;h++){
+	p[h].style.letterSpacing='20px';
+	}	
+};
+</script>	 
+<style>
+*{margin:0; padding:0;}
+#two{position: absolute; background: red; width: 300px; height:400px; left:600px; top:10px; }
+</style>
+</head>
+<body>
+<p id="ling">后盾人人人做后盾！0</P>
+<p class="c">后盾人人人做后盾！1</P>
+<p name="n">后盾人人人做后盾！2</P>
+<p class="c">后盾人人人做后盾！3</P>
+<p>后盾人人人做后盾！4</P>
+<p class="c">后盾人人人做后盾！5</P>
+<p name="n">后盾人人人做后盾！6</P>
+<p class="c">后盾人人人做后盾！7</P>
+<p>后盾人人人做后盾！8</P>
+</body>
+
+
+/*获得和设置元素里的内容*/
+window.onload=function(){
+/*获得元素里所有的内容*/
+var re=document.getElementById("ling").innerHTML;
+alert(re);
+
+/*设置元素里所有的内容*/
+var ra=document.getElementById("ling").innerHTML='我是新修改的内容。';
+alert(ra);
+
+/*获得元素里纯文本内容*/
+/*方法1*/
+if(document.all){
+	var rb=document.getElementById("ling").innerText;/*支持低版本IE浏览器*/
+  
+  }else{
+	   var rb=document.getElementById("ling").textContent;/*支持W3C浏览器*/
+	   }
+/*方法2*/
+var rb=document.getElementById("ling").innerText || document.getElementById("ling").textContent;	   
+alert(rb);	
+};
+
+/*倒计时跳转效果*/
+setTimeout(
+function(){
+	location.assign('http://www.hao123.com');
+	},5000);
+	window.onload=function(){
+		var wu=document.getElementById("wu");
+		setInterval(
+		function(){
+                 var li=wu.innerHTML;
+				 var xi=li-1;
+				 wu.innerHTML=xi;		
+			},1000);
+		};
+
+/*乾坤大挪移效果，把两个div里的内容反复交换*/
+	window.onload=function(){
+		var but=document.getElementById("but");
+		var one=document.getElementById("one").getElementsByTagName("p")[0];
+		var two=document.getElementById("two");
+		var str=1;
+		but.onclick=function(){
+		          if(str==1){
+					 one.style.display='none';
+					 two.innerHTML=one.innerHTML;
+					  str=2;
+					  }else if(str==2){
+				     two.innerHTML='';
+					 one.style.display='block';
+					 str=1;
+					 }	  
+			}
+		};
+
+
+/*获得和设置任意属性值*/
+	window.onload=function(){
+		var but=document.getElementById("but");
+		/*获得任意属性值*/
+		var ra=but.getAttribute('value');
+		alert(ra);
+		
+		/*设置任意属性值*/
+		but.setAttribute('id','an');
+		var re=but.getAttribute('id');
+		alert(re);
+		};
+
+/*抽奖效果*/
+window.onload=function(){
+	var star=document.getElementById("star");
+	var end=document.getElementById("end");
+	var tp=document.getElementById("tp");
+	/*将图片路径存入一个数组里*/
+	var tupian=['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg']; 
+	var timer;
+	star.onclick=function(){
+		clearInterval(timer);
+		/*设置定时器，每隔多长时间换一张图片*/
+		timer=setInterval(
+		function(){
+			/*随机抽取下标，取整数*/
+			var num=Math.floor(Math.random()*(tupian.length-1+1-0)+0);
+			/*将num号路径设置给图片*/
+			tp.setAttribute('src',tupian[num]);
+			/*点击end按钮，让图片停止切换*/
+			end.onclick=function(){
+		clearInterval(timer);
+		/*设置抽奖概率*/
+		if(num<9){
+			tp.setAttribute('src','1.jpg');
+			}
+		}
+			},100);
+		}
+         };
+
+
+/*获得实际作用在元素身上的样式,可以获得任意样式，可以用在id，class，name，标签名上 */
+	window.onload=function(){
+		var one=document.getElementsByClassName("one")[0];
+		var two=document.getElementById("two");
+		/*获得实际作用在属性值class元素的宽度样式*/
+		if(document.all){
+			/*低版本IE浏览器*/
+			var w=one.currentStyle.width;
+			}else{
+				/*W3C浏览器*/
+				var w=getComputedStyle(one,null).width;
+				}
+				alert(w);
+				
+		/*获得实际作用在属性值id元素的高度样式*/		
+		if(document.all){
+			var h=two.currentStyle.height;
+			}else{
+				var h=getComputedStyle(two,null).height;
+				}		
+				alert(h);
+		};
+
+
+
+/*通过节点关系抓取元素 */
+	window.onload=function(){
+	var c=document.getElementById("c");
+	/*获得下一个兄弟节点*/
+	var re=c.nextSibling;
+	re.style.color='red';
+	
+    /*获得节点关系的属性的引用：1，父节点：对象.parentNode；2，子节点的集合：childNodes；3，第一个子节点：对象.firstChild；4，最后一个子节点：对象.lastChild；5，下一个兄弟节点：对象.nextSibling；6，上一个兄弟节点：对象.previousSiplibg*/ 	
+		};
+
+/*节点的创建，复制，删除，追加，替换*/
+	window.onload=function(){
+	var btn=document.getElementById("btn");
+	var one=document.getElementById("one");
+	var title=document.getElementById("title");
+	var p=document.getElementsByTagName("p");
+	btn.onclick=function(){
+		/*创建空的新标签<p>*/
+		var obj=document.createElement('p');
+		
+		/*给新标签添加内容*/
+		obj.innerHTML='我是新来的标签';
+		
+		/*给新标签添加属性*/
+		obj.setAttribute('class','xin');
+		
+		/*将obj追加到one的尾部：父对象.appendChild(追加的对象)，在指定节点的最后一个节点的之后添加对象*/
+		one.appendChild(obj);
+		
+		/*将id为title的元素添加到id为one元素里的3号p标签的前面：父对象.insertBefore(要插入的对象，之前的对象)，插入到对象之前*/
+		one.insertBefore(title,p[3]);
+		
+		/*删除2号p标签：父对象.removeChild(删除的对象)*/
+		one.removeChild(p[2]);
+		
+		/*用title标签替换掉3号p标签：父对象.replaceChild(新对象，被替换的对象)*/
+		one.replaceChild(title,p[3]);
+		
+		/*复制title节点 teue表示包括内容全部复制；如果没有是只复制空标签*/
+		var newt=title.cloneNode(true);
+		
+		/*将newt追加到one标签的尾部*/
+		one.appendChild(newt);
+		}
+		};
+
+/*新增上传图片*/
+	window.onload=function(){
+	var btn=document.getElementById("btn");
+	var one=document.getElementById("one");
+    var file=document.getElementById("file");
+	btn.onclick=function(){
+		var wj=file.cloneNode(true);
+		one.appendChild(wj);
+		}	
+		};
+
+
+
+/*获得元素的尺寸和位置*/
+	window.onload=function(){
+	var one=document.getElementById("one");
+	var two=document.getElementById("two");
+	var three=document.getElementById("three");
+	/*获得有定位属性元素的left和top值，获得的直接是它的top和left值*/
+    var ra=one.offsetLeft;
+	var rb=one.offsetTop;
+	
+	/*如果没有定位属性，是参照于离它最近的有定位属性的父级元素获得left和top值*/
+	var rc=three.offsetLeft;
+	var rd=three.offsetTop;
+	
+	/*获得元素的实际占用的高度和宽度*/
+	var re=one.offsetHeight;
+	var rf=one.offsetWidth;
+	alert(re);
+		};
+
+
+/*获得滚动条的位置和尺寸*/
+	window.onload=function(){
+	var one=document.getElementById("one");
+	var num=document.getElementById("num");
+	/*给one元素添加滚动条事件（onscroll）*/
+    one.onscroll=function(){
+		/*只要滚动条一滚动，就显示滚动条位置*/
+		var st=one.scrollTop;
+		num.innerHTML=st;
+		
+		/*获得滚动条里内容的实际高度*/
+		var sh=one.scrollHeight;
+		alert(sh);
+		}
+		};
+
+/*开始/暂停滚动内容*/
+	window.onload=function(){
+		var star=document.getElementById("star");
+		var pasue=document.getElementById("pasue");
+		var one=document.getElementById("one");
+		var timer;
+		/*点击按钮，让滚动条每隔多长时间内容滚动多少位置*/
+		star.onclick=function(){
+			clearInterval(timer);
+			timer=setInterval(function(){
+				var oldt=one.scrollTop;
+				var newt=oldt+1
+				one.scrollTop=newt;
+				},80);
+			}
+		/*点击按钮，内容停止滚动*/
+		pasue.onclick=function(){
+			clearInterval(timer);
+			}	
+		};
+
+
+
+/*漂浮广告*/
+window.onload=function(){
+	var ad=document.getElementById("ad");
+	var close=document.getElementById("close");
+	/*获得可视区域的高度和宽度*/
+
+	var winheight=document.documentElement.clientHeight;
+	var winwidth=document.documentElement.clientWidth;
+
+	/*计算ad可以到达的最大top和left值：可视区域的宽高-元素本身的宽高*/
+	var maxtop=winheight-ad.offsetHeight;
+	var maxleft=winwidth-ad.offsetWidth;
+	var x=3;
+	var y=3;
+
+	/*定时器调用的函数*/
+	function run(){
+		var ot=ad.offsetTop;
+		var ol=ad.offsetLeft;
+		var nt=ot+x;
+		var nl=ol+y;
+		/*如果越界，让top和left值等于临界值*/
+		if(nt>maxtop){
+			nt=maxtop;
+			}
+		if(nl>maxleft){
+			nl=maxleft;
+			}	
+		if(nt<0){
+			nt=0;
+			}
+		if(nl<0){
+			nl=0;
+			}		
+		ad.style.top=nt+'px';
+		ad.style.left=nl+'px';
+		if(nt==maxtop || nt==0){
+			x=x*(-1);
+			};
+		if(nl==maxleft || nl==0){
+			y=y*(-1);
+			}	
+		}
+		
+		
+	/*设置定时器，每隔多长时间就改变一下ad的top和left值*/
+	timer=setInterval(run,10);
+
+	
+	/*鼠标移入，停止定时器*/
+	ad.onmouseover=function(){
+		clearInterval(timer);
+		}
+	
+
+	/*鼠标移出，恢复定时器*/
+	ad.onmouseout=function(){
+		timer=setInterval(run,10);
+		}
+		
+
+	/*窗口改变事件：window.onresize*/	
+	window.onresize=function(){
+	/*让元素归位*/
+	ad.style.top=0;
+	ad.style.left=0;
+	x=3;
+	y=3;
+	
+	/*重新获得可视区域的宽高*/
+	winheight=document.documentElement.clientHeight;
+    winwidth=document.documentElement.clientWidth;
+	
+	/*重新计算元素可以到达的最大top和left值*/
+	maxtop=winheight-ad.offsetHeight;
+    maxleft=winwidth-ad.offsetWidth;	
+		}	
+
+
+	/*点击关闭按钮，让元素消失，隐藏*/
+	close.onclick=function(){
+		ad.style.display='none';
+		clearInterval(timer);
+		}	
+	};
+
+
+
+/*事件对象*/
+	window.onload=function(){
+		var one=document.getElementById("one");
+		one.onclick=function(e){
+			/*获得事件对象：IE浏览器版本 || W3C浏览器版本*/
+             var ev=window.event || e;
+			 
+			 /*获得鼠标到可视区域左侧和顶部的距离*/
+			 alert(ev.clientX+','+ev.clientY);
+			
+			 /*获得鼠标到事件源左侧和顶部的距离：IE浏览器版本 || W3C浏览器版本*/
+			var i=ev.offsetX || ev.layerX;
+			var j=ev.offsetY || ev.layerY;
+			alert(i+','+j);
+			}	
+		};
+
+/*放大镜效果*/
+window.onload=function(){
+	var left=document.getElementById("left");
+	var lx=document.getElementById("lx");
+	var cover=document.getElementById("cover");
+	var right=document.getElementById("right");
+	var pic=document.getElementById("pic");
+	
+	/*给元素加移动事件*/
+	cover.onmousemove=function(e){
+
+		/*获得事件对象*/
+		var ev=window.event || e;
+		
+		/*获得色块的实际占用的宽高*/
+		var w=lx.offsetWidth;
+                var h=lx.offsetHeight;
+		
+		/*获得鼠标到事件源的位置*/
+		var i=ev.offsetX || ev.layerX;
+		var j=ev.offsetY || ev.layerY;
+		
+		/*计算出色块的最大可以到达的left和top值*/
+                var maxleft=left.offsetWidth-4-w;
+		var maxtop=left.offsetHeight-4-h;
+		
+		/*计算出色块的位置*/
+		var xleft=i-(w/2);
+		var xtop=j-(h/2);
+		
+		if(xleft<0){
+			xleft=0;
+			}
+		if(xleft>maxleft){
+			xleft=maxleft;
+			}
+		if(xtop<0){
+			xtop=0;
+			}	
+		if(xtop>maxtop){
+			xtop=maxtop;
+			}	
+			
+	        lx.style.left=xleft+'px';
+		lx.style.top=xtop+'px';
+		
+		/*计算出右侧图片的位置*/
+                pic.style.left=-(xleft*2)+'px';
+		pic.style.top=-(xtop*2)+'px';
+		}
+		
+		/*给元素加移入事件*/
+		cover.onmouseover=function(){
+	
+		/*让色块和右侧div显示*/	
+		lx.style.display='block';
+		right.style.display='block';
+			}
+		
+               /*给元素加移出事件*/	
+	       cover.onmouseout=function(){
+	      /*让色块和右侧div隐藏*/
+	
+		lx.style.display='none';
+		right.style.display='none';
+		}	
+	};
+
+
+
+/*键盘事件*/
+/*onkeydown：键盘按下事件；onkeyup：键盘抬起事件；onkeypress：按下并松开任意的字母或数字键*/
+window.onkeydown=function(e){
+	var ev=window.event ||e;
+	
+	/*获得按下的键盘码的UNcode编码*/
+	alert(ev.keyCode);
+	
+	/*将UNcode编码转化成字符*/
+	var re=String.fromCharCode(ev.keyCode);
+	alert(re);
+	
+	/*ev.ctrlKey：判断是否按下的是Ctrl键；ev.altKey：判断是否按下的是Alt键；ev.shift：判断按下的是否是Shift键*/
+	alert(ev.ctrlKey);
+	};
+	
+/*打字游戏*/
+window.onkeydown=function(e){
+	var ev=window.event || e;
+	
+	/*获取所有的li标签*/
+	var list=document.getElementById("list");
+	var li=list.getElementsByTagName("li");
+	var word=String.fromCharCode(ev.keyCode);
+	var zm=['A','B','C','D','E']
+	
+	/*抓取随机数*/
+	var num=Math.floor(Math.random()*(zm.length-1+1-0)+0);
+	
+	/*循环li，对比按下的建和li的内容是否一样，如果一样就删除该li标签*/
+	for(var i=0; i<li.length;i++){
+		if(word==li[i].innerHTML){
+			
+			/*删除i号li标签*/
+			list.removeChild(li[i]);
+			
+			/*创建新的li标签*/
+			var newli=document.createElement('li');
+			
+			/*将新li标签放置在list的尾部*/
+	        list.appendChild(newli);
+			
+			/*给新的li设置内容*/
+            newli.innerHTML=zm[num];
+			
+			/*结束整个循环*/
+			break;
+			}
+		}
+
+	};
+
+
+
+
+
+/*冒泡型事件流是由最明确的事件源到最不明确事件源依次触发，离鼠标越近有明确*/
+window.onload=function(){
+	var bj=document.getElementById("bj");
+	var cy=document.getElementById("cy");
+	var sb=document.getElementById("sb");
+	bj.onclick=function(){
+		alert('北京');
+		}
+		
+	cy.onclick=function(n){
+		alert('朝阳');
+		
+		/*阻止事件流*/
+	    var nv=window.event || n;
+		nv.cancelBubble=true || nv.stopPropagation();
+
+		}	
+		
+	sb.onclick=function(e){
+		alert('顺栢路');
+		var ev=window.event || e;
+		ev.cancelBubble=true || ev.stopPropagation();
+
+		}	
+	};
+
+
+/*阻止浏览器默认行为方法1*/
+window.onload=function(){
+	var link=document.getElementById("link");
+	link.onclick=function(e){
+		alert('点击了');
+		var ev=window.event || e;
+		
+		/*阻止浏览器默认行为*/
+		ev.returnValue=false || ev.preventDefault();
+		}
+
+	};
+	
+	<script>
+/*阻止浏览器默认行为方法2*/
+window.onload=function(){
+	var link=document.getElementById("link");
+	link.onclick=function(e){
+		alert('点击了');
+		}
+	};
+</script>	 
+</head>
+<body>
+<a id="link"  href="javscript:void(0); http://www.hao123.com">好132官网</a>
+</body>
+
+
+
+
+/*日期对象*/
+/*创建日期对象，括号里面不写日期，默认是电脑系统时间*/
+var time=new Date();
+
+/*注意月份，js中月份是0-11月，如果是平常说的9月份，应该写8*/
+var time=new Date(2012,8,21,9,30,25);
+
+/*获得年份*/
+var year=time.getFullYear();
+
+/*设置年份*/
+time.setFullYear(2017);
+
+/*获得月份（0-11）*/
+var mouth=time.getMonth();
+
+/*设置月份*/
+time.setMonth(4);
+
+/*获得日期（0-31）*/
+var date=time.getDate();
+
+/*设置天数*/
+time.setDate(27);
+
+/*获得小时（0-23）*/
+var hour=time.getHours();
+
+/*设置小时*/
+time.setHours(18);
+
+/*获得分钟（0-59）*/
+var minute=time.getMinutes();
+
+/*设置分钟*/
+time.setMinutes(46);
+
+/*获得秒数（0-59）*/
+var second=time.getSeconds();
+
+/*设置秒数*/
+time.setSeconds(26);
+
+alert(time);
+
+/*获得周几，0代表周日，1-6代表周一到周六*/
+var day=time.getDay();
+alert(day);
+
+/*获得日期对象的日期与1970年1月1日相差的毫秒数*/
+var t=time.getTime();
+
+/*以毫秒设置Date对象*/
+time.setTime(4568);
+alert(time);
+
+
+/倒计时方法1/
+window.onload=function(){
+var h=document.getElementById("h");
+var time1=new Date(2016,11,31,8,51,49);
+var time2=new Date(2017,11,31,8,51,59);
+var month=time2.getMonth()-time1.getMonth();
+var date=time2.getDate()-time1.getDate();
+var hour=time2.getHours()-time1.getHours();
+var minute=time2.getMinutes()-time1.getMinutes();
+var second=time2.getSeconds()-time1.getSeconds();
+var year=time2.getYear()-time1.getYear();
+		
+var timer=setInterval(function(){
+	var oldm=second;
+	var newm=oldm-1
+	if(newm<=-1){
+		newm=59;
+		var oldf=minute;
+		var newf=oldf-1;
+		if(newf<=-1){
+			newf=59;
+			var olds=hour;
+			var news=olds-1;
+			if(news<=-1){
+				news=23;
+				var oldt=date;
+				var newt=oldt-1;
+				if(newt<=-1){
+					newt=30;
+					var oldy=month;
+					var newy=oldy-1;
+					if(newy<=-1){
+						newy=11;
+			            var oldn=year;
+						var newn=oldn-1;
+						if(newn<=-1){
+						   newn=0;
+						   newy=0;
+						   newt=0;
+						   news=0;
+				   		   newf=0;
+						   newm=0;
+						   clearInterval(timer);
+							}
+						year=newn;
+						}
+					month=newy;
+					}
+				date=newt;
+				}
+			hour=news;
+			}
+		minute=newf;
+		}
+	second=newm;
+	h.innerHTML=year+'年'+month+'月'+date+'天'+hour+'时'+minute+'分'+second+'秒';
+	},1000)
+};
+
+
+/*倒计时方法2：在未来某一时刻与当前时刻相差的时间*/
+window.onload=function(){
+var h=document.getElementById("h");
+
+/*创建倒计时函数*/
+function djs(){
+	
+/*创建当前日期*/	
+var time1=new Date();
+
+/*创建未来的日期*/
+var time2=new Date(2017,11,31,23,59,59);
+
+/*计算出两个日期相差的毫秒数*/
+var xchm=time2.getTime()-time1.getTime();
+
+/*计算出相差的天数*/
+var date=parseInt(xchm/(24*60*60*1000));
+
+/*获得计算完天数后剩下的毫秒数*/
+xchm=xchm%(24*60*60*1000);
+
+/*计算相差的小时*/
+var hour=parseInt(xchm/(60*60*1000));
+
+/*获得计算完小时后剩下的毫秒数*/
+xchm=xchm%(60*60*1000);
+/*计算相差的分钟*/
+var minute=parseInt(xchm/(60*1000));
+
+/*获得计算完分钟后剩下的毫秒数*/
+xchm=xchm%(60*1000);
+
+/*计算相差多少秒*/
+var second=parseInt(xchm/(1000));
+
+/*给标签添加内容*/
+h.innerHTML='距离年底还剩'+date+'天'+hour+'时'+minute+'分'+second+'秒';
+}
+
+/*调用函数，让页面打开就执行一次函数*/
+djs();
+
+/*每隔一秒执行一次函数*/
+setInterval(djs,1000);
+};
+
+
+
+
+/*this的用法  点击图片让图片隐藏*/
+window.onload=function(){
+	/*抓取所有img标签*/
+	var imgs=document.getElementsByTagName("img");
+	
+	/*循环img标签，给每张图片加单击事件*/
+	for(var i=0;i<imgs.length;i++){
+		
+		/*给i号图片添加一个变量，用来记录序号*/
+		imgs[i].xuhao=i
+		
+		/*给i号img标签加单击事件*/
+		imgs[i].onclick=function(){
+			
+			/*this在事件中指向（表示）事件源对象*/
+			/*点击图片，让图片隐藏*/
+			this.style.visibility='hidden';
+			alert(this.xuhao);
+			}
+		}
+	};
+
+/*tab切换效果*/
+window.onload=function(){
+	var tab=document.getElementById("tab");
+	var lis=tab.getElementsByTagName("li")
+	var nrs=tab.getElementsByClassName("nr");
+	
+	/*循环li*/
+	for(var i=0;i<lis.length;i++){
+		
+		/*给i号li加序号*/
+		lis[i].xuhao=i;
+		
+		/*给i号li加移入事件*/
+		lis[i].onmouseover=function(){
+			
+			/*循环nr，让所有nr隐藏*/
+			for(var i=0;i<nrs.length;i++ ){
+				nrs[i].style.display='none';
+				}
+			
+			/*让this.xuhao对应的nr显示*/	
+			nrs[this.xuhao].style.display='block';	
+			}
+		}
+	};
+
+/*轮播图效果*/
+window.onload=function(){
+	var box=document.getElementById("box");
+	var imgs=box.getElementsByTagName("img");
+	var lis=box.getElementsByTagName("li");
+	
+	/*变量大总管，多个方式控制同一块元素的效果时，一定要走同一个变量*/
+	var i=0;
+	var timer;
+	
+	/*创建让图片自动切换的函数*/
+	function jsq(){
+			i++;
+			if(i==lis.length){
+				i=0;
+				}
+				
+		/*循环，让所有图片隐藏，所有li变白*/		
+		for(var j=0;j<lis.length;j++){
+			imgs[j].style.display='none';
+			lis[j].style.background='#FFF';
+		}
+		
+		    /*让i号图片显示，让i号li变红*/ 
+			imgs[i].style.display='block';
+			lis[i].style.background='#DB192A';
+		}
+		
+	/*设置定时器*/	
+	timer=setInterval(jsq,3000);
+	
+	/*循环li，给li和img加事件*/
+	for(var j=0;j<lis.length;j++){
+		
+		/*给j号li加序号*/
+		lis[j].xuhao=j;
+		
+	/*给j号img加鼠标移入事件*/	
+	imgs[j].onmouseover=function(){
+		
+		/*停止定时器，停止自动切换*/
+		clearInterval(timer);
+		}
+		
+	/*给j号img加鼠标移出事件*/	
+	imgs[j].onmouseout=function(){
+		
+		/*回复定时器，回复自动切换*/
+		timer=setInterval(jsq,3000);
+		}
+		
+	/*给j号li加鼠标移入事件*/	
+	lis[j].onmouseover=function(){
+		
+		/*将序号存入i中*/
+		i=this.xuhao;
+		
+		/*循环，让所有图片隐藏，所有li变白*/
+		for(var j=0;j<lis.length;j++){
+			imgs[j].style.display='none';
+			lis[j].style.background='#FFF';
+			}
+			
+		 /*让对应的i号图片显示，让对应的i号li变红*/  	
+		imgs[i].style.display='block';
+		lis[i].style.background='#DB192A';
+		
+		/*停止定时器*/	
+		clearInterval(timer);	
+       		}
+			
+	/*给j号li加鼠标移出事件*/		
+	lis[j].onmouseout=function(){
+		
+		/*恢复定时器，恢复自动切换*/
+	    timer=setInterval(jsq,3000);
+		}		
+	}
+	};
+
+
+
+<!--圆形导航效果js代码-->
+<script>
+var hd=document.getElementById('hd');
+var ps=document.getElementsByTagName('p');
+c=0;
+r=200;
+/*计算出居中位置*/
+var hd_left=(document.documentElement.clientWidth-hd.offsetWidth)/2;
+var hd_top=(document.documentElement.clientHeight-hd.offsetHeight)/2;
+
+/*让#hd元素居中*/
+hd.style.left=hd_left+'px';
+hd.style.top=hd_top+'px';
+
+/*遍历数组，让所有p元素居中*/
+for(var i=0;i<ps.length;i++){
+	ps[i].style.left=hd_left+'px';
+	ps[i].style.top=hd_top+'px';
+	}
+	
+/*给hd元素绑定单机事件*/	
+hd.onclick=function(){
+	if(c==0){
+		for(var i=0;i<ps.length;i++){
+			
+			/*获得每个p元素的度数*/
+			var deg=-180/ps.length*i;
+		    var zhi=gougu(deg,r);
+			
+			/*计算每个p元素应该到达的位置*/
+			ps[i].style.left=hd_left+zhi.gu+'px';
+			ps[i].style.top=hd_top+zhi.gou+'px';
+			
+			/*给每个p元素添加旋转动画*/
+			ps[i].style.transform='rotate(720deg)';
+			ps[i].style.transitionDuration='1s';
+			ps[i].style.transitionDelay=0.5*i+'s';
+			}
+		
+		c=1;
+		}else if(c==1){
+			for(var i=0;i<ps.length;i++){
+				var deg=-180/ps.length*i;
+		        var zhi=gougu(deg,r);
+				
+				/*让每个p元素 位置初始化*/
+			    ps[i].style.left=hd_left+'px';
+			    ps[i].style.top=hd_top+'px';
+				
+				/*给每个p元素添加旋转动画，让元素初始化*/
+			    ps[i].style.transform='rotate(0deg)';
+				}
+
+			c=0;
+			}
+	}	
+	
+	
+/*一个整圆的弧度：2*math.PI*r/r=2*math.PI；一弧度：360/2*math.PI=180/math.PI角度；一角度：math.PI/180弧度*/	
+
+/*获得勾股数*/
+function gougu(deg,r){
+	var gou=Math.sin(deg*Math.PI/180)*r;
+	var gu=Math.cos(deg*Math.PI/180)*r;
+	return{'gou':gou,'gu':gu};
+	}
+
+</script>
+<!--js代码结束-->
+
+
+
+
+
+/*一秒钟小游戏js*/
+window.onload=function(){
+	var circle=document.getElementById('circle');
+	var time=document.getElementById('time');
+	var remind=document.getElementById('remind');
+
+	/*给圆加手指按下事件*/
+	circle.ontouchstart=function(){
+
+		/*记录下手指抬起时候的时间*/
+		starttime=new Date();
+	}
+
+
+	/*给圆加手指抬起事件*/
+	circle.ontouchend=function(){
+
+		/*记录下手指抬起时候的时间*/
+		endtime=new Date();
+
+		/*计算手指抬起和按下之间的时间差*/
+		var difftime=endtime.getTime()-starttime.getTime();
+		time.innerHTML=difftime/1000+'秒';
+		if(difftime<800){
+			remind.innerHTML='亲，别激动，慢慢来！';
+		}else if(difftime<1200){
+			remind.innerHTML='加油，已经很接近了！';
+		}else{
+			remind.innerHTML='亲，睡着了吧？！';
+		}
+
+	}
+}

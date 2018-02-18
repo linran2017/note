@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBpC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<!--引入jquery文件-->
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+/*jquery事件操作*/
+$(function(){
+	
+	/*用on绑定事件，多个事件一起*/
+	$('.new').on('click mouseenter',function(){
+		alert('哈哈哈哈');
+		})
+	
+	
+	/*删除事件*/
+	$('.new').off('mouseenter');
+	
+	
+	/*单击按钮，创建一个新的h1标签，追加到.new的头部*/
+	$('.btn').click(function(){
+		$('.new').prepend('<h1>新闻标题</h1>');
+		})
+		
+		
+	/*给未来元素加单击事件（.new是父级元素，将.new的事件委托给它里面的h1）*/	
+	$('.new').on('click','h1',function(){
+		alert('欢迎光临！');
+		})	
+		
+		
+	/*给元素绑定一个只执行一次的事件*/	
+	$('.new').one('click',function(){
+		alert('哈哈哈')
+		})
+	
+	
+	/*给元素加移入移出事件（移入背景变为蓝色，移出背景变为红色）*/	
+	$('.new').hover(function(){
+		$('.new').css({'background-color':'blue'});
+		},function(){
+			$('.new').css({'background-color':'red'});
+			})
+			
+			
+	/*输入框*/		
+	var age=prompt('请输入年龄，如果年龄大于18岁就提交表单');
+	if(age>18){
+		
+		/*触发form标签的submit事件*/
+		$('.bd').trigger('submit');
+		}				
+	})
+</script>
+
+<style type="text/css">
+*{ margin:0; padding:0;}
+.btn{ margin:10px; width:40px; height:30px;}
+form{ width:500px; height:auto; padding:10px; margin:10 auto; }
+</style>
+</head>
+<body>
+<form action="hd.php" method="post" class="bd">
+姓名：<input type="text" />
+<br />
+密码：<input type="password" />
+<br />
+<input type="submit" value="提交" />
+</form>
+</body>
+</html>

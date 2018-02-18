@@ -1,0 +1,50 @@
+/*外部引入less文件*/
+body {
+  background: red;
+}
+/*函数写法2（传人不同的函数值）*/
+/*变量运算*/
+* {
+  padding: 0;
+  margin: 0;
+}
+p {
+  margin-top: 10px;
+  width: 300px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 30px;
+  text-align: center;
+  border: 2px blue solid;
+}
+/*串联式写法 用&连接*/
+.one {
+  /*调用函数*/
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.one:hover {
+  background: yellow;
+}
+.three {
+  /*调用函数*/
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  /*变量运算*/
+  height: 100px;
+}
+/*嵌套写法*/
+#five {
+  /*调用函数*/
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}

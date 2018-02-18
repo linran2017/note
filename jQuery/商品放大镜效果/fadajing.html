@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 800px;
+				height: 500px;
+				margin: 20px auto;
+			}
+			.small{
+				width: 350PX;
+				height: 350PX;
+				border: 1px black solid;
+				margin-left: 10px;
+				margin-top: 10px;
+				float: left;
+				position: relative;
+			}
+			b{
+				display: block;
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: pink;
+				opacity: 0.5;
+				display: none;
+			}
+			.big{
+				width: 350PX;
+				height: 350PX;
+				border: 1px black solid;
+				margin-left: 10px;
+				margin-top: 10px;
+				float: left;
+				position: relative;
+				overflow: hidden;
+				display: none;
+			}
+			.big img{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+		<script src="jquery-1.11.3.min.js"></script>
+		<script>
+			$(function(){
+				$('.small').mousemove(function(e){
+					$('b').show();
+					$('.big').show();
+					/*获得鼠标到浏览器左侧的距离*/
+					var L=e.pageX;
+					var l=$(this).offset().left;
+					left=L-l-50;
+					/*获得鼠标到浏览器顶部的距离*/
+					var T=e.pageY;
+					var t=$(this).offset().top;
+					var top=T-t-50;
+					if(left<0){
+						left=0;
+					}
+					if(left>250){
+						left=250;
+					}
+					if(top<0){
+						top=0;
+					}
+					if(top>250){
+						top=250;
+					}
+					$('b').css({'left':left,'top':top});
+					var imgLeft=-left*2;
+					var imgTop=-top*2;
+					if(imgLeft<-350){
+						imgLeft=-350;
+					}
+					if(imgTop<-350){
+						imgTop=-350
+					}
+					$('.big img').css({'left':imgLeft,'top':imgTop});
+				})
+				$('.small').mouseleave(function(){
+					$('b').hide();
+					$('.big').hide();
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<div class="small"><img src="small.png" /><b></b></div>
+			<div class="big"><img src="big.jpg" /></div>
+		</div>
+	</body>
+</html>

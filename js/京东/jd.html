@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<script>
+window.onload=function(){
+	var box=document.getElementById("box");
+	var imgs=box.getElementsByTagName("img");
+	var lis=box.getElementsByTagName("li");
+	var i=0;
+	var timer;
+	function jsq(){
+		imgs[i].style.display='none';
+		lis[i].style.background='#FFF';
+		var oldi=i;
+		var newi=oldi+1;
+		if(newi==8){
+			newi=0;
+			}
+		i=newi;
+		imgs[i].style.display='block';
+		lis[i].style.background='#DB192A';
+		}
+	timer=setInterval(jsq,3000);
+	for(var j=0;j<lis.length;j++){
+		lis[j].xuhao=j;
+	imgs[j].onmouseover=function(){
+		clearInterval(timer);
+		}
+	imgs[j].onmouseout=function(){
+		timer=setInterval(jsq,3000);
+		}
+	lis[j].onmouseover=function(){
+		for(var j=0;j<lis.length;j++){
+			imgs[j].style.display='none';
+			lis[j].style.background='#FFF';
+			}
+		imgs[this.xuhao].style.display='block';
+		lis[this.xuhao].style.background='#DB192A';	
+		clearInterval(timer);	
+       		}
+	lis[j].onmouseout=function(){
+		i=this.xuhao;
+	    timer=setInterval(jsq,3000);
+		}		
+	}
+	};
+</script>
+
+
+<style>
+*{margin:0; padding:0; background:#F0F0F0;}
+/*头部*/
+.top{background:#FF3300; width:100%; height:80px;}
+.top .center{ background:#CC0000; height:80px; width:1190px; margin:0 auto;}
+.topxia{ background:#E3E4E5; border-bottom:1px solid #DDD; position:relative;  height:30px; width:100%;}
+.topxia .daohang{background:#E3E4E5; height:30px; width:730px; position:absolute; top:0px; right:70px;}
+.topxia .daohang a{ font-size:12px; color:#999; position:relative; background:#E3E4E5; display:block; height:30px; line-height:30px; padding:0 7px; float:left; text-align:center;}
+.topxia .daohang a:hover{ color:#CC0000; cursor:pointer;}
+.topxia .daohang a span.mfzc{color:#F10215; background:#E3E4E5;}
+.topxia .daohang a span.mfzc:hover{color:#CC0000;  background:#E3E4E5;}
+.topxia .daohang a img{ position:absolute; top:10px;}
+.topxia .daohang a img:hover{ cursor:auto;}
+/*头部结束*/
+/*搜索*/
+.search{width:100%; height:140px; background:#F6F6F6; position:relative;}
+.search .dkhs{ position:absolute; top:-30px; left:80px;}
+.search .hongbao{position:absolute; top:90px; left:1080px;}
+.search .text{ border:solid 1px #FF0000; border-right:none; background:#FFFFFF; width:500px; height:33px; position:absolute; top:26px; left:400px;}
+.search .sousuo{position:absolute; top:25px; left:900px;}
+.search .gwc{color:#FF0000; background:#FFFFFF; border:#CCCCCC solid 1px; width:190px; height:31px; position:absolute; top:27px; left:982px; line-height:36px; font-size:14px; letter-spacing:5px; text-align:center;}
+.search .dhts{width:510px; height:26px;  background:#F7F7F7; position:absolute; left:395px; top:63px;}
+.search .dhts a{display:block; height:26px; background:#F7F7F7; font-size:13px; line-height:26px; padding-left:4px;	padding-right:4px; float:left;	color:#999999; text-align:center;	font-weight:500; font-family:"宋体";}
+.search .dhts a.first{ color:#FF0000;}
+.search .dhts a:hover{ color:#CC0000; cursor:pointer;}
+.search .dhtx{width:740px; height:30px; position:absolute;  background:#F7F7F7; left:305px; top:105px;}
+.search .dhtx a{font-size:16px; font-family:"宋体"; font-weight:600; color:#666666; display:block; height:30px; background:#F7F7F7; line-height:30px; margin:0 14px; text-align:center; float:left;}
+.search .dhtx a:hover{color:#CC0000; cursor:pointer;}
+.search .dhtx a img{position:absolute;  top:10px; cursor:none;}
+/*搜索结束*/
+/*轮播*/
+.lunbo{ height:480px; width:1190px; margin:0 auto;}
+.lunbo .left{height:480px; width:190px; background:#666666; float:left;}
+.lunbo .center{width:790px; height:480px; float:left; margin:0 10px;}
+.lunbo .center .one{background:#669933; width:790px; height:340px; float:left; position:relative;}
+.lunbo .center .one img{ position:absolute; display:none;}
+ul{ position:absolute; background-color:transparent/*背景颜色为透明*/; left:312px; bottom:24px;}
+li{ list-style:none;  background:#FFF; width:12px; height:12px; float:left; margin-right:10px; border-radius:50%/*border-radius:使方角变园角，50%把方块变成圆形*/;}
+.lunbo .center .two{background:#FFCC66; width:390px; height:130px; float:left; margin-top:10px;}
+.lunbo .center .three{ background:#FF3300; width:390px; height:130px; float:left; margin-top:10px; margin-left:10px;}
+.lunbo .right{background:#FFFFFF; width:190px; height:480px; float:right;}
+/*轮播结束*/
+/*主体1*/
+.zhuti{background:#FF0000; width:1190px; height:55px; margin:0 auto; margin-top:10px;}
+.zhanshione{ background:#FFFFFF;  width:1190px; height:250px; margin:0 auto;}
+.zhanshione .left{ background:#FFFFFF; width:200px; height:230px; border-right:1px solid #666666; margin-top:10px; float:left;}
+.zhanshione .zuileft{ background:#FFFFFF; width:200px; height:230px; margin-top:10px; float:left;}
+.zhanshione .right{background:#999999; width:180px; height:230px; margin-top:10px; float:right;}
+/*主体1结束*/
+/*主体2*/
+.zhanshitwo{ background:#FFFFFF;  width:1190px; height:250px; margin:0 auto; margin-top:10px; margin-bottom:50px;}
+.zhanshitwo .left{ background:#666666; width:180px; height:230px; margin-top:10px; float:left;}
+.zhanshitwo .right{ background:#FFFFFF; width:200px; height:230px; border-left:1px solid #666666; margin-top:10px; float:right;}
+.zhanshitwo .zuiright{ background:#FFFFFF; width:180px; height:230px; margin-top:10px; float:right;}
+
+/*主体2结束*/
+</style>
+</head>
+
+<body>
+<!--头部-->
+<div class="top">
+<div class="center"></div>
+</div>
+<div class="topxia">
+<div class="daohang">
+<a>你好，请登录 <span class="mfzc">免费注册</span></a><a><img src="shutiao.jpg" /></a><a>我的订单</a><a><img src="shutiao.jpg" /></a><a>我的京东</a><a><img src="shutiao.jpg" /></a><a>京东会员</a><a><img src="shutiao.jpg" /></a><a>企业采购</a><a><img src="shutiao.jpg" /></a><a>客服服务</a><a><img src="shutiao.jpg" /></a><a>网站导航</a><a><img src="shutiao.jpg" /></a><a>手机京东</a>
+</div>
+</div>
+<!--头部结束-->
+<!--搜索-->
+<div class="search">
+<img class="dkhs" src="dkhs.jpg" />
+<img class="hongbao" src="hongbao.jpg" />
+<input type="text" class="text" />
+<img class="sousuo" src="sousuo.jpg" />
+<span class="gwc">我的购物车</span>
+<div class="dhts">
+<a class="first">返5%现金</a><a>手机专场</a><a>园林机械</a><a>自营3免1</a><a>品质家电</a><a>雪地靴</a><a>烤箱</a><a>食品饮料</a><a>宝宝衣服</a>
+</div>
+<div class="dhtx">
+<a>秒杀</a><a>优惠券</a><a>闪购</a><a>拍卖</a><a><img src="shutiao.jpg" /></a><a>服装城</a><a>京东超市</a><a>生鲜</a><a>全球购</a><a><img src="shutiao.jpg" /></a>
+<a>京东金融</a>
+</div>
+</div>
+<!--搜索结束-->
+<!--轮播-->
+<div class="lunbo">
+<div class="left"></div>
+<div class="center">
+<div class="one" id="box">
+<img src="1.jpg" style="display:block;" />
+<img src="2.jpg" />
+<img src="3.jpg" />
+<img src="4.jpg" />
+<img src="5.jpg" />
+<img src="6.jpg" />
+<img src="7.jpg" />
+<img src="8.jpg" />
+<ul id="ul" name="ul">
+<li style="background:#DB192A;"></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul> 
+</div>
+<div class="two"></div>
+<div class="three"></div>
+</div>
+<div class="right"></div>
+</div>
+<!--轮播结束-->
+<!--主体1-->
+<div class="zhuti"></div>
+<div class="zhanshione">
+<div class="left"></div>
+<div class="left"></div>
+<div class="left"></div>
+<div class="left"></div>
+<div class="zuileft"></div>
+<div class="right"></div>
+</div>
+<!--主体1结束-->
+<!--主体2-->
+<div class="zhanshitwo">
+<div class="left"></div>
+<div class="right"></div>
+<div class="right"></div>
+<div class="right"></div>
+<div class="right"></div>
+<div class="zuiright"></div>
+</div>
+<!--主体2结束-->
+</body>
+</html>

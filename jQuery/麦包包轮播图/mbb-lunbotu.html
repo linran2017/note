@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../jquery-1.11.3.min.js"></script>
+<script>
+/*滑动自动轮播效果*/
+$(function(){
+	
+	/*大总管变量*/
+	var c=0;
+	
+	/*设置状态，sta=2时表示可以点击，sta=1时表示图片在运动状态不能点击*/
+	var sta=2;
+	var timer;
+	var tt;
+	
+	/*创建自动轮播的函数*/
+	function run(){
+		c++;
+		
+		/*解决无缝滑动的问题：在滑动元素后再复制第一个滑动元素，让大div多滑动一次*/
+		if(c==6){
+			
+			/*前一轮滑动完毕后，一瞬间让.con的left值变为0*/
+			$('.con').css({'left':'0'});
+			
+			/*让序号变为1，滑动到第二张图片上*/
+			c=1;
+		   }
+		   
+		  /*计算.con应到达的left值*/ 
+		 var left=c*(-952);
+		 
+		 /*.con开始滑动*/
+		 sta=1;  
+		$('.con').animate({'left':left+'px'},300,function(){
+			
+			/*.con结束滑动*/
+			sta=2;
+			});
+			
+		/*最后一张图片滑动完毕后，让0号li的透明度变为0.7，兄弟li的透明度变为0.4*/	
+		if(c==5){
+			$('li').eq(0).css({'opacity':'0.7'});
+		    $('li').eq(0).siblings('li').css({'opacity':'0.4'}); 
+			}else{
+				
+				/*否则让c号li透明度变为0.7，其兄弟li的透明度变为0.4*/
+				$('li').eq(c).css({'opacity':'0.7'});
+		        $('li').eq(c).siblings('li').css({'opacity':'0.4'});
+				}
+		   
+		}
+		
+	/*设置定时器*/	
+	timer=setInterval(run,3000);
+	
+	/*给li加鼠标单击事件*/
+	$('li').click(function(){
+		
+		/*.con在滑动状态下不能点击，return表示返回函数，函数后面的不在执行*/
+		if(sta==1){
+			return;
+			}
+			
+		/*鼠标按下先停止上一次的定时炸弹，防止叠加*/	
+		clearTimeout(tt);	
+		
+		/*停止定时器*/
+		clearInterval(timer);
+		
+		/*设置定时炸弹，鼠标点击400毫秒后恢复定时器*/
+		tt=setTimeout(function(){
+			timer=setInterval(run,3000);
+			},400)
+		/*获得当前被点击的li的序号*/
+		c=$(this).index();
+		
+		/*计算.con应该到达的left值*/
+		var left=c*(-952);
+		$('.con').stop().animate({'left':left+'px'},300);
+		
+		/*让当前被点击的li的透明度变为0.7，兄弟li的透明度变为0.4*/
+		$(this).css({'opacity':'0.7'});
+		$(this).siblings('li').css({'opacity':'0.4'});
+		})
+	})
+</script>
+<style type="text/css">
+*{ margin:0; padding:0;}
+.mbb{ position:relative; width:952px; height:440px; border:3px #006699 solid; margin:10px auto; overflow:hidden;}
+.con{ position:absolute;width:5712px; height:440px;}
+.con img{ display:block; float:left;}
+ul{ position:absolute; bottom:0; right:0;}
+li{ list-style:none; width:119px; height:29px; line-height:29px; font-size:12px; text-align:center; color:#FFF; background:#000; opacity:0.4; float:left; margin-left:1px;}
+li:hover{ color:#C00; text-decoration:underline;}
+</style>
+</head>
+
+<body>
+<div class="mbb">
+<div class="con">
+<img src="1.jpg" />
+<img src="2.jpg" />
+<img src="3.jpg" />
+<img src="4.jpg" />
+<img src="5.jpg" />
+<img src="1.jpg" />
+</div>
+<ul>
+<li style="opacity:0.7;">一抹浪漫</li>
+<li>热情美式</li>
+<li>像素小怪兽</li>
+<li>麋鹿物语</li>
+<li>乖巧小时髦</li>
+</ul>
+</div>
+</body>
+</html>

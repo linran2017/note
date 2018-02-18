@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.box{
+				width: 1600px;
+				height: 100px;
+				border: 2px solid red;
+				margin: 0px auto;
+				margin-top: 200px;
+				display: flex;
+				position: relative;
+			}
+			.td{
+				flex: 1;
+				height: 100px;
+				border-left:1px solid black ;
+				border-right: 1px solid black;
+			}
+			.moren{
+				width: 480px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				top: 0px;
+				left: 560px;
+			}
+			.move{
+				width: 480px;
+				height: 100px;
+				background: green;
+				position: absolute;
+				top: 0px;
+				left: 560px;
+			}
+			.moveLeft{
+				float: left;
+				width: 0px;
+				height: 100px;
+				background: yellow;
+			}
+			.moveRight{
+				float: right;
+				width: 0px;
+				height: 100px;
+				background: aqua;
+			}
+			.laRight{
+				position: absolute;
+				right: 0px;
+				width: 5px;
+				background: transparent;
+				height: 100px;
+				cursor: ew-resize;
+			}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				
+//				给拉动添加鼠标事件
+				$('.laRight').mousedown(function(e){
+//					获得移动块的宽度
+					var oldW = $('.move').width();
+//					阻止事件流
+					e.stopPropagation();
+//					获得当前鼠标距离文档左侧的位置
+					var startX = e.pageX;	
+					
+					$('.box').mousemove(function(e){
+//						获得鼠标位置
+						var endX = e.pageX;
+//						获得移动距离
+						var moveX=endX-startX;
+//						计算元素的宽度
+						var newW=oldW+moveX;
+						 $('.move,.moren').css('width',newW+'px')
+//						var cc = newLeft;
+						
+						console.log(newW)
+						
+					})
+					
+				})
+				
+				var mLeft = $('.moren').position().left;
+				
+				$('.move').mousedown(function(e){
+//					获得移动框的宽度  用来做界限判断
+					var Mwidth = $('.move').width();
+//					alert(123)
+//					获得当前鼠标距离文档左侧的位置
+					var startX = e.pageX;
+//					获得元素位置
+					var left = $(this).position().left;
+					$('.box').mousemove(function(e){
+//						获得鼠标位置
+						var endX = e.pageX;
+//						获得移动距离
+						var moveX=endX-startX;
+//						计算新的left值
+						var newLeft=left+moveX;
+//						计算绿框相对于原来的位置移动的距离
+						var cc = newLeft-mLeft;
+						
+						console.log(cc)
+//						如果 移动的距离小于0则代表向左移动
+						if(cc<=0){
+//							让右侧的显示小清新颜色的框的宽度变为0
+							$('.moveRight').css('width','0px');
+//							做界限判断  让他不能超过这个元素的宽度
+							if(-cc>=Mwidth){
+								cc=-Mwidth;
+							}
+//							设置左侧黄色框的宽度
+							$('.moveLeft').css('width',-cc+'px');
+							
+						}
+//						如果移动大于0则相当于右超出原来的位置
+						if(cc>=0){
+//							让左侧黄色的框宽度为0px
+							$('.moveLeft').css('width','0px');
+//							做界限判断  让他不能超过这个元素的宽度
+							if(cc>=Mwidth){
+								cc=Mwidth;
+							}
+//							设置右侧小清新框的颜色
+							$('.moveRight').css('width',cc+'px');
+						}
+						
+						
+						$('.move').css('left',newLeft+'px');
+						
+						
+						
+					})
+					
+				})
+				
+				
+				$(window).mouseup(function(){
+//						清理移动事件
+						$('.box').off('mousemove');
+				})
+			})
+		</script>
+	</head>
+	<body>
+		
+		
+		<div class="box">
+			<div class="moren">
+			</div>
+			<div class="move">
+				<div class="moveLeft"></div>
+				
+				<div class="moveRight"></div>
+				<div class="laRight">
+					
+				</div>
+			</div>
+			
+			
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			<div class="td"></div>
+			
+			
+			
+		</div>
+		
+	</body>
+</html>

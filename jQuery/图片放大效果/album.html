@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.3.min.js"></script>
+		<style>
+			.box{
+				width: 400px;
+				height: 400px;
+				box-shadow: 4px 4px 4px #999;
+				margin: 50px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			img{
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.z1{
+				z-index: 1;
+			}
+			.z2{
+				z-index: 2;
+			}
+			.z3{
+				z-index: 3;
+			}
+		</style>
+		<script>
+			$(function(){
+				var str=true;
+				var f=true;
+				var px=[500,-500];
+				$('.box img').mouseover(function(){
+					if(str && f){
+						str=false;
+						f=false;
+						var n=parseInt(Math.random()*2);
+						var num=parseInt(Math.random()*2);
+						if(num){
+							$(this).animate({'left':px[n]+'px',
+							'opacity':0.2},400,function(){
+								comeback($(this));
+							});
+						}else{
+							$(this).animate({'top':px[n]+'px',
+							'opacity':0.2},400,function(){
+								comeback($(this));
+							});
+						}
+					}
+				})
+				$('.box').mouseleave(function(){
+					str=true;
+				})
+				function comeback(obj){
+					f=true;
+					obj.css({
+						'top':0,
+						'left':0,
+						'opacity':1,
+						'z-index':1
+					});
+					$('.box img').not(obj).each(function(){
+						$(this).css({
+							'z-index':parseInt($(this).css('z-index'))+1
+						});
+					})
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<img src="big1.jpg" class="z1" />
+			<img src="big2.jpg" class="z2" />
+			<img src="big3.jpg" class="z3" />
+		</div>
+	</body>
+</html>

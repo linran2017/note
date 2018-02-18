@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+*{ margin:0; padding:0;}
+body{ background:#CCC;}
+P,#hd{ width:100px; height:100px; border-radius:50%; position:absolute;}
+p{ border:5px solid #FFF;}
+#hd{ background:#E7E5E7 url(../img/6.png) no-repeat center; background-size:80% 80%; border:5px solid #00A0E1; transition:all 2s;}
+#hd:hover{ transform:rotate(720deg); background:#000 url(../img/6.png) no-repeat center; background-size:80% 80%;}
+p:nth-child(1){ background:url(../img/1.png) no-repeat; background-size:100% 100%;}
+p:nth-child(2){ background:url(../img/2.png) no-repeat; background-size:100% 100%;}
+p:nth-child(3){ background:url(../img/3.png) no-repeat; background-size:100% 100%;}
+p:nth-child(4){ background:url(../img/4.png) no-repeat; background-size:100% 100%;}
+p:nth-child(5){ background:url(../img/5.png) no-repeat; background-size:100% 100%;}
+</style>
+<title>无标题文档</title>
+</head>
+
+<body>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<div id="hd"></div>
+
+<!--圆形导航效果js代码-->
+<script>
+var hd=document.getElementById('hd');
+var ps=document.getElementsByTagName('p');
+c=0;
+r=200;
+/*计算出居中位置*/
+var hd_left=(document.documentElement.clientWidth-hd.offsetWidth)/2;
+var hd_top=(document.documentElement.clientHeight-hd.offsetHeight)/2;
+
+/*让#hd元素居中*/
+hd.style.left=hd_left+'px';
+hd.style.top=hd_top+'px';
+
+/*遍历数组，让所有p元素居中*/
+for(var i=0;i<ps.length;i++){
+	ps[i].style.left=hd_left+'px';
+	ps[i].style.top=hd_top+'px';
+	}
+	
+/*给hd元素绑定单机事件*/	
+hd.onclick=function(){
+	if(c==0){
+		for(var i=0;i<ps.length;i++){
+			
+			/*获得每个p元素的度数*/
+			var deg=-180/ps.length*i;
+		    var zhi=gougu(deg,r);
+			
+			/*计算每个p元素应该到达的位置*/
+			ps[i].style.left=hd_left+zhi.gu+'px';
+			ps[i].style.top=hd_top+zhi.gou+'px';
+			
+			/*给每个p元素添加旋转动画*/
+			ps[i].style.transform='rotate(720deg)';
+			ps[i].style.transitionDuration='1s';
+			ps[i].style.transitionDelay=0.5*i+'s';
+			}
+		
+		c=1;
+		}else if(c==1){
+			for(var i=0;i<ps.length;i++){
+				var deg=-180/ps.length*i;
+		        var zhi=gougu(deg,r);
+				
+				/*让每个p元素 位置初始化*/
+			    ps[i].style.left=hd_left+'px';
+			    ps[i].style.top=hd_top+'px';
+				
+				/*给每个p元素添加旋转动画，让元素初始化*/
+			    ps[i].style.transform='rotate(0deg)';
+				}
+
+			c=0;
+			}
+	}	
+	
+	
+/*一个整圆的弧度：2*math.PI*r/r=2*math.PI；一弧度：360/2*math.PI=180/math.PI角度；一角度：math.PI/180弧度*/	
+
+/*获得勾股数*/
+function gougu(deg,r){
+	var gou=Math.sin(deg*Math.PI/180)*r;
+	var gu=Math.cos(deg*Math.PI/180)*r;
+	return{'gou':gou,'gu':gu};
+	}
+
+</script>
+<!--js代码结束-->
+</body>
+</html>

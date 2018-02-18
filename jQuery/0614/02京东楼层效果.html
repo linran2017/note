@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			.box{
+				width: 1000px;
+				height: auto;
+				border: 1px solid red;
+				margin: 0px auto;
+			}
+			.top{
+				height: 500px;
+				background: green;
+			}
+			.list{
+				width: 100%;
+				height: 500px;
+				background: yellow;
+			}
+			h1{
+				height: 50px;
+				background: red;
+			}
+			
+			.lou{
+				width: 50px;
+				border: 1px solid red;
+				position: fixed;
+				top: 100px;
+				left: 50px;
+				display: none;
+			}
+			.lou a{
+				display: block;
+				width: 50px;
+				padding: 20px 0px;
+				text-decoration: none;
+				text-align: center;
+				color: white;
+				background: gray;
+				border-bottom: 1px solid white;
+			}
+			.active{
+				background: #D70B1C !important;
+			}
+			
+			.bottom{
+				height: 800px;
+				background: blue;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			$(function(){
+//				为了让他在页面一进来的时候就让定位到我规定位置
+				var l = $('.box').offset().left;
+				
+				$('.lou').css({'left':l-100+'px'});
+				
+				$(window).resize(function(){
+//					获得box距离左侧的距离
+					var l = $('.box').offset().left;
+						console.log(l)
+						
+					$('.lou').css({'left':l-100+'px'});
+
+					
+				})
+				
+				
+				
+				
+//				获取滚动条事件
+				$(window).scroll(function(){
+					
+//					offset().top获得元素距离顶部的距离
+					var STop = $('.list').eq(0).offset().top;
+					
+//					获得当前滚动条的高度
+					var NTop = $(window).scrollTop();
+					
+//					如果当前滚动条的高度大于一楼距离顶部的距离,就让左侧的楼显示
+					if(NTop>=STop){
+						$('.lou').show();
+					}else{//否则隐藏
+						$('.lou').hide();
+					}
+					
+//					获得楼层的数组长度  存到一个变量里
+					var LNum = $('.list').length;
+					
+//					循环每个楼层，获得每一层楼距离顶部的距离
+					for(var i=0;i<LNum-1;i++){
+						
+//						获得当前list里面i号元素,距离顶部的距离
+					var LTop  =$('.list').eq(i).offset().top;
+					
+//						获得当前list里面i号元素下个元素的,距离顶部的距离
+					var NXTop  =$('.list').eq(i+1).offset().top;
+					
+//						如果当前的滚动条高度在i号元素与i+1元素之间
+						if(NTop>=LTop&&NTop<NXTop){
+							
+							console.log(i);
+//							然后让i号lou,添加class active,其他的兄弟元素移除,这个Class
+							$('.lou a').eq(i).addClass('active').siblings().removeClass('active')
+						}
+						
+//						如果滚动条高度大于最后一层楼距离顶部的距离
+						if($('.list').eq(7).offset().top<=NTop){
+							
+//							那我们就让最后一层楼添加class  active  其他的兄弟元素移除这个Class
+							$('.lou a').eq(7).addClass('active').siblings().removeClass('active')
+						}
+						
+					}
+					
+					
+				})
+				
+				$('.lou a').click(function(){
+//					获得当前点击的序号
+					var num = $(this).index();
+//					获得到当前的.list距离顶部的距离
+					var t = $('.list').eq(num).offset().top;
+//					设置滚动条高度
+					$('body').stop().animate({'scrollTop':t},200);
+					
+				})
+				
+				
+			})
+		</script>
+		
+	</head>
+	<body>
+		<!--左侧的小条-->
+		<div class="lou">
+			<a class="active" href="javascript:;">一楼</a>
+			<a href="javascript:;">二楼</a>
+			<a href="javascript:;">三楼</a>
+			<a href="javascript:;">四楼</a>
+			<a href="javascript:;">五楼</a>
+			<a href="javascript:;">六楼</a>
+			<a href="javascript:;">七楼</a>
+			<a href="javascript:;">八楼</a>
+		</div>
+		
+		<div class="box">
+			
+			<div class="top">
+				
+			</div>
+			
+			<div class="list">
+				<h1>1楼</h1>
+			</div>
+			<div class="list">
+				<h1>2楼</h1>
+			</div>
+			<div class="list">
+				<h1>3楼</h1>
+			</div>
+			<div class="list">
+				<h1>4楼</h1>
+			</div>
+			<div class="list">
+				<h1>5楼</h1>
+			</div>
+			<div class="list">
+				<h1>6楼</h1>
+			</div>
+			<div class="list">
+				<h1>7楼</h1>
+			</div>
+			<div class="list">
+				<h1>8楼</h1>
+			</div>
+			
+			<div class="bottom">
+				
+			</div>
+			
+		</div>
+		
+	</body>
+</html>

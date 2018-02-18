@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+/*用一个按钮控制抽奖效果*/
+window.onload=function(){
+	var star=document.getElementById("star");
+	var end=document.getElementById("end");
+	var tp=document.getElementById("tp");
+	/*将图片路径存入一个数组里*/
+	var tupian=['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg']; 
+	var timer;
+	var str=1
+	star.onclick=function(){
+	if(str==1){
+		/*设置定时器，每隔多长时间换一张图片*/
+		timer=setInterval(
+		function(){
+			/*随机抽取下标，取整数*/
+			num=Math.floor(Math.random()*(tupian.length-1+1-0)+0);
+			/*将num号路径设置给图片*/
+			tp.setAttribute('src',tupian[num]);
+			/*点击end按钮，让图片停止切换*/
+	        str=2
+			},100);}else if(str==2){
+				clearInterval(timer);
+				if(num<9){
+					tp.setAttribute('src','1.jpg');
+					}
+
+				str=1;
+				}
+		}
+         };
+</script>
+<style type="text/css">
+*{ margin:0; padding:0;}
+#an{ height:40px; width:200px; margin:0px auto;}
+input{ height:40px; width:70px; }
+#star{ float:left;}
+#end{ float:right;}
+#tp{ display:block; margin:0 auto;}
+</style>
+</head>
+
+<body>
+<div id="an">
+<input type="button" id="star" value="开始抽奖" />
+<input type="button" id="end" value="结束抽奖" />
+</div>
+<br /><br />
+<img id="tp" src="1.jpg" />
+</body>
+</html>

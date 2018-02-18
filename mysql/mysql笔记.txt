@@ -1,0 +1,2 @@
+1，表关联查询语句
+select a.* from po_plan a left join po_transfer b on a.id=b.planid where DateDiff(a.startdate,'2018-02-10')<=0 and DateDiff(a.enddate,'2018-02-10')>=0 and a.person ='管理员' and a.zxpl=0 and b.speed=1 order by a.id desc,b.id desc

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../jQuery/jquery-1.11.3.min.js"></script>
+<script>
+/*图片加链接后的轮播图效果*/
+$(function(){
+	var c=0;
+	var timer;
+	function dsq(){
+		c++;
+		if(c==8){
+			c=0;
+			}
+		$('a').eq(c).children('img').fadeIn(300);
+		$('a').eq(c).siblings('a').children('img').fadeOut(300);
+		$('li').eq(c).addClass('yd');
+		$('li').eq(c).siblings('li').removeClass('yd');
+		}
+	timer=setInterval(dsq,3000);
+	
+	/*jquery中移入事件是mouseenter*/	
+	$('img').mouseenter(function(){
+		clearInterval(timer);
+		});	
+		
+	/*jquery中移出事件是mouseleave*/	
+	$('img').mouseleave(function(){
+		timer=setInterval(dsq,3000);
+		});	
+		
+	$('li').mouseenter(function(){
+		clearInterval(timer);
+		
+		/*获得当前移入的li*/
+		var dqthis=$(this);
+		
+		/*鼠标移入500毫秒后执行函数（防止快速移入移出的方法）*/
+		tt=setTimeout(function(){
+			
+		/*获得当前移入元素的的序号*/
+		c=dqthis.index();
+		
+		/*stop()：鼠标移入先清理掉前面的显隐，再执行，防止运动叠加*/
+		$('a').eq(c).children('img').stop().fadeIn(300);
+		$('a').eq(c).siblings('a').children('img').stop().fadeOut(300);
+		$('li').eq(c).addClass('yd');
+		$('li').eq(c).siblings('li').removeClass('yd');
+			},500);
+		
+		});	
+		
+	$('li').mouseleave(function(){
+		
+		/*鼠标移出，清理定时炸弹*/
+		clearTimeout(tt);
+		
+		/*恢复定时器*/
+		timer=setInterval(dsq,3000);
+		});
+		
+	$('#left').mouseenter(function(){
+		$('#lhui').hide();
+		$('#lred').show();
+		});	
+	
+	$('#left').mouseleave(function(){
+		$('#lred').hide();
+		$('#lhui').show();
+		});	
+		
+	$('#right').mouseenter(function(){
+		$('#rhui').hide();
+		$('#rred').show();
+		});	
+	
+	$('#right').mouseleave(function(){
+		$('#rred').hide();
+		$('#rhui').show();
+		});
+		
+	$('#left').click(function(){
+		c--;
+		if(c==-1){
+			c=7;
+			}
+		$('a').eq(c).children('img').fadeIn(300);
+		$('a').eq(c).siblings('a').children('img').fadeOut(300);
+		$('li').eq(c).addClass('yd');
+		$('li').eq(c).siblings('li').removeClass('yd');	
+		});
+		
+	$('#right').click(function(){
+		c++;
+		if(c==8){
+			c=0;
+			}
+		$('a').eq(c).children('img').fadeIn(300);
+		$('a').eq(c).siblings('a').children('img').fadeOut(300);
+		$('li').eq(c).addClass('yd');
+		$('li').eq(c).siblings('li').removeClass('yd');
+		});			
+	});
+</script>
+
+<style>
+*{ margin:0; padding:0;}
+#box{ border:#F00 5px solid; width:790px; height:340px; margin:20px auto; position:relative;}
+img{ position:absolute; display:none;}
+.pic{ display:block;}
+#ul{ position:absolute; left:312px; bottom:24px;}
+li{ list-style:none; background:#FFF; width:12px; height:12px; float:left; margin-right:10px; border-radius:50%}
+.yd{ background:#DB192A;}
+#left{ width:29px; height:53px; position:absolute; top:144px; left:8px;}
+#right{ width:29px; height:53px; position:absolute; top:144px; right:8px;}
+#lhui,#lred,#rhui,#rred{ position:absolute; display:none;}
+
+</style>
+</head>
+
+<body>
+<div id="box">
+<a href="http://www.baidu.com"><img src="1.jpg"  class="pic" /></a>
+<a href="http://www.baidu.com"><img src="2.jpg" /></a>
+<a href="http://www.baidu.com"><img src="3.jpg" /></a>
+<a href="http://www.baidu.com"><img src="4.jpg" /></a>
+<a href="http://www.baidu.com"><img src="5.jpg" /></a>
+<a href="http://www.baidu.com"><img src="6.jpg" /></a>
+<a href="http://www.baidu.com"><img src="7.jpg" /></a>
+<a href="http://www.baidu.com"><img src="8.jpg" /></a>
+<ul id="ul">
+<li class="yd"></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul> 
+<div id="left">
+<img id="lhui" style="display:block;" src="lefthui.png" />
+<img id="lred" src="leftred.png"  />
+</div>
+<div id="right">
+<img id="rhui" style="display:block;" src="righthui.png" />
+<img id="rred" src="rightred.png" />
+</div>
+</div>
+</body>
+</html>

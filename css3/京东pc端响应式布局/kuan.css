@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+#top{ width:100%; height:80px; background:#F09;}
+#top .gg{ width:1190px; height:80px; display:block; margin:0 auto; background:url(gg.jpg) no-repeat center center;}
+
+#hs{ width:100%; height:30px; background:#CCC;}
+#hs .center{ width:1190px;; height:30px; margin:0 auto; background:#666;}
+#hs .center .dht{ width:800px; height:30px; background:#03F; float:right;}
+
+#sheach{ width:1190px; height:100px; background:pink; margin:0  auto;}
+
+#flash{ width:1190px; height:450px; margin:0 auto; margin-bottom:100px;}
+#flash .left{ width:200px; height:450px; background:#936; float:left;}
+#flash .center{ width:790px; height:450px; background:#0C0; float:left;}
+#flash .right{ width:200px; height:450px; background:#03C; float:left;}

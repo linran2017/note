@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 550px;
+				height: 200px;
+				border: 3px blue solid;
+				margin: 20px auto;
+				position: relative;
+			}
+			
+			.move0{
+				position: absolute;
+				top: 25px;
+				left: 25px;
+				z-index: 10;
+			}
+			.img0{
+				display: block;
+				box-shadow:0px 3px 5px #000;
+				width: 100px;
+				height: 150px;
+			}
+			.move1{
+				position: absolute;
+				top: 20px;
+				left: 125px;
+				z-index: 20;
+			}
+			.img1{
+				display: block;
+				box-shadow:0px 3px 5px #000;
+				width: 110px;
+				height: 160px;
+			}
+			.move2{
+				position: absolute;
+				top: 15px;
+				left: 225px;
+				z-index: 30;
+			}
+			.img2{
+				display: block;
+				box-shadow:0px 3px 5px #000;
+				width: 120px;
+				height: 170px;
+			}
+			.move3{
+				position: absolute;
+				top: 20px;
+				left: 325px;
+				z-index: 20;
+			}
+			.img3{
+				display: block;
+				box-shadow:0px 3px 5px #000;
+				width: 110px;
+				height: 160px;
+			}
+			.move4{
+				position: absolute;
+				top: 25px;
+				left: 425px;
+				z-index: 10;
+			}
+			.img4{
+				display: block;
+				box-shadow:0px 3px 5px #000;
+				width: 100px;
+				height: 150px;
+			}
+			
+		</style>
+		<script type="text/javascript" 
+			src="jquery-1.11.3.min.js"></script>
+		<script>
+			$(function(){
+				var timer;
+				function run(){
+					for(var i=0;i<5;i++){
+						var z=$('#box a').eq(i+1).css('z-index');
+				        var w=$('#box a').eq(i+1).find('img').width();
+				        var h=$('#box a').eq(i+1).find('img').height();
+				        var t=$('#box a').eq(i+1).position().top;
+				        var l=$('#box a').eq(i+1).position().left;
+				        var l2=$('#box a').eq(i-4).position().left;
+						    if(i<4){
+						    	$('#box a').eq(i).animate({'left':l,'top':t
+						    	},300);
+						    	 $('#box a').eq(i).find('img').animate(
+						         {'width':w,'height':h},300);
+						    	 $('#box a').eq(i).css({'z-index':z});
+						    }else if(i==4){
+						    	 $('#box a').eq(i).css({'left':l2});
+						    }
+					}
+				}
+				timer=setInterval(run,2000);
+			})
+		</script>	
+	</head>
+	<body>
+		<div id="box">
+			<span>我</span>
+			<a class="move0"><img class="img0" src="book1.jpg" /></a>
+			<a class="move1"><img class="img1" src="book2.jpg" /></a>
+			<a class="move2"><img class="img2" src="book3.jpg" /></a>
+			<a class="move3"><img class="img3" src="book4.jpg" /></a>
+			<a class="move4"><img class="img4" src="book5.jpg" /></a>
+		</div>
+	</body>
+</html>

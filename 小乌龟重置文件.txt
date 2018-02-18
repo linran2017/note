@@ -1,0 +1,9 @@
+git pull
+
+84fcsdf..8723fd
+
+git reset --hard 84fcsdf
+
+git pull
+
+ 

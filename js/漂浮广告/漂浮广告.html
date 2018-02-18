@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+/*漂浮广告*/
+window.onload=function(){
+	var ad=document.getElementById("ad");
+	var close=document.getElementById("close");
+	/*获得可视区域的高度和宽度*/
+	var winheight=document.documentElement.clientHeight;
+	var winwidth=document.documentElement.clientWidth;
+	/*计算ad可以到达的最大top和left值：可视区域的宽高-元素本身的宽高*/
+	var maxtop=winheight-ad.offsetHeight;
+	var maxleft=winwidth-ad.offsetWidth;
+	var x=3;
+	var y=3;
+	
+	/*定时器调用的函数*/
+	function run(){
+		var ot=ad.offsetTop;
+		var ol=ad.offsetLeft;
+		var nt=ot+x;
+		var nl=ol+y;
+		/*如果越界，让top和left值等于临界值*/
+		if(nt>maxtop){
+			nt=maxtop;
+			}
+		if(nl>maxleft){
+			nl=maxleft;
+			}	
+		if(nt<0){
+			nt=0;
+			}
+		if(nl<0){
+			nl=0;
+			}		
+		ad.style.top=nt+'px';
+		ad.style.left=nl+'px';
+		if(nt==maxtop || nt==0){
+			x=x*(-1);
+			};
+		if(nl==maxleft || nl==0){
+			y=y*(-1);
+			}	
+		}
+		
+		
+	/*设置定时器，每隔多长时间就改变一下ad的top和left值*/
+	timer=setInterval(run,10);
+	
+	
+	/*鼠标移入，停止定时器*/
+	ad.onmouseover=function(){
+		clearInterval(timer);
+		}
+		
+	
+	/*鼠标移出，恢复定时器*/
+	ad.onmouseout=function(){
+		timer=setInterval(run,10);
+		}
+		
+		
+	/*窗口改变事件：window.onresize*/	
+	window.onresize=function(){
+	/*让元素归位*/
+	ad.style.top=0;
+	ad.style.left=0;
+	x=3;
+	y=3;
+	
+	/*重新获得可视区域的宽高*/
+	winheight=document.documentElement.clientHeight;
+    winwidth=document.documentElement.clientWidth;
+	
+	/*重新计算元素可以到达的最大top和left值*/
+	maxtop=winheight-ad.offsetHeight;
+    maxleft=winwidth-ad.offsetWidth;	
+		}	
+		
+	/*点击关闭按钮，让元素消失，隐藏*/
+	close.onclick=function(){
+		ad.style.display='none';
+		clearInterval(timer);
+		}
+			
+	};
+
+</script>
+<style type="text/css">
+*{ margin:0; padding:0;}
+#ad{ background-image:url(ad.jpg); position:absolute; width:250px; height:200px;}
+</style>
+</head>
+
+<body>
+<div id="ad"><img src="close.jpg"  id="close" /></div>
+</body>
+</html>

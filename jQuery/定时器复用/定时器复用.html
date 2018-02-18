@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				margin: 0 auto;
+				margin-top: 50px;
+				width: 300px;
+				height: 50px;
+				border: 1px red solid;
+				position: relative;
+				overflow: hidden;
+			}
+			.hezi{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 300px;
+				height: 200px;
+			}
+			li{
+				list-style: none;
+				width: 300px;
+				height: 50px;
+				float: left;
+				background: blue;
+				color: yellow;
+				text-align: center;
+				line-height: 50px;
+				font-size: 25px;
+			}
+		</style>
+		<script src="jquery-1.11.3.min.js"></script>
+		<script>
+			$(function(){
+				$('.box').each(function(){
+					var jqthis=$(this);
+					var jsthis=$(this)[0];
+					jsthis.num=0;
+					jsthis.run=function(){
+						jsthis.num++;
+						if(jsthis.num==4){
+							jqthis.find('.hezi').css({'top':'0px'});
+							jsthis.num=1;
+						}
+						jqthis.find('.hezi').stop().animate({'top':-50*jsthis.num+'px'});
+					}
+					jsthis.timer=setInterval(jsthis.run,2000);
+				})
+				$('.box').hover(function(){
+					var jsthis=$(this)[0];
+					clearInterval(jsthis.timer);
+				},function(){
+					var jsthis=$(this)[0];
+					jsthis.timer=setInterval(jsthis.run,2000);
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="hezi">
+				<li>今天天气真好</li>
+				<li>好好学习天天向上</li>
+				<li>每天锻炼身体</li>
+				<li>今天天气真好</li>
+			</ul>
+		</div>
+		<div class="box">
+			<ul class="hezi">
+				<li>今天天气真好</li>
+				<li>好好学习天天向上</li>
+				<li>每天锻炼身体</li>
+				<li>今天天气真好</li>
+			</ul>
+		</div>
+		<div class="box">
+			<ul class="hezi">
+				<li>今天天气真好</li>
+				<li>好好学习天天向上</li>
+				<li>每天锻炼身体</li>
+				<li>今天天气真好</li>
+			</ul>
+		</div>
+		<div class="box">
+			<ul class="hezi">
+				<li>今天天气真好</li>
+				<li>好好学习天天向上</li>
+				<li>每天锻炼身体</li>
+				<li>今天天气真好</li>
+			</ul>
+		</div>
+	</body>
+</html>

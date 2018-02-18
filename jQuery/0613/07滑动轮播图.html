@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			.box{
+				width: 400px;
+				height: 400px;
+				border: 2px solid red;
+				position: relative;
+				margin: 0px auto;
+				overflow: hidden;
+			}
+			ul{
+				width: 2800px;
+				height: 400px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+			ul li{
+				float: left;
+				list-style: none;
+			}
+			ul li img{
+				width: 400px;
+				height: 400px;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			$(function(){
+//				定义大总管变量
+				var num=0;
+//				设置定时器
+				setInterval(function(){
+//					大宗管变量自增
+					num++;
+//					当走到最后一张图的时候
+					if(num==7){
+//						瞬间调到第一章图
+						$('ul').css({'left':'0px'});
+//						再让他滚动到第二章图上
+						num=1;
+					}
+//						设置left值,500毫秒变化
+//						animate()改变css样式
+					$('ul').animate({'left':-400*num+'px'},500);
+				},1000)
+				
+			})
+		</script>
+	</head>
+	<body>
+		
+		<div class="box">
+			<ul>
+				<li><a href=""><img src="img/10.jpg"/></a></li>
+				<li><a href=""><img src="img/11.jpg"/></a></li>
+				<li><a href=""><img src="img/12.jpg"/></a></li>
+				<li><a href=""><img src="img/13.jpg"/></a></li>
+				<li><a href=""><img src="img/14.jpg"/></a></li>
+				<li><a href=""><img src="img/15.jpg"/></a></li>
+				<li><a href=""><img src="img/10.jpg"/></a></li>
+			</ul>
+		</div>
+		
+	</body>
+</html>

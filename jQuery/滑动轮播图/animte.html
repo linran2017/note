@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 400px;
+				height: 400px;
+				margin: 50px auto;
+				border: 2px red solid;
+				position: relative;
+				overflow: hidden;
+			}
+			.con{
+				width: 2400px;
+				height: 400px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			img{
+				width: 400px;
+				height: 400px;
+				display: block;
+				float: left;
+			}
+			ul{
+				position: absolute;
+				bottom: 5px;
+				right: 5px;
+				z-index: 99;
+			}
+			li{
+				list-style: none;
+				width: 7px;
+				height: 7px;
+				background: white;
+				border-radius: 50%;
+				margin-left: 8px;
+				float: left;
+			}
+			li.active{
+				background: red;
+			}
+			b{
+				width: 42px;
+				height: 69px;
+				position: absolute;
+				top: 165px;
+			}
+			b.left{
+				left: 2px;
+				background: url(left.png) -84px 0 no-repeat;
+			}
+			b.left:hover{
+				background: url(left.png) 0 0 no-repeat;
+			}
+			b.right{
+				right: 2px;
+				background: url(left.png) -127px 0 no-repeat;
+			}
+			b.right:hover{
+				background: url(left.png) -43px 0 no-repeat;
+			}
+		</style>
+		<script src="jquery-1.11.3.min.js"></script>
+		<script>
+			$(function(){
+				var num=0;
+				var timer1;
+				var timer2;
+				var str=2;
+				function publick(){
+					num++;
+					if(num==6){
+						$('.con').css({'left':'0px'});
+						num=1;
+					}
+					var left=-400*num;
+					str=1;
+					$('.con').stop().animate({'left':left+'px'});
+					str=2;
+					if(num==5){
+						$('li').eq(0).addClass('active').siblings('li')
+						.removeClass('active');
+					}else{
+						$('li').eq(num).addClass('active').siblings('li')
+						.removeClass('active');
+					}
+				}
+				function run(){
+					publick();
+				}
+				timer1=setInterval(run,3000);
+				$('li').click(function(){
+					if(str==1){
+						return;
+					}
+					clearTimeout(timer2);
+					clearInterval(timer1);
+					timer2=setTimeout(function(){
+						timer1=setInterval(run,3000)
+					},400);
+					num=$(this).index();
+					var left=-400*num
+					$('.con').stop( ).animate({'left':left+'px'});
+					$(this).addClass('active').siblings('li')
+					.removeClass('active');
+				})
+				$('.left').click(function(){
+					if(str==1){
+						return;
+					}
+					clearTimeout(timer2);
+					clearInterval(timer1);
+					timer2=setTimeout(function(){
+						timer1=setInterval(run,3000)
+					},400);
+					num--;
+					if(num==-1){
+						$('.con').css({'left':'-2000px'});
+						num=4;
+					}
+					var left=-400*num;
+					$('.con').stop().animate({'left':left+'px'});
+					$('li').eq(num).addClass('active').siblings('li')
+					.removeClass('active');
+				})
+				$('.right').click(function(){
+					if(str==1){
+						return;
+					}
+					clearTimeout(timer2);
+					clearInterval(timer1);
+					timer2=setTimeout(function(){
+						timer1=setInterval(run,3000)
+					},400);
+					publick();
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<div class="con">
+				<img src="11.jpg" />
+				<img src="12.jpg" />
+				<img src="13.jpg" />
+				<img src="14.jpg" />
+				<img src="15.jpg" />
+				<img src="11.jpg" />
+				
+			</div>
+			<ul>
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<b class="left"></b>
+			<b class="right"></b>
+		</div>
+	</body>
+</html>

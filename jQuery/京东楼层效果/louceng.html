@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				border: 1px red solid;
+				margin:0 auto;
+				width: 500px;
+				padding-top: 500px;
+				background: green;
+			}
+			
+			
+			ul{
+				width: 500px;
+				height: auto;
+			}
+			ul li{
+				list-style: none;
+				background: blue;
+				width: 500px;
+				height: 500px;
+			}
+			h1{
+				background: red;
+				width: 500px;
+				height: 50px;
+				color: white;
+				text-align: center;
+				line-height: 50px;
+			}
+			.buttom{
+				height: 500px;
+				width: 500px;
+				margin: 0 auto;
+				background: gold;
+			}
+			.lou{
+				position: fixed;
+				left: 50px;
+				top: 200px;
+				display: none;
+			}
+			a{
+				display: block;
+				width: 50px;
+				height: 50px;
+				text-align: center;
+				line-height: 50px;
+				color: white;
+				font-size: 24px;
+				background: gray; 
+				border:1px #fff solid;
+				text-decoration: none;
+				cursor: pointer;
+			}
+			a.active{
+				background: red;
+			}
+		</style>
+		<script src="jquery-1.11.3.min.js"></script>
+		<script>
+			$(function(){
+				var l=$('.box').offset().left;
+				$('.lou').css({'left':l-100+'px'});
+				$(window).resize(function(){
+					var l=$('.box').offset().left;
+					$('.lou').css({'left':l-100+'px'});
+				})
+				
+				$(window).scroll(function(){
+					var ltop=$('.list li').eq(0).offset().top;
+			    	var ntop=$(document).scrollTop();
+					if(ntop>=ltop){
+						$('.lou').show();
+					}else{
+						$('.lou').hide();
+					}
+					var lnum=$('.list li').length;
+					 for(var i=0;i<lnum-1;i++){
+					 	var litop=$('.list li').eq(i).offset().top;
+					 	var nxtop=$('.list li').eq(i+1).offset().top;
+					 	if(ntop>litop && ntop<nxtop){
+					 		$('.lou a').eq(i).addClass('active')
+					 		.siblings('a').removeClass('active');
+					 	}
+					 }
+					 if(ntop>=$('.list li').eq(7).offset().top){
+					 	$('.lou a').eq(7).addClass('active')
+					 	.siblings('a').removeClass('active');
+					 }
+				})
+				$('.lou a').click(function(){
+					var num=$(this).index();
+					$(this).addClass('active')
+					.siblings('a').removeClass('active');
+					var t=$('.list li').eq(num).offset().top;
+					$('body').animate({'scrollTop':t+'px'},200);
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="list">
+				<li><h1>1楼</h1></li>
+				<li><h1>2楼</h1></li>
+				<li><h1>3楼</h1></li>
+				<li><h1>4楼</h1></li>
+				<li><h1>5楼</h1></li>
+				<li><h1>6楼</h1></li>
+				<li><h1>7楼</h1></li>
+				<li><h1>8楼</h1></li>
+			</ul>
+		</div>
+		<div class="buttom"></div>
+		<div class="lou">
+			<a class="active" href="javaxcript:;">1楼</a>
+			<a href="javaxcript:;">2楼</a>
+			<a href="javaxcript:;">3楼</a>
+			<a href="javaxcript:;">4楼</a>
+			<a href="javaxcript:;">5楼</a>
+			<a href="javaxcript:;">6楼</a>
+			<a href="javaxcript:;">7楼</a>
+			<a href="javaxcript:;">8楼</a>
+		</div>
+	</body>
+</html>

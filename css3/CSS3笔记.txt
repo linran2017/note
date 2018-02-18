@@ -1,0 +1,344 @@
+css3兼容各版本浏览器前缀 
+前缀　　　　　　　　 浏览器
+
+-webkit-　　　　　　chrome、safari
+
+-moz-　　　　　　　 firefox
+
+-ms-               IE
+
+-o-                opera
+
+
+/*CSS3选择器*/
+/*选择的是.hd里的所有p标签*/
+.hd>p{ color:#09C; font-size:25px;}
+
+/*选择的是紧邻在.one后面的一个p标签*/
+.one+p{ color:#09C; font-size:25px;}
+
+/*选择的是紧邻在.one后面的所有同级p标签*/
+.one~p{ color:#09C; font-size:25px;}
+
+/*选择的是.hd中所有带有class属性的p标签，不论class的属性值的多少*/
+.hd p[class]{ color:#09C; font-size:25px;}
+
+/*选择的是.hd中name的属性值为shuai的p标签*/
+.hd p[name=shuai]{ color:#09C; font-size:25px;}
+
+/*选择的是.hd中class的属性值以o开头的p标签；$是以……结尾*/
+.hd p[class^=o]{ color:#09C; font-size:25px;}
+
+/*选择的是.hd中class的属性值中含有iv字符串的p标签*/
+.hd p[class*=iv]{ color:#09C; font-size:25px;}
+
+
+
+/*CSS3伪类选择器*/
+/*选中页面的根元素（html标签）*/
+:root{ background:red;}
+
+/*选择的.hd中空的p标签*/
+.hd p:empty{ width:200px; height:30px; margin:10px; background:red;}
+
+/*选择当前活动的h2标签*/
+h2:target{ color:#FFF; background:#936;}
+
+/*选择的.hd中所有p标签，排除掉.one的*/
+.hd p:not(.one){ color:#FFF; background:#936;}
+
+/*选择的是用户被选中的p标签*/
+p::selection{ color:#FFF; font-size:25px; background:green;}
+
+
+/*CSS3文本选择器*/
+/*选择的是p标签里的第一个字符*/
+p:first-letter{ color:#36F; font-size:25px;}
+
+/*选择的是p标签里的第一行*/
+p:first-line{ color:#36F; font-size:25px;}
+
+/*在p标签的头部插入内容*/
+p:before{ content:'哈哈哈'; color:#06F; font-size:25px;}
+
+
+
+/*CSS3表单选择器*/
+/*选择的是获得焦点的input标签*/
+input:focus{ background:#00C;}
+
+/*选择的是input里未启用的标签*/
+input:disabled{ background:#00C;}
+
+/*选择的是input里已启用的标签*/
+input:enabled{ background:red;}
+
+
+/*选择的是input里已经被选中的标签*/
+input:checked{ background:#00C;}
+
+
+
+
+/*CSS3子选择器*/
+/*选择的是.hd中第一个p标签；:last-of-type：是最后一个*/
+.hd p:first-of-type{ color:#36F; font-size:25px;}
+
+/*如果div中只有一个p标签，就选中这个p标签，p标签可以有兄弟元素，但是它父级元素中的p标签只有它一个*/
+div p:only-of-type{ color:#36F; font-size:25px;}
+
+/*如果div中独生子的p标签，要求p标签没有任何兄弟元素*/
+div p:only-child{ color:#36F; font-size:25px;}
+
+/*选择的是div中第二个p标签；nth-last-of-type(2)是倒数第二个*/
+div p:nth-of-type(2){ color:#36F; font-size:25px;}
+
+/*选择的是div中第二个子元素，并且要求第二个元素是p标签；nth-last-child(2)是倒数第二个*/
+div p:nth-child(2){ color:#36F; font-size:25px;}
+
+/*选择的是div中第一个子元素，并且要求第一个元素是p标签；last-child是最后一个*/
+div p:first-child{ color:#36F; font-size:25px;}
+
+
+
+
+
+
+/*rgba:背景透明，文字不透明*/
+.hd{ font-size:40px; font-weight:700; color:red; width:300px; height:200px; background: rgba(163,73,162,0.1);}
+
+
+/*根据分辨率改变文字大小*/
+html{ font-size:36px;}
+h1{ font-size:1.5rem;}
+p{ font-size:0.8rem;}
+
+/*文字大小是屏幕宽度的4%，随浏览器的大小而改变*/
+h1{ font-size:4vw;}
+
+
+
+/*文字阴影（水平阴影位置 垂直阴影位置 阴影尺寸 阴影颜色）*/
+h1{ font-size:4vw; text-shadow:5px -5px 10px #FF0000;}
+
+/*盒子阴影（水平阴影位置 垂直阴影位置 模糊距离 阴影尺寸  阴影颜色）%*/
+div{ width:500px; height:400px; background:#990; margin:20px auto; box-shadow:5px -5px 20px 10px #FF0000;}
+
+
+/*盒子尺寸（把盒子大小设置为离它最近的有定位属性的父级元素的百分之几的大小，盒子大小随父级元素的大小而改变，可以设置盒子可以到达的最大最小尺寸，min-width；max-width；min-height；max-height）*/
+div{ width:80%; height:300px; background:#069; margin:50px auto; min-width:400px; max-width:700px;}
+
+/*box-sizing:border-box表示让盒子宽度包括边框和内边距大小*/
+div{ width:20%; height:300px; background:#069; border:3px solid #F00; float:left; padding:20px; box-sizing:border-box; }
+
+
+/*分栏：column-count：分栏列数；column-width：分栏宽度；column-gap：列间距；column-rule：分隔线*/
+div{ /*column-count:5;*/ column-width:300px; column-gap:100px; column-rule:2px solid #066;}
+
+
+/*改变背景图大小,cover：宽度变为100%，高度等比例缩放；contain：高度变为100%，宽度等比例缩放 */
+div{ background:url(2.jpg) no-repeat; width:700px; height:500px; border:3px solid #339; margin:10px auto; /*background-size:100% 100%;*/ /*background-size:cover;*/ background-size:contain; }
+
+
+/*outline加边框，不占空间大小，不占位置 */
+div{ width:200px; height:300px; background:#03C; margin-left:30px; margin-top:10px; float:left;}
+div:hover{ outline:4px solid #F30;}
+
+/*背景颜色渐变（变化方向，渐变颜色，可以是多个颜色） */
+div{ width:900px; height:300px; border:3px solid #0C9; margin:10px auto; background:-ms-linear-gradient(left top,red,green,purple,yellow,pink,blue);}
+
+/*水晶按钮 */
+div{ width:200px; height:60px; margin:10px auto; border:2px solid #030; background:-ms-linear-gradient(top,#0F3,#060); border-radius:15px; }
+div:hover{ background:-ms-linear-gradient(top,#060,#0F3);}
+
+
+
+
+
+
+
+/*媒体查询 pc端相应式布局*/
+/*屏幕宽度在800以下*/
+@media only screen and (max-width:800px){
+	body{ background:red;}
+	h1{ color:yellow;}
+	}
+
+/*屏幕宽度在801-900之间*/	
+@media only screen and (min-width:801px) and (max-width:900px){
+	body{ background:blue;}
+	h1{ color:white;}
+	}	
+
+/*屏幕宽度在900以上*/	
+@media only screen and (min-width:901px) {
+	body{ background:pink;}
+	h1{ color:purple;}
+	}
+
+
+<!--media查询实现响应——引入外部css文件-->
+<!--屏幕宽度在1200以下，引入外部a.css文件-->
+<link rel="stylesheet" type="text/css" href="a.css" media="screen and (max-width:1200px)" />
+
+<!--屏幕宽度在1200以上，引入外部b.css文件-->
+<link rel="stylesheet" type="text/css" href="b.css" media="screen and (min-width:1201px)" />
+
+
+/*transition运动（要监控的属性 运动时间 延迟时间 运动曲线）*/
+div{ width:200px; height:200px; background:#03C; transition:width 3s 0.2s linear;}
+div:hover{ width:900px;}
+
+/*transform:rotate(度数)让元素相对于的现在状态进行旋转（旋转度数）*/
+div{ width:200px; height:200px; margin:300px auto; background:#03C; transition:transform 3s 0.2s linear;}
+div:hover{ transform:rotate(360deg)}
+
+/*transform:translate(左右平移，上下平移)：让元素相对于现在的位置进行平移*/
+div{ width:200px; height:200px; margin:20px auto; background:#03C; transition:transform 3s 0.2s linear;}
+div:hover{ transform:translate(50px,500px);}
+
+/*transform:scale(宽度缩放,高度缩放)：让元素相对于现在的大小进行缩放*/
+div{ width:200px; height:200px; margin:20px auto; background:#03C; transition:transform 1s 0.2s linear;}
+div:hover{ transform:scale(1.5,0.6)}
+
+/*transform:skew(左右扭曲，上下扭曲)：让元素相对于现在的状态进行扭曲*/
+div{ width:200px; height:200px; margin:20px auto; background:#03C; transition:transform 3s 0.2s linear;}
+div:hover{ transform:skew(50deg,30deg);}
+
+
+/*闪光效果*/
+.box{ width:790px; height:340px; border:#00C 1px solid; background:url(2.jpg) no-repeat; margin:100px auto; position:relative; overflow:hidden;}
+/*transparent表示完全透明*/
+.box .flash{ width:30px; height:340px; background:-ms-linear-gradient(left,transparent,rgba(255,255,255,0.6),transparent); position:absolute; top:0; left:-130px; transform:skew(-30deg,0deg);}
+/*防止移出鼠标后元素再运动回去的方法：把transition属性写在hover里，移出鼠标后让元素直接变为运动前的状态*/
+.box:hover .flash{ transition:left 3s 0.2s; left:890px;}
+
+
+
+/*animation运动：要绑定的运动名称 运动持续时间 运动曲线 运动次数{infinite无数次}*/
+#box{ width:200px; height:100px; background:blue; -ms-animation:run 3s linear 3;}
+/*定义运动规则*/
+@keyframes run{
+	from{
+		width:200px;
+		height:100px;
+		}
+	to{
+		width:900px;
+		height:500px;
+		}
+	}
+
+
+/*animation运动：要绑定的运动名称 运动持续时间 运动曲线 运动次数{infinite无数次}*/
+#box{ width:200px; height:100px; background:blue; -ms-animation:run 3s linear;}
+/*定义运动规则*/
+@keyframes run{
+	0%{
+		width:200px;
+		height:100px;
+		}
+	50%{
+		width:500px;
+		height:300px;
+		}
+	100%{
+		width:900px;
+		height:500px;
+		}
+	}
+
+
+/*animation运动：要绑定的运动名称 运动持续时间 运动轨迹 运动次数{infinite无数次} alternate：轮流反向播放动画（奇数次数正常播放，偶数次数反向播放）*/
+#box{ width:200px; height:100px; background:blue; -ms-animation:run 3s linear 0.2s infinite alternate;}
+/*定义运动规则*/
+@keyframes run{
+	0%{
+		width:200px;
+		height:100px;
+		}
+	50%{
+		width:500px;
+		height:300px;
+		}
+	100%{
+		width:900px;
+		height:500px;
+		}
+	}
+
+
+/*animation运动：要绑定的运动名称 运动持续时间 运动轨迹 运动次数{infinite无数次} alternate：轮流反向播放动画（奇数次数正常播放，偶数次数反向播放）*/
+#box{ width:200px; height:100px; background:blue; -ms-animation:run 3s linear 0.2s infinite alternate;}
+/*鼠标移动上去停止animation运动*/
+#box:hover{ -ms-animation-play-state:paused;}
+/*定义运动规则*/
+@keyframes run{
+	0%{
+		width:200px;
+		height:100px;
+		}
+	50%{
+		width:500px;
+		height:300px;
+		}
+	100%{
+		width:900px;
+		height:500px;
+		}
+	}
+
+
+/*transform-origin：定义旋转基准点（水平位置,垂直位置）*/
+img{ display:block; margin:250px auto; transform-origin:10% 50%; -ms-animation:run 3s linear infinite;}
+@keyframes run{
+	from{ transform:rotate(0deg);}
+	to{ transform:rotate(360deg);}
+	}
+
+
+
+<!--引入animate.css文件-->
+<link type="text/css" rel="stylesheet" href="../css/animate.min.css"/>
+<!--给元素加运动-->
+<h1 class="animated lightSpeedIn">后盾人人人做后盾</h1>
+
+
+<!--微场景开发前面要写的代码-->
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+
+
+/*display:flex：指定容器里面的项目排列方式为弹性布局；flex里的项目是不脱离文档流的*/
+/*flex里的项目的总宽度如果不超过父级元素的宽度，那么就正常排列（类似于float的效果）；flex里的项目的总宽度如果超过了父级元素的宽度，那么加给项目的宽度就无效了，每个项目的宽度会自动均分*/
+#box{ width:80%; height:400px; margin:10px auto; border:#F39 3px solid; display:flex;}
+#box>div{ width:200px; height:200px; border:1px #FF6600 solid; background:blue;} 
+
+/*flex-direction:row：指定主轴为水平方线向，起点为左端；flex-direction:row-reverse：指定主轴为水平方向，起点为右端；flex-direction:column：指定主轴为垂直方向，起点为上沿；flex-direction:column-reverse：指定主轴为垂直方向，起点为下沿*/
+#box{ width:80%; height:400px; margin:10px auto; border:#F39 3px solid; display:flex; flex-direction:column-reverse;}
+#box>div{ width:200px; height:200px; border:1px #FF6600 solid; background:blue; font-size:36px; text-align:center; color:#FFF;}
+
+/*flex-wrap:wrap：指定如果项目宽度超过父级元素的宽度就换行；如果没有超过就正常显示；flex-wrap:nowrap：指定项目不换行；flex-wrap:wrap-recerse指定换行，第一行在下方*/
+#box{ width:80%; height:400px; margin:10px auto; border:#F39 3px solid; display:flex; flex-wrap:wrap;}
+#box>div{ width:200px; height:200px; border:1px #FF6600 solid; background:blue; font-size:36px; text-align:center; color:#FFF;} 
+
+/*justify-content:flex-start：指定项目在主轴上的对齐方式为左对齐；justify-content:flex-end：指定项目在主轴上的对齐方式为右对齐；justify-content:center：指定项目在主轴上的对齐方式为居中对齐；justify-content:space-between：指定项目在主轴上的对齐方式为两端对齐，每个项目的间距相等；justify-content:space-around：指定每个项目的两侧间距相等，所以项目之间的间隔比项目与边框之间的间隔大一倍*/
+#box{ width:80%; height:400px; margin:10px auto; border:#F39 3px solid; display:flex; justify-content:space-between;}
+#box>div{ width:200px; height:200px; border:1px #FF6600 solid; background:blue; font-size:36px; text-align:center; color:#FFF;} 
+
+/*align-items:flex-start：指定项目在交叉轴上起点对齐；align-items:flex-end：指定项目在交叉轴上终点对齐；align-items:center：指定项目在交叉轴上中点对齐；align-items:baseline：指定项目的第一行文字的基线对齐；align-items:stretch：如果项目没有设置高度就沾满整个容器的高度*/
+#box{ width:80%; height:800px; margin:10px auto; border:#F39 3px solid; display:flex; align-items:flex-end;}
+#box>div{ width:200px; height:200px; border:1px #FF6600 solid; background:blue; font-size:36px; text-align:center; color:#FFF;}
+
+/*多根轴线的对齐方式 align-content:flex-start：指定项目与交叉轴上的起点对齐；align-content:flex-end：指定项目与交叉轴的终点对齐；align-content:center：指定项目与交叉轴的中点对齐；align-content:space-between：指定项目与交叉轴两端对齐，轴线之间的间隔平均分布；align-content:space-around：指定每根轴线的两侧间距相等，所以轴线之间的间隔轴线与边框之间的间隔大一倍；align-content:stretch：指定轴线沾满整个交叉轴*/
+#box{ width:80%; height:800px; margin:10px auto; border:#F39 3px solid; display:flex; flex-wrap:wrap; align-content:space-between;}
+#box>div{ width:200px; height:200px; border:1px #FF6600 solid; background:blue; font-size:36px; text-align:center; color:#FFF;} 
+
+/*flex按比例排列：其他项目的flex:1,这个项目的flex:2：表示这个项目的宽度是其他项目宽度的两倍*/
+#box{ width:80%; height:800px; margin:10px auto; border:#F39 3px solid; display:flex;}
+#box>div{ width:200px; height:200px; border:1px #FF6600 solid; background:blue; font-size:36px; text-align:center; color:#FFF; flex:1;}
+#box>div:nth-child(3){ flex:2;}
+
+/*order排序：默认项目order的值都为0，正常排序；order值越大，排序越靠后*/
+#box{ width:80%; height:800px; margin:10px auto; border:#F39 3px solid; display:flex;}
+#box>div{ width:200px; height:200px; border:1px #FF6600 solid; background:blue; font-size:36px; text-align:center; color:#FFF; flex:1;}
+#box>div:nth-child(3){ order:5;}  

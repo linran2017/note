@@ -1,0 +1,101 @@
+/* 颜色@变量写法*/
+@hongse:#a10000;
+   .one{
+        /*调用颜色*/
+        color: @hongse;
+    }
+    
+    
+ /*函数写法1*/
+.yuanjiao(){
+    border-radius: 30%;
+    -moz-border-radius: 30%;
+    -webkit-border-radius: 30%;
+    -ms-border-radius: 30%;
+    -o-border-radius: 30%;
+}
+*{padding: 0; margin: 0;}
+p{
+    margin-top: 10px;
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    text-align: center;
+    border: 2px blue solid;
+    
+}
+.one{
+    /*调用函数*/
+    .yuanjiao();
+}
+/*嵌套写法*/
+#five{
+    .yuanjiao();
+    .wz{
+        color: @hongse;
+    }
+}
+
+
+
+/*函数写法2（混合 传人不同的函数值）*/
+.yuanjiao(@zhi){
+    border-radius: @zhi;
+    -moz-border-radius: @zhi;
+    -webkit-border-radius: @zhi;
+    -ms-border-radius: @zhi;
+    -o-border-radius: @zhi;
+}
+@hongse:#FF0000;
+*{padding: 0; margin: 0;}
+p{
+    margin-top: 10px;
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    text-align: center;
+    border: 2px blue solid;
+    
+}
+.one{
+    /*调用函数*/
+    .yuanjiao(10px);
+}
+.three{
+    /*调用函数*/
+    .yuanjiao(20px);
+}
+/*嵌套写法*/
+#five{
+    /*调用函数*/
+    .yuanjiao(30px);
+}
+
+
+
+/*串联式写法 对父级选择器的引用 用&连接*/
+.one{
+    /*调用函数*/
+    .yuanjiao(10px);
+    &:hover{
+        background: yellow;
+    }
+}
+
+
+
+/*外部引入less文件*/
+@import 'base.less';
+
+
+
+/*变量运算*/
+@chicun:50px;
+.three{
+    /*变量运算*/
+    height: @chicun*2;
+}
+
+   

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 952px;
+				height: 440px;
+				border: 1px blue solid;
+				margin: 50px auto;
+				/*透视*/
+				perspective: 500px;
+			}
+			#box ul li{
+				list-style: none;
+				float: left;
+				border: none;
+				margin: 0;
+				padding: 0;
+				width: 28px;
+				height: 440px;
+				position: relative;
+				transform-style: preserve-3d;
+				transform:rotateX(0deg);
+				transform-origin: center center -220px;
+			}
+			#box ul li a{
+				display: block;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				/*让元素背对屏幕时不显示*/
+				backface-visibility: hidden;
+				-webkit-backface-visibility: hidden;
+				-moz-backface-visibility: hidden;
+				-ms-backface-visibility: hidden;
+			}
+			#box ul li a:nth-child(2){
+				top: -441px;
+				transform-origin: bottom;
+				transform: rotateX(90deg);
+			} 
+			#box ul li a:nth-child(3){
+				transform: translateZ(-441px) rotateX(180deg);
+			}
+			#box ul li a:nth-child(4){
+				top: 441px;
+				transform-origin: top;
+				transform: rotateX(-90deg);
+			}
+			#box nav{
+				position: absolute;
+				bottom: 10px;
+				right: 10px;
+				z-index: 99;
+			}
+			#box nav a{
+				display: inline-block;
+				width: 25px;
+				height: 25px;
+				border-radius: 50%;
+				background: #999;
+				color: #fff;
+				font-size: 18px;
+				line-height: 25px;
+				text-align: center;
+				text-decoration: none;
+				margin-right: 5px;
+			}
+			#box nav a:nth-child(1){
+				background: #FF0000;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+		   <ul>
+		   	
+		   </ul>
+		</div>
+	</body>
+	<script>
+		var pics=[
+		    {img:"1.jpg",url:"http://www.houdunwang.com"},
+	        {img:"2.jpg",url:"http://www.houdunwang.com"},
+	        {img:"3.jpg",url:"http://www.houdunwang.com"},
+	        {img:"4.jpg",url:"http://www.houdunwang.com"}
+		    ];
+		slide=function(id,data){
+			this.id=id;
+			this.data=data;
+			/*获取元素*/
+			this.div=document.getElementById(id);
+			this.ul=this.div.getElementsByTagName('ul')[0];
+			this.imgWidth=952;
+			this.liWidth=28;
+			/*计算出li的数量*/
+			this.liNum=Math.floor(this.imgWidth/this.liWidth);
+			/*核心执行函数*/
+			this.run=function(){
+				this.createLi();
+				this.createText();
+				this.change();
+			}
+			/*创建快元素*/
+			this.createLi=function(){
+				var li='';
+				/*批量生产li元素*/
+				for(var i=0;i<this.liNum;i++){
+					/*li的开始*/
+					li=li+'<li>';
+					for(var j=0;j<data.length;j++){
+						/*设置不同a的背景*/
+						var style = "background:url("+data[j]['img']+") no-repeat "+i*-this.liWidth+"px 0px";
+						/*给a添加样式，并放在li元素里*/
+						li=li+"<a href='"+data[j]['url']+"' style='"+style+"'></a>";
+					}
+					/*li的结束*/
+					li=li+'</li>';
+					/*把li放在ul里*/
+					this.ul.innerHTML=li;
+				}
+			}
+			/*创建序号元素*/
+			this.createText=function(){
+				var nav='<nav>';
+				/*生成多个可点击的序号*/
+				for(var k=0;k<data.length;k++){
+					nav=nav+"<a href='javascript:;'>"+(k+1)+"</a>";
+				}
+				nav=nav+'</nav>';
+				/*把序号加入到舞台元素里*/
+				this.div.innerHTML += nav;
+			}
+			/*点击执行旋转操作的函数*/
+			this.change=function(){
+				var liList=document.getElementsByTagName('li')
+				var aList=this.div.getElementsByTagName('nav')[0].getElementsByTagName('a');
+				for(var l=0;l<aList.length;l++){
+					aList[l].onclick=(function(index){
+						return function(){
+							for(var m=0;m<aList.length;m++){
+								aList[m].style.background='#999';
+							}
+							this.style.background='#ff0000';
+							for(var n=0;n<liList.length;n++){
+								/*让li旋转*/
+								liList[n].style.transform="rotateX(-"+index*90+"deg)";
+								/*时间间隔*/
+								liList[n].style.transition="1s "+n*80+"ms";
+							}
+						}
+					})(l);
+				}
+			}
+		}
+		var obj=new slide("box",pics);
+		obj.run();
+	</script>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.min.js"></script>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			.box{
+				width: 1200px;
+				margin: 0px auto;
+				border: 2px solid red;
+			}
+			.top{
+				height: 400px;
+				background: yellow;
+			}
+			.list{
+				height: 500px;
+			}
+			h1{
+				height: 50px;
+				background: red;
+			}
+			.content{
+				height: 450px;
+				background: black;
+			}
+			.lou{
+				width: 50px;
+				background: #918888;
+				position: fixed;
+				top: 30%;
+				
+			}
+			.lou a{
+				display: block;
+				color: white;
+				/*width: 50px;*/
+				padding: 10px 0px;
+				text-align: center;
+				border-bottom: 1px solid #B1AAAA;
+				text-decoration: none;
+			}
+			.active{
+				background: red;
+			}
+			.buttom{
+				height: 600px;
+				background: green;
+			}
+			.Top{
+				width:1000px;
+				margin:0px auto;
+				height: 0px;
+				background:pink;
+			}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				$('.Top').animate({'height':'300px'},1000,function(){
+					setTimeout(function(){
+						$('.Top').animate({'height':'0px'},1000);
+					},3000)
+					
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="Top"></div>
+		
+		<div class="box">
+			
+			<div class="top">
+				
+			</div>
+			
+			<div class="list">
+				<h1>1楼</h1>
+			</div>
+			<div class="list">
+				<h1>2楼</h1>
+			</div>
+			<div class="list">
+				<h1>3楼</h1>
+			</div>
+			<div class="list">
+				<h1>4楼</h1>
+			</div>
+			<div class="list">
+				<h1>5楼</h1>
+			</div>
+			<div class="list">
+				<h1>6楼</h1>
+			</div>
+			<div class="list">
+				<h1>7楼</h1>
+			</div>
+			<div class="list">
+				<h1>8楼</h1>
+			</div>
+			
+			<div class="bottom">
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
