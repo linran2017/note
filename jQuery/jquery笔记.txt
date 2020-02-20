@@ -1248,3 +1248,15 @@ jqprints打印
     }
 </script>
     
+
+
+//复制功能
+1、html:
+ <input type="text" id="copy" style="opacity: 0; height: 0; border: none; display: inline-block;" value="复制内容" />
+ 
+ 2、js
+   $('#copy').select();//input的value值
+   document.execCommand('copy');//执行复制
+ 
+ 注意： （1）input不能有hidden属性;
+        （2）input框不能有disabled属性；
